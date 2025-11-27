@@ -57,8 +57,8 @@ function ContactDetails() {
     cursor-pointer transform hover:scale-[1.07] hover:shadow-2xl text-center px-4 py-6 space-y-4 
     ${
       isDark
-        ? "bg-[#202C39]/60 text-white border-[#6C63FF]"
-        : "bg-white/80 text-gray-900 border-[#6C63FF]"
+        ? "bg-slate-800/60 text-white border-purple-500"
+        : "bg-white/80 text-gray-900 border-blue-500"
     }`;
 
   return (
@@ -67,8 +67,8 @@ function ContactDetails() {
       className={`relative py-24 px-6 md:px-20 transition-all duration-500 
         ${
           isDark
-            ? "bg-gradient-to-br from-[#202C39] via-[#1e1e2f] to-[#202C39]"
-            : "bg-gradient-to-br from-[#f9f9ff] via-[#e7f5ff] to-[#deeefc]"
+            ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+            : "bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100"
         }`}
     >
       <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">
@@ -83,7 +83,7 @@ function ContactDetails() {
         data-aos="fade-up"
       >
         Let’s{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6C63FF] to-[#9333ea]">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
           Connect
         </span>
       </h2>
@@ -105,7 +105,7 @@ function ContactDetails() {
               }
             }}
           >
-            <div className="text-4xl text-[#6C63FF] group-hover:scale-125 transition-transform">
+            <div className="text-4xl text-purple-500 group-hover:scale-125 transition-transform">
               {item.icon}
             </div>
             <div className="text-xl font-semibold tracking-wide">

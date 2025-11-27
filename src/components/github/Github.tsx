@@ -24,8 +24,8 @@ export default function GitHubJourney() {
   const isDark = resolvedTheme === "dark";
 
   const gradient = isDark
-    ? "from-[#202C39] to-[#0f172a]"
-    : "from-[#f9f9ff] to-[#deeefc]";
+    ? "from-slate-900 to-slate-950"
+    : "from-gray-50 to-blue-50";
 
   return (
     <section
@@ -39,7 +39,7 @@ export default function GitHubJourney() {
         data-aos="fade-up"
       >
         My{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6C63FF] to-[#9333ea]">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
           GitHub
         </span>{" "}
         Journey
@@ -88,8 +88,8 @@ export default function GitHubJourney() {
                 onClick={() => setYear(y)}
                 className={`px-3 py-1 rounded-full font-medium transition duration-300 ${
                   year === y
-                    ? "bg-[#6C63FF] text-white"
-                    : "bg-gray-200 text-gray-800 hover:bg-[#6C63FF]/20 hover:text-zinc-50"
+                    ? "bg-purple-500 text-white"
+                    : "bg-gray-200 text-gray-800 hover:bg-purple-500/20 hover:text-zinc-50"
                 }`}
               >
                 {y}

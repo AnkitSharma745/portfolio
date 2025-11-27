@@ -1,156 +1,186 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import "./navbar.css";
+import { Moon, Sun, Menu, X, Download } from "lucide-react";
 import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { onDownloadResume } from "@/utils/downloadResume";
 
 function NavBar() {
   const { theme, setTheme } = useTheme();
-  const RESUME_PDF = "/resume.pdf";
-  const RESUME_DERIVE_LINK = "https://drive.google.com/your-resume-link";
-
-  const NAV_ITEMS = [
-    ["home", "Home"],
-    ["about", "About"],
-    ["skills", "Skills"],
-    ["projects", "Projects"],
-    ["contact", "Contact"],
-  ];
-
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const RESUME_DERIVE_LINK = "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
+
+  const NAV_ITEMS = [
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Skills", href: "/#skills" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Contact", href: "/#contact" },
+    { label: "Blog", href: "/blog" },
+  ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isDark = theme === "dark";
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
 
-  const navBg = isDark
-    ? "bg-[#202C39]"
-    : "bg-gradient-to-br from-[#fbf8f3] via-[#eff7f6] to-[#deeefc]";
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
 
-  const navText = isDark ? "text-white" : "text-gray-900";
+      if (pathname === "/") {
+        // Smooth scroll if already on home
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home with hash
+        router.push(href);
+      }
+    } else {
+      // Standard navigation (e.g., /blog)
+      router.push(href);
+    }
+  };
 
-  const gradientFrom = "from-[#5A77FF]";
-  const gradientTo = "to-[#00C9A7]";
-
-  const buttonBase = `w-[70%] text-center py-3 font-semibold tracking-wide rounded-lg transition-all duration-300 shadow-md text-white`;
-  const buttonGradient = `bg-gradient-to-r ${gradientFrom} ${gradientTo} hover:brightness-110`;
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full shadow-md transition-all duration-300 ${navBg} ${
-        scrolled ? "border-b border-[#8E7AB5]/40 backdrop-blur-md" : ""
-      }`}
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* <h1
-          className={`text-3xl font-extrabold px-4 py-2 rounded-xl bg-gradient-to-r ${gradientFrom} ${gradientTo} text-white shadow-2xl hover:scale-105 transition-transform tracking-wide`}
-        >
-          Ankit
-        </h1> */}
-        <h1 className="text-4xl font-extrabold hover:scale-105 transition-transform tracking-wide  bg-gradient-to-r from-[#06b6d4] via-[#3b82f6] to-[#9333ea] text-transparent bg-clip-text">
-          Ankit
-        </h1>
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/#home" onClick={(e) => handleNavigation(e, "/#home")} className="group relative">
+          <h1 className="text-3xl font-bold tracking-tighter">
+            <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-500 animate-gradient-x">
+              Ankit
+            </span>
+            <span className="text-foreground">.dev</span>
+          </h1>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+        </Link>
 
-        {/* Hamburger menu */}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNavigation(e, item.href)}
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group cursor-pointer"
+            >
+              {item.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+
+          <div className="flex items-center gap-4 ml-4">
+            <button
+              onClick={onDownloadResume}
+              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/25"
+            >
+              <Download size={16} />
+              Resume
+            </button>
+
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full hover:bg-secondary transition-colors text-foreground"
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden transition-transform duration-300 hover:scale-110"
+          className="md:hidden p-2 text-foreground"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Menu"
         >
-          <span className="transition-transform duration-500">
-            {isMenuOpen ? (
-              <X size={28} className={`${navText} animate-pulse`} />
-            ) : (
-              <Menu size={28} className={`${navText} animate-pulse`} />
-            )}
-          </span>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-base font-medium">
-          {NAV_ITEMS.map(([id, label]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`nav-button ${isDark ? "nav-dark" : "nav-light"}`}
-            >
-              {label}
-            </a>
-          ))}
-
-          <button
-            onClick={() => {
-              window.open(RESUME_DERIVE_LINK, "_blank");
-              const link = document.createElement("a");
-              link.href = RESUME_PDF;
-              link.download = "Resume.pdf";
-              link.click();
-            }}
-            className={`nav-button ${isDark ? "nav-dark" : "nav-light"}`}
-          >
-            Resume
-          </button>
-
-          <button
-            onClick={() => setTheme(isDark ? "light" : "dark")}
-            className={`group nav-button  ${isDark ? "border-[#C9BBCF]" : "border-[#5A77FF]"} hover:scale-110 transition-all duration-300`}
-            aria-label="Toggle Dark Mode"
-          >
-            {isDark ? <Sun size={24} /> : <Moon size={24} />}
-          </button>
-        </nav>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div
-          className={`md:hidden px-6 py-6 flex flex-col gap-5 items-center text-base font-medium transition-all duration-300 ${
-            isDark ? "bg-[#202C39] text-white" : "bg-[#fefefe] text-black"
-          } shadow-2xl rounded-b-3xl`}
-        >
-          {NAV_ITEMS.map(([id, label]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={() => setIsMenuOpen(false)}
-              className={`${buttonBase} ${buttonGradient}`}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "100vh" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden fixed inset-0 top-[60px] bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
+          >
+            {NAV_ITEMS.map((item, index) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                onClick={(e) => handleNavigation(e as React.MouseEvent<HTMLAnchorElement>, item.href)}
+                className="text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
+              >
+                {item.label}
+              </motion.a>
+            ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col gap-6 mt-8"
             >
-              {label}
-            </a>
-          ))}
+              <button
+                onClick={() => {
+                  window.open(RESUME_DERIVE_LINK, "_blank");
+                  setIsMenuOpen(false);
+                }}
+                className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium shadow-lg"
+              >
+                Resume
+              </button>
 
-          <button
-            onClick={() => {
-              window.open(RESUME_DERIVE_LINK, "_blank");
-              const link = document.createElement("a");
-              link.href = RESUME_PDF;
-              link.download = "Resume.pdf";
-              link.click();
-              setIsMenuOpen(false);
-            }}
-            className={`${buttonBase} ${buttonGradient}`}
-          >
-            Resume
-          </button>
-
-          <button
-            onClick={() => {
-              setTheme(isDark ? "light" : "dark");
-              setIsMenuOpen(false);
-            }}
-            className={`${buttonBase} ${buttonGradient}`}
-          >
-            {isDark ? "Light Mode" : "Dark Mode"}
-          </button>
-        </div>
-      )}
-    </header>
+              <button
+                onClick={() => {
+                  setTheme(theme === "dark" ? "light" : "dark");
+                  setIsMenuOpen(false);
+                }}
+                className="flex items-center gap-2 text-foreground"
+              >
+                {theme === "dark" ? (
+                  <>
+                    <Sun size={20} /> Light Mode
+                  </>
+                ) : (
+                  <>
+                    <Moon size={20} /> Dark Mode
+                  </>
+                )}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
 

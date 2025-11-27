@@ -1,46 +1,20 @@
 "use client";
-
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
-  FaReact,
-  FaNodeJs,
-  FaDatabase,
-  FaCode,
-  FaChartLine,
-  FaCog,
-  FaShoppingCart,
-  FaUsers,
-  FaGithub,
-  FaDownload,
   FaRocket,
   FaMedal,
-  FaLightbulb,
   FaGem,
   FaTrophy,
   FaFire,
   FaStar,
-  FaLayerGroup,
-  FaServer,
-  FaMobile,
-  FaDesktop,
-  FaCloud,
 } from "react-icons/fa";
-import {
-  SiTypescript,
-  SiMui,
-  SiRedux,
-  SiMongodb,
-  SiElectron,
-} from "react-icons/si";
 
 const ExperiencePortfolio = () => {
   const [activeProject, setActiveProject] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
 
   useEffect(() => {
-    setIsVisible(true);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -133,25 +107,6 @@ const ExperiencePortfolio = () => {
     },
   ];
 
-  const skills = [
-    {
-      name: "React/TypeScript",
-      level: 95,
-      icon: <FaReact />,
-      color: "#61DAFB",
-    },
-    { name: "Node.js", level: 90, icon: <FaNodeJs />, color: "#339933" },
-    {
-      name: "System Design",
-      level: 88,
-      icon: <FaLayerGroup />,
-      color: "#FF6B6B",
-    },
-    { name: "UI/UX", level: 92, icon: <FaDesktop />, color: "#4ECDC4" },
-    { name: "Database", level: 85, icon: <FaDatabase />, color: "#45B7D1" },
-    { name: "DevOps", level: 80, icon: <FaServer />, color: "#96CEB4" },
-  ];
-
   const achievements = [
     {
       icon: <FaRocket />,
@@ -170,7 +125,7 @@ const ExperiencePortfolio = () => {
     },
     {
       icon: <FaFire />,
-      title: "25K+ Lines of Code",
+      title: "50K+ Lines of Code",
       desc: "Clean, maintainable code",
     },
   ];
@@ -196,7 +151,7 @@ const ExperiencePortfolio = () => {
         className="relative z-10 min-h-screen flex items-center justify-center px-6"
       >
         <div
-          className={`text-center transform transition-all duration-2000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
+          className={`text-center transform transition-all duration-2000 translate-y-0 opacity-100`}
         >
           <div className="mb-8">
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full border border-purple-500/30 mb-6">
@@ -224,11 +179,11 @@ const ExperiencePortfolio = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
             {achievements.map((achievement, idx) => (
               <div
                 key={idx}
-                className={`bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-gray-200 dark:border-white/10 transform transition-all duration-700 hover:scale-105 hover:bg-white/80 dark:hover:bg-white/10 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                className={`bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-gray-200 dark:border-white/10 transform transition-all duration-700 hover:scale-105 hover:bg-white/80 dark:hover:bg-white/10 translate-y-0 opacity-100`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
                 <div className="text-3xl mb-3 text-purple-600 dark:text-purple-400">
@@ -242,17 +197,7 @@ const ExperiencePortfolio = () => {
             ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold text-lg text-white hover:shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
-              <FaDownload className="group-hover:animate-bounce" />
-              Download Resume
-            </button>
-            <button className="px-8 py-4 border-2 border-purple-500 rounded-full font-semibold text-lg hover:bg-purple-500/10 transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
-              <FaGithub />
-              View Projects
-            </button>
-          </div>
+
         </div>
       </section>
 
@@ -274,11 +219,10 @@ const ExperiencePortfolio = () => {
               <button
                 key={idx}
                 onClick={() => setActiveProject(idx)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeProject === idx
-                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
-                    : "bg-white/50 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
-                }`}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeProject === idx
+                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                  : "bg-white/50 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
+                  }`}
               >
                 {project.title}
               </button>
@@ -373,49 +317,7 @@ const ExperiencePortfolio = () => {
         </div>
       </section>
 
-      {/* Skills Visualization */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400 bg-clip-text text-transparent">
-              Technical Mastery
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Expertise across the full technology stack
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skill, idx) => (
-              <div
-                key={idx}
-                className="bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-gray-200 dark:border-white/10 hover:bg-white/80 dark:hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="text-3xl" style={{ color: skill.color }}>
-                    {skill.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{skill.name}</h3>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {skill.level}% Proficiency
-                    </span>
-                  </div>
-                </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div
-                    className="h-2 rounded-full transition-all duration-1000 ease-out"
-                    style={{
-                      width: `${skill.level}%`,
-                      background: `linear-gradient(90deg, ${skill.color}, ${skill.color}99)`,
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Call to Action */}
       <section className="relative z-10 py-20 px-6">

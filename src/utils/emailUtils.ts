@@ -1,10 +1,10 @@
 import emailjs from "@emailjs/browser";
 
 // Constants for EmailJS
-const SERVICE_ID = "service_le3gsdmv";
-const ADMIN_TEMPLATE_ID = "templsate_khgcmoe"; // Note: check spelling
-const USER_TEMPLATE_ID = "temsdate_1fxcnew"; // Note: check spelling
-const PUBLIC_KEY = "g6nJ18KZsdfZ1ErDTHk";
+const SERVICE_ID = "service_8bowzxn";
+const ADMIN_TEMPLATE_ID = "template_a721ovz"; // Note: check spelling
+const USER_TEMPLATE_ID = "template_rz4riyc"; // Note: check spelling
+const PUBLIC_KEY = "37NqxBvffP7kjKXEv";
 
 // Input types
 interface EmailData {
@@ -31,29 +31,27 @@ export const sendEmails = async ({
 }: EmailData): Promise<EmailResult> => {
   try {
     // Send to Admin
-    const adminResponse = await emailjs.send(
+  await emailjs.send(
       SERVICE_ID,
       ADMIN_TEMPLATE_ID,
       { firstName, lastName, email, phone, message },
       PUBLIC_KEY
     );
-    console.log("Admin email sent successfully:", adminResponse);
-
+   
     // Send Thank-you to User
-    const userResponse = await emailjs.send(
+    await emailjs.send(
       SERVICE_ID,
       USER_TEMPLATE_ID,
       { email, firstName },
       PUBLIC_KEY
     );
-    console.log("Thank-you email sent successfully:", userResponse);
+    
 
     return {
       success: true,
       message: "Emails sent successfully!",
     };
   } catch (error: unknown) {
-    console.error("Failed to send emails:", error);
 
     let errorMessage = "Unknown error";
     if (typeof error === "object" && error !== null) {

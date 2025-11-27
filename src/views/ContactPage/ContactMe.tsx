@@ -49,6 +49,9 @@ export default function ContactMe() {
       });
     }
     setStatusMessage(result.message);
+    setTimeout(() => {
+      setStatusMessage("");
+    }, 3000);
   };
 
   const isDark = theme === "dark";
@@ -83,8 +86,8 @@ export default function ContactMe() {
           <div
             className={`${
               isDark
-                ? "bg-gradient-to-br from-[#202C39] via-[#1e1e2f] to-[#202C39]"
-                : "bg-gradient-to-br from-[#f9f9ff] via-[#e7f5ff] to-[#deeefc]"
+                ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+                : "bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100"
             } rounded-2xl p-8 space-y-6`}
           >
             {["firstName", "lastName", "email", "phone"].map((field, idx) => {
