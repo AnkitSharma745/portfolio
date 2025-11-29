@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import NavBar from "@/components/layout/NavBar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import NavBar from "@/components/navigation/Navbar/Navbar";
+import Footer from "@/components/navigation/Footer/Footer";
 import ChatWidget from "@/components/ChatWidget/ChatWidget";
 import TerminalLoader from "@/components/ui/TerminalLoader";
 import { Inter, Outfit } from "next/font/google";

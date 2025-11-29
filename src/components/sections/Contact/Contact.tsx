@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { sendEmails } from "@/utils/emailUtils";
+import { sendEmails } from "@/lib/utils/email";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import SectionDivider from "@/components/SectionDivider";
 

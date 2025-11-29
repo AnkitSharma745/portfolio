@@ -1,4 +1,4 @@
-import HomePage from "@/views/HomePage/HomePage";
+
 import dynamic from "next/dynamic";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import type { Metadata } from "next";
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 // Lazy load below-the-fold components for better performance
 const ExperiencePortfolio = dynamic(
-  () => import("@/components/layout/Experience/Experience"),
+  () => import("@/components/sections/Experience/Experience"),
   {
     loading: () => (
       <div className="min-h-screen flex items-center justify-center">
@@ -39,28 +39,18 @@ const ExperiencePortfolio = dynamic(
   }
 );
 
-const AboutMe = dynamic(() => import("@/views/CodingYearJourney/CodingYearJourney"), {
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-    </div>
-  ),
-});
-
-const SkillsPage = dynamic(() => import("@/views/SkillsPage/Skills"), {
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-    </div>
-  ),
-});
-
 const ContactDetails = dynamic(
-  () => import("@/views/ContactPage/ContactDetails")
+  () => import("@/components/sections/Contact/ContactDetails")
 );
-const ContactMe = dynamic(() => import("@/views/ContactPage/ContactMe"));
-const Projects = dynamic(() => import("@/views/ProjectPage/ProjectPage"));
+
 const GitHubJourney = dynamic(() => import("@/components/github/Github"));
+
+const Hero = dynamic(() => import("@/components/sections/Hero/Hero"));
+const About = dynamic(() => import("@/components/sections/About/About"));
+const Skills = dynamic(() => import("@/components/sections/Skills/Skills"));
+const Projects = dynamic(() => import("@/components/sections/Projects/Projects"));
+const Contact = dynamic(() => import("@/components/sections/Contact/Contact"));
+const CodingYearJourney = dynamic(() => import("@/views/CodingYearJourney/CodingYearJourney"));
 
 export default function Home() {
   return (
@@ -70,13 +60,14 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <HomePage />
+        <Hero />
         <ExperiencePortfolio />
-        <AboutMe />
-        <SkillsPage />
+        <About />
+        <Skills />
         <ContactDetails />
-        <ContactMe />
+        <Contact />
         <Projects />
+        <CodingYearJourney />
         <GitHubJourney />
       </div>
     </main>

@@ -7,7 +7,7 @@ import "./skillPage.css";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
-import { TECH_ITEMS, TOOLS_ITEMS, FAMILIARITY_ITEMS, TechItem } from "@/constants/Skills";
+import { TECH_ITEMS, TOOLS_ITEMS, FAMILIARITY_ITEMS, TechItem } from "@/lib/constants/skills";
 
 export default function SkillsPage() {
   const { theme } = useTheme();

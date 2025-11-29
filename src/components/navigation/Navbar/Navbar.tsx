@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { onDownloadResume } from "@/utils/downloadResume";
+import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 
 function NavBar() {
