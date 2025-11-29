@@ -5,6 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import SectionDivider from "@/components/SectionDivider";
 
 interface Project {
   title: string;
@@ -50,24 +51,22 @@ export default function Projects() {
 
   const isDark = theme === "dark";
 
-  const sectionBg = isDark
-    ? "bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a]"
-    : "bg-gradient-to-b from-[#fbf8f3] via-[#eff7f6] to-[#deeefc]";
+  const sectionBg = "bg-background";
 
   const cardBg = isDark
     ? "bg-gray-800 text-white border-gray-700"
     : "bg-white text-black border-gray-200";
 
   const headingGradient =
-    "bg-gradient-to-r from-[#06b6d4] via-[#3b82f6] to-[#9333ea] bg-clip-text text-transparent";
+    "bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent";
 
   const glowOverlay =
-    "absolute -inset-1 rounded-xl blur-md opacity-0 group-hover:opacity-40 transition bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 z-0";
+    "absolute -inset-1 rounded-xl blur-md opacity-0 group-hover:opacity-40 transition bg-gradient-to-r from-primary via-cyan-400 to-accent z-0";
 
   return (
     <section
       id="projects"
-      className={`py-24 px-6 md:px-16 relative ${sectionBg}`}
+      className={`pt-24 pb-0 px-6 md:px-16 relative ${sectionBg}`}
     >
       <h2
         className="text-4xl md:text-5xl font-extrabold text-center mb-16"
@@ -106,7 +105,7 @@ export default function Projects() {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#3b82f6] hover:underline font-medium"
+                      className="text-primary hover:underline font-medium"
                     >
                       🌐 Live
                     </a>
@@ -116,7 +115,7 @@ export default function Projects() {
                       href={project.codeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#9333ea] hover:underline font-medium"
+                      className="text-accent hover:underline font-medium"
                     >
                       💻 Code
                     </a>
@@ -137,6 +136,9 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
+      {/* Section Divider */}
+      <SectionDivider />
     </section>
   );
 }

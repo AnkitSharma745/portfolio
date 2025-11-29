@@ -30,12 +30,11 @@ export default function GitHubJourney() {
   return (
     <section
       id="github-journey"
-      className={`py-24 px-4 sm:px-10 md:px-20 bg-gradient-to-br transition-colors duration-700 ${gradient}`}
+      className={`pt-20 pb-20 px-4 sm:px-10 md:px-20 bg-gradient-to-br transition-colors duration-700 ${gradient}`}
     >
       <h2
-        className={`text-4xl sm:text-5xl font-extrabold text-center mb-12 tracking-tight ${
-          isDark ? "text-white" : "text-gray-900"
-        }`}
+        className={`text-4xl sm:text-5xl font-extrabold text-center mb-12 tracking-tight ${isDark ? "text-white" : "text-gray-900"
+          }`}
         data-aos="fade-up"
       >
         My{" "}
@@ -51,9 +50,8 @@ export default function GitHubJourney() {
           data-aos="fade-up"
         >
           <Image
-            src={`https://streak-stats.demolab.com?user=ankitsharma745&theme=${
-              isDark ? "dark" : "default"
-            }&hide_border=true&date_format=j%20M%5B%20Y%5D`}
+            src={`https://streak-stats.demolab.com?user=ankitsharma745&theme=${isDark ? "dark" : "default"
+              }&hide_border=true&date_format=j%20M%5B%20Y%5D`}
             alt="GitHub Streak"
             width={495}
             height={195}
@@ -61,9 +59,8 @@ export default function GitHubJourney() {
             unoptimized
           />
           <Image
-            src={`https://github-readme-stats.vercel.app/api?username=ankitsharma745&show_icons=true&hide_border=true&theme=${
-              isDark ? "tokyonight" : "default"
-            }`}
+            src={`https://github-readme-stats.vercel.app/api?username=ankitsharma745&show_icons=true&hide_border=true&theme=${isDark ? "tokyonight" : "default"
+              }`}
             alt="GitHub Stats"
             width={495}
             height={195}
@@ -74,9 +71,8 @@ export default function GitHubJourney() {
 
         <div className="text-center w-full" data-aos="fade-up">
           <h3
-            className={`text-2xl font-semibold mb-4 ${
-              isDark ? "text-white" : "text-gray-800"
-            }`}
+            className={`text-2xl font-semibold mb-4 ${isDark ? "text-white" : "text-gray-800"
+              }`}
           >
             Contribution Calendar {year && ` - ${year}`}
           </h3>
@@ -86,11 +82,10 @@ export default function GitHubJourney() {
               <button
                 key={y}
                 onClick={() => setYear(y)}
-                className={`px-3 py-1 rounded-full font-medium transition duration-300 ${
-                  year === y
+                className={`px-3 py-1 rounded-full font-medium transition duration-300 ${year === y
                     ? "bg-purple-500 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-purple-500/20 hover:text-zinc-50"
-                }`}
+                  }`}
               >
                 {y}
               </button>

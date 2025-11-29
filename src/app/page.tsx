@@ -1,6 +1,31 @@
 import HomePage from "@/views/HomePage/HomePage";
 import dynamic from "next/dynamic";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Portfolio | Full Stack Developer & Desktop App Specialist",
+  description:
+    "Dynamic Full-Stack Developer specializing in React, Next.js, Electron, and .NET. Building high-scale web and desktop applications with a focus on performance and SEO.",
+  keywords: [
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "Electron",
+    "Desktop Apps",
+    ".NET",
+    "Automation",
+    "Retail Solutions",
+    "Portfolio",
+    "Software Engineer",
+  ],
+  openGraph: {
+    title: "Portfolio | Full Stack Developer & Desktop App Specialist",
+    description:
+      "Dynamic Full-Stack Developer specializing in React, Next.js, Electron, and .NET.",
+    type: "website",
+  },
+};
 
 // Lazy load below-the-fold components for better performance
 const ExperiencePortfolio = dynamic(
@@ -14,7 +39,7 @@ const ExperiencePortfolio = dynamic(
   }
 );
 
-const AboutMe = dynamic(() => import("@/views/AboutMe/AboutMe"), {
+const AboutMe = dynamic(() => import("@/views/CodingYearJourney/CodingYearJourney"), {
   loading: () => (
     <div className="min-h-screen flex items-center justify-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -43,7 +68,7 @@ export default function Home() {
       <div className="fixed inset-0 z-0">
         <ParticlesBackground />
       </div>
-      
+
       <div className="relative z-10">
         <HomePage />
         <ExperiencePortfolio />

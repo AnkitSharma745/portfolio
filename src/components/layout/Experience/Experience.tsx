@@ -131,11 +131,11 @@ const ExperiencePortfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 text-gray-900 dark:text-white overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden transition-colors duration-300">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div
-          className="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+          className="absolute w-96 h-96 bg-primary/20 rounded-full blur-3xl"
           style={{
             left: mousePosition.x - 200,
             top: mousePosition.y - 200,
@@ -154,22 +154,22 @@ const ExperiencePortfolio = () => {
           className={`text-center transform transition-all duration-2000 translate-y-0 opacity-100`}
         >
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full border border-purple-500/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full border border-primary/30 mb-6">
               <FaMedal className="text-yellow-400" />
               <span className="text-sm font-medium">
                 Full-Stack Technical Consultant
               </span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-blue-800 dark:from-white dark:via-purple-200 dark:to-blue-200 bg-clip-text text-transparent mb-6">
+            <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mb-6">
               Ankit Sharma
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Architect of{" "}
-              <span className="text-purple-600 dark:text-purple-400 font-semibold">
+              <span className="text-primary font-semibold">
                 enterprise-grade applications
               </span>{" "}
               and
-              <span className="text-blue-600 dark:text-blue-400 font-semibold">
+              <span className="text-accent font-semibold">
                 {" "}
                 revolutionary user experiences
               </span>
@@ -186,7 +186,7 @@ const ExperiencePortfolio = () => {
                 className={`bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-gray-200 dark:border-white/10 transform transition-all duration-700 hover:scale-105 hover:bg-white/80 dark:hover:bg-white/10 translate-y-0 opacity-100`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="text-3xl mb-3 text-purple-600 dark:text-purple-400">
+                <div className="text-3xl mb-3 text-primary">
                   {achievement.icon}
                 </div>
                 <div className="text-lg font-bold mb-1">
@@ -205,7 +205,7 @@ const ExperiencePortfolio = () => {
       <section className="relative z-10 py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Project Showcase
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
@@ -220,7 +220,7 @@ const ExperiencePortfolio = () => {
                 key={idx}
                 onClick={() => setActiveProject(idx)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeProject === idx
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-primary to-accent text-black font-bold shadow-lg shadow-primary/25"
                   : "bg-white/50 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
                   }`}
               >
@@ -245,7 +245,7 @@ const ExperiencePortfolio = () => {
                         {projects[activeProject].impact}
                       </span>
                     </div>
-                    <p className="text-xl text-purple-600 dark:text-purple-300 mb-4">
+                    <p className="text-xl text-primary mb-4">
                       {projects[activeProject].subtitle}
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
@@ -254,14 +254,14 @@ const ExperiencePortfolio = () => {
 
                     {/* Tech Stack */}
                     <div className="mb-6">
-                      <h4 className="text-lg font-semibold mb-3 text-purple-600 dark:text-purple-300">
+                      <h4 className="text-lg font-semibold mb-3 text-primary">
                         Tech Stack
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {projects[activeProject].techStack.map((tech, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-300 rounded-full text-sm border border-purple-500/30"
+                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/20"
                           >
                             {tech}
                           </span>
@@ -271,7 +271,7 @@ const ExperiencePortfolio = () => {
 
                     {/* Features */}
                     <div>
-                      <h4 className="text-lg font-semibold mb-3 text-blue-600 dark:text-blue-300">
+                      <h4 className="text-lg font-semibold mb-3 text-accent">
                         Key Features
                       </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -292,7 +292,7 @@ const ExperiencePortfolio = () => {
 
                   {/* Metrics */}
                   <div className="lg:w-80">
-                    <h4 className="text-lg font-semibold mb-4 text-green-600 dark:text-green-300">
+                    <h4 className="text-lg font-semibold mb-4 text-accent">
                       Project Metrics
                     </h4>
                     <div className="space-y-4">
@@ -322,7 +322,7 @@ const ExperiencePortfolio = () => {
       {/* Call to Action */}
       <section className="relative z-10 py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl p-12 border border-purple-500/30 backdrop-blur-lg">
+          <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-12 border border-primary/20 backdrop-blur-lg">
             <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
               Ready to Build Something Amazing?
             </h2>
@@ -331,10 +331,10 @@ const ExperiencePortfolio = () => {
               innovation to your next project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold text-lg text-white hover:shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300">
+              <button className="px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-lg text-black hover:shadow-2xl hover:shadow-primary/25 transform hover:scale-105 transition-all duration-300">
                 Let&apos;s Connect
               </button>
-              <button className="px-8 py-4 border-2 border-purple-500 rounded-full font-semibold text-lg text-purple-600 dark:text-white hover:bg-purple-500/10 transform hover:scale-105 transition-all duration-300">
+              <button className="px-8 py-4 border-2 border-primary rounded-full font-semibold text-lg text-primary hover:bg-primary/10 transform hover:scale-105 transition-all duration-300">
                 View All Projects
               </button>
             </div>

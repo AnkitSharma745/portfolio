@@ -32,11 +32,11 @@ export default function BlogPost() {
         </ul>
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">When to use Client Components?</h2>
         <p>
-          While RSCs are powerful, they can't handle interactivity like `useState` or `useEffect`. For that, we still need Client Components. The key is to push Client Components to the leaves of your component tree.
+          While RSCs are powerful, they can&apos;t handle interactivity like `useState` or `useEffect`. For that, we still need Client Components. The key is to push Client Components to the leaves of your component tree.
         </p>
         <div className="bg-secondary/50 p-6 rounded-xl border-l-4 border-primary my-8">
           <p className="italic">
-            "RSC is not about replacing Client Components, it's about using the right tool for the right job."
+            &quot;RSC is not about replacing Client Components, it&apos;s about using the right tool for the right job.&quot;
           </p>
         </div>
         <p>
@@ -49,8 +49,8 @@ export default function BlogPost() {
   return (
     <article className="min-h-screen pt-24 pb-20 bg-background text-foreground">
       {/* Progress Bar (Simulated) */}
-      <motion.div 
-        className="fixed top-0 left-0 h-1 bg-primary z-50" 
+      <motion.div
+        className="fixed top-0 left-0 h-1 bg-primary z-50"
         initial={{ width: "0%" }}
         animate={{ width: "100%" }}
         transition={{ duration: 2, ease: "linear" }}
@@ -58,7 +58,7 @@ export default function BlogPost() {
 
       <div className="max-w-3xl mx-auto px-6">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-8 group"
         >
@@ -85,9 +85,9 @@ export default function BlogPost() {
           </h1>
 
           <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
-            <img 
-              src={post.image} 
-              alt={post.title} 
+            <img
+              src={post.image}
+              alt={post.title}
               className="w-full h-full object-cover"
             />
           </div>

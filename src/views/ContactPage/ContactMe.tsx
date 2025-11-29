@@ -6,10 +6,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { sendEmails } from "@/utils/emailUtils";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { useTheme } from "next-themes";
+import SectionDivider from "@/components/SectionDivider";
+
 
 export default function ContactMe() {
-  const { theme } = useTheme();
+
 
   useEffect(() => {
     AOS.init({ duration: 50 });
@@ -54,16 +55,12 @@ export default function ContactMe() {
     }, 3000);
   };
 
-  const isDark = theme === "dark";
+
 
   return (
     <section
       id="contact-me"
-      className={`relative min-h-screen py-24 px-6 overflow-hidden transition-all duration-500 ${
-        isDark
-          ? "bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a] text-gray-200"
-          : "bg-gradient-to-b from-[#fbf8f3] via-[#eff7f6] to-[#deeefc] text-gray-900"
-      }`}
+      className="relative min-h-screen pt-24 pb-0 px-6 overflow-hidden transition-all duration-500 bg-background text-foreground"
     >
       <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">
         <ParticlesBackground id="contact-page" />
@@ -71,24 +68,18 @@ export default function ContactMe() {
 
       <div className="relative z-10 max-w-2xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-8" data-aos="fade-up">
-          <span className="bg-gradient-to-r from-[#06b6d4] via-[#3b82f6] to-[#9333ea] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
             Contact Me
           </span>
         </h2>
 
         <form
           onSubmit={handleSubmit}
-          className={`    border ${
-            isDark ? "border-[#3b82f6]" : "border-[#3b82f6]"
-          } rounded-2xl p-[2px]`}
+          className="border border-primary/30 rounded-2xl p-[2px]"
           data-aos="fade-up"
         >
           <div
-            className={`${
-              isDark
-                ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
-                : "bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100"
-            } rounded-2xl p-8 space-y-6`}
+            className="bg-gradient-to-br from-background via-secondary/50 to-background rounded-2xl p-8 space-y-6"
           >
             {["firstName", "lastName", "email", "phone"].map((field, idx) => {
               const label =
@@ -119,7 +110,7 @@ export default function ContactMe() {
                     value={formData[field as keyof typeof formData]}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   />
                 </div>
               );
@@ -140,7 +131,7 @@ export default function ContactMe() {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
 
@@ -149,19 +140,17 @@ export default function ContactMe() {
               <Switch
                 checked={agreed}
                 onChange={setAgreed}
-                className={`${
-                  agreed ? "bg-[#06b6d4]" : "bg-gray-200"
-                } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200`}
+                className={`${agreed ? "bg-primary" : "bg-gray-200"
+                  } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200`}
               >
                 <span
-                  className={`${
-                    agreed ? "translate-x-6" : "translate-x-1"
-                  } inline-block h-4 w-4 transform bg-white rounded-full transition`}
+                  className={`${agreed ? "translate-x-6" : "translate-x-1"
+                    } inline-block h-4 w-4 transform bg-white rounded-full transition`}
                 />
               </Switch>
               <label className="text-sm">
                 I agree to the{" "}
-                <a href="#" className="font-semibold text-[#3b82f6]">
+                <a href="#" className="font-semibold text-primary">
                   terms and conditions
                 </a>
                 .
@@ -172,18 +161,17 @@ export default function ContactMe() {
             <button
               type="submit"
               disabled={!agreed}
-              className={`w-full py-3 rounded-lg font-semibold text-white transition ${
-                agreed
-                  ? "bg-indigo-600 hover:bg-indigo-500"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
+              className={`w-full py-3 rounded-lg font-semibold text-white transition ${agreed
+                ? "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-black"
+                : "bg-gray-400 cursor-not-allowed"
+                }`}
             >
               Send Message
             </button>
 
             {statusMessage && (
               <p
-                className="mt-4 text-center text-sm text-indigo-500"
+                className="mt-4 text-center text-sm text-primary"
                 data-aos="fade-up"
                 data-aos-delay={200}
               >
@@ -193,6 +181,9 @@ export default function ContactMe() {
           </div>
         </form>
       </div>
+
+      {/* Section Divider */}
+      <SectionDivider />
     </section>
   );
 }

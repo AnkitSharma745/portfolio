@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { onDownloadResume } from "@/utils/downloadResume";
+import GradientText from "@/components/GradientText";
 
 function NavBar() {
   const { theme, setTheme } = useTheme();
@@ -34,6 +35,7 @@ function NavBar() {
   }, []);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+
     e.preventDefault();
     setIsMenuOpen(false);
 
@@ -67,11 +69,11 @@ function NavBar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/#home" onClick={(e) => handleNavigation(e, "/#home")} className="group relative">
+        <Link href="/#home" onClick={(e) => { handleNavigation(e, "/#home"); window.location.reload(); }} className="group relative">
           <h1 className="text-3xl font-bold tracking-tighter">
-            <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-500 animate-gradient-x">
+            <GradientText>
               Ankit
-            </span>
+            </GradientText>
             <span className="text-foreground">.dev</span>
           </h1>
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />

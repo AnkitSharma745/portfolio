@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12 sm:px-10 md:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="space-y-4">
           <h2 className="text-2xl font-bold tracking-wide">
-            <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-500">
+            <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-400 to-accent">
               Ankit Sharma
             </span>
           </h2>
@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      
+
       <div className="w-full py-6 border-t border-border text-center text-sm text-foreground/60 bg-secondary/30">
         © {new Date().getFullYear()} Ankit Sharma. All rights reserved.
       </div>

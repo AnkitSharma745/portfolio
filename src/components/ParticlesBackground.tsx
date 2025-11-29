@@ -29,7 +29,7 @@ const ParticlesBackground = ({ id = "tsparticles" }: Props) => {
   if (isMobile) return null;
 
   const isDark = theme === "dark";
-  const color = isDark ? "#ffffff" : "#6366f1"; // White in dark, Primary in light
+  const color = isDark ? "#06b6d4" : "#06b6d4"; // Cyan in both modes for consistency
 
   return (
     <Particles
