@@ -1,0 +1,94 @@
+1:"$Sreact.fragment"
+2:I[56253,["/_next/static/chunks/a2ff6ef727702bc1.js","/_next/static/chunks/ab1e197a9ec54c26.js","/_next/static/chunks/c4673e7a3a489db8.js","/_next/static/chunks/7348c8c52c85ae5c.js","/_next/static/chunks/6b91acd248f40a91.js","/_next/static/chunks/0602d1c77d3dd180.js"],"default"]
+3:I[7335,["/_next/static/chunks/a2ff6ef727702bc1.js","/_next/static/chunks/ab1e197a9ec54c26.js","/_next/static/chunks/c4673e7a3a489db8.js","/_next/static/chunks/7348c8c52c85ae5c.js","/_next/static/chunks/6b91acd248f40a91.js","/_next/static/chunks/0602d1c77d3dd180.js"],"default"]
+4:I[50425,["/_next/static/chunks/a2ff6ef727702bc1.js","/_next/static/chunks/ab1e197a9ec54c26.js","/_next/static/chunks/c4673e7a3a489db8.js","/_next/static/chunks/7348c8c52c85ae5c.js","/_next/static/chunks/6b91acd248f40a91.js","/_next/static/chunks/0602d1c77d3dd180.js"],"default"]
+9:I[42178,["/_next/static/chunks/8e5cbd5277a6eb4f.js","/_next/static/chunks/351283919579e33c.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+5:T5b8,
+# Building a Next-Level Developer Portfolio
+
+Creating a portfolio is more than just showcasing your projects; it's about demonstrating your skills, design sense, and attention to detail. In this post, I'll walk you through how I built this portfolio using the latest web technologies.
+
+## The Tech Stack
+
+I chose a modern stack focused on performance and developer experience:
+
+- **Next.js 14**: For server-side rendering and the App Router.
+- **TypeScript**: For type safety and better tooling.
+- **Tailwind CSS**: For rapid, utility-first styling.
+- **Framer Motion**: For smooth, complex animations.
+
+## Key Features
+
+### 1. Command Palette
+
+Inspired by VS Code and macOS Spotlight, I implemented a global command palette (`Cmd+K`) to make navigation effortless.
+
+```tsx
+// Simple example of the command palette logic
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      setIsOpen((prev) => !prev);
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
+```
+
+### 2. Performance First
+
+Performance was a top priority. I used `next/image` for automatic image optimization, implemented code splitting, and ensured all animations are hardware-accelerated.
+
+## Conclusion
+
+Building this portfolio was a journey of continuous refinement. I hope this inspires you to build your own!
+6:T49b,
+# Understanding React Server Components
+
+React Server Components (RSC) represent a paradigm shift in how we build React applications. They allow us to render components exclusively on the server, reducing the bundle size sent to the client.
+
+## Why RSC?
+
+### 1. Zero Bundle Size
+
+Server components are not included in the JavaScript bundle sent to the browser. This is perfect for static content or components that rely on heavy libraries (like markdown parsers).
+
+### 2. Direct Backend Access
+
+Since they run on the server, RSCs can access your database or file system directly without needing an API layer.
+
+```tsx
+// app/page.tsx
+import db from './db';
+
+async function Page() {
+  const posts = await db.posts.findAll();
+  
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## When to use Client Components?
+
+Use Client Components when you need:
+- Interactivity (onClick, onChange)
+- State (useState, useReducer)
+- Lifecycle effects (useEffect)
+- Browser-only APIs
+
+## Summary
+
+RSCs simplify data fetching and improve performance by default. They are the future of building scalable React applications.
+0:{"buildId":"pYjan3R7jgwb69fVPofjd","rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":["$","main",null,{"className":"min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10","children":[["$","div",null,{"className":"container mx-auto px-6","children":["$","$L3",null,{}]}],["$","div",null,{"className":"relative z-10 container mx-auto px-6","children":[["$","div",null,{"className":"text-center max-w-4xl mx-auto mb-16","children":[["$","h1",null,{"className":"text-5xl md:text-7xl font-bold mb-6","children":["Technical ",["$","span",null,{"className":"text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-400 to-accent animate-gradient-x","children":"Insights"}]]}],["$","p",null,{"className":"text-xl text-foreground/70 leading-relaxed","children":"Thoughts, tutorials, and deep dives into the world of modern web development."}]]}],["$","$L4",null,{"posts":[{"slug":"building-portfolio","title":"Building a Next-Level Developer Portfolio","date":"2025-11-29","excerpt":"A deep dive into the tech stack, design decisions, and performance optimizations behind my personal portfolio.","coverImage":"/images/blog/portfolio-cover.jpg","tags":["Next.js","React","TailwindCSS","Framer Motion"],"readingTime":"2 min read","content":"$5"},{"slug":"react-server-components","title":"Understanding React Server Components","date":"2025-11-20","excerpt":"Why React Server Components (RSC) are a game-changer for web development performance and simplicity.","coverImage":"/images/blog/rsc-cover.jpg","tags":["React","Next.js","Performance"],"readingTime":"1 min read","content":"$6"}],"allTags":["Next.js","React","TailwindCSS","Framer Motion","Performance"]}]]}]]}]}],["$L7"],"$L8"]}],"loading":null,"isPartial":false}
+7:["$","script","script-0",{"src":"/_next/static/chunks/0602d1c77d3dd180.js","async":true}]
+8:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null
