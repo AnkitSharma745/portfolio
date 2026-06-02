@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, Tag, Calendar, Clock, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Search, Calendar, Clock, ArrowRight } from "lucide-react";
 
 // Mock Data
 const BLOG_POSTS = [
@@ -94,11 +95,10 @@ export default function BlogPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === cat
-                  ? "bg-primary text-white shadow-lg shadow-primary/25"
-                  : "bg-secondary text-foreground/70 hover:bg-secondary/80"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === cat
+                ? "bg-primary text-white shadow-lg shadow-primary/25"
+                : "bg-secondary text-foreground/70 hover:bg-secondary/80"
+                }`}
             >
               {cat}
             </button>
@@ -131,10 +131,11 @@ export default function BlogPage() {
               <div className="h-full rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col">
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md text-white text-xs font-medium border border-white/20">
@@ -176,8 +177,8 @@ export default function BlogPage() {
       {filteredPosts.length === 0 && (
         <div className="text-center py-20">
           <p className="text-xl text-foreground/60">No articles found matching your criteria.</p>
-          <button 
-            onClick={() => {setSearchQuery(""); setSelectedCategory("All")}}
+          <button
+            onClick={() => { setSearchQuery(""); setSelectedCategory("All") }}
             className="mt-4 text-primary hover:underline"
           >
             Clear filters
