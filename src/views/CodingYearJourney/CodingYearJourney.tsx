@@ -3,11 +3,9 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useTheme } from "next-themes";
 import { JOURNEY_PHASES } from "@/utils/constants";
 
 const CodingYearJourney = () => {
-    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
