@@ -5,59 +5,46 @@ import { Moon, Sun, Menu, X, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
+import { useScrollNavigation } from "@/hooks/useScrollNavigation";
 
 function NavBar() {
   const { theme, setTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
+
+  const { navigateTo } = useScrollNavigation();
 
   const RESUME_DERIVE_LINK = "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
 
   const NAV_ITEMS = [
-    { label: "Home", href: "/#home" },
-    { label: "About", href: "/#about" },
-    { label: "Skills", href: "/#skills" },
-    { label: "Projects", href: "/#projects" },
-    { label: "Contact", href: "/#contact" },
-    { label: "Blog", href: "/blog" },
+    { label: "Home", href: "/", id: "home" },
+    { label: "About", href: "/about", id: "about" },
+    { label: "Skills", href: "/skills", id: "skills" },
+    { label: "Experience", href: "/experience", id: "experience" },
+    { label: "Projects", href: "/projects", id: "projects" },
+    { label: "Open Source", href: "/open-source", id: "open-source" },
+    { label: "Guestbook", href: "/guestbook", id: "guestbook" },
+    { label: "Contact", href: "/contact", id: "contact" },
+    { label: "Blog", href: "/blog", id: "blog" },
   ];
 
   useEffect(() => {
-
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-
-    e.preventDefault();
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
     setIsMenuOpen(false);
-
     if (href.startsWith("/#")) {
-      const targetId = href.replace("/#", "");
-
-      if (pathname === "/") {
-        // Smooth scroll if already on home
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        // Navigate to home with hash
-        router.push(href);
-      }
-    } else {
-      // Standard navigation (e.g., /blog)
-      router.push(href);
+      e.preventDefault();
+      navigateTo(href);
     }
   };
-
 
   return (
     <motion.header
@@ -69,7 +56,7 @@ function NavBar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/#home" onClick={(e) => { handleNavigation(e, "/#home"); window.location.reload(); }} className="group relative">
+        <Link href="/" onClick={(e) => handleNavClick(e, "/#home")} className="group relative">
           <h1 className="text-3xl font-bold tracking-tighter">
             <GradientText>
               Ankit
@@ -81,17 +68,20 @@ function NavBar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleNavigation(e, item.href)}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group cursor-pointer"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-sm font-medium transition-colors relative group cursor-pointer text-foreground/80 hover:text-primary"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 w-0 group-hover:w-full" />
+              </Link>
+            );
+          })}
 
           <div className="flex items-center gap-4 ml-4">
             <button
@@ -131,19 +121,28 @@ function NavBar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden fixed inset-0 top-[60px] bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
           >
-            {NAV_ITEMS.map((item, index) => (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={(e) => handleNavigation(e as React.MouseEvent<HTMLAnchorElement>, item.href)}
-                className="text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
-              >
-                {item.label}
-              </motion.a>
-            ))}
+            {NAV_ITEMS.map((item, index) => {
+              // Hide active route link in mobile menu too
+              if (pathname === item.href) return null;
+              if (pathname === "/" && item.href === "/") return null;
+
+              return (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="text-2xl font-bold transition-colors cursor-pointer text-foreground hover:text-primary"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              )
+            })}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

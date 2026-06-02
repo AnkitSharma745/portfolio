@@ -2,68 +2,71 @@ import { motion } from "framer-motion";
 
 const SectionDivider = () => {
     return (
-        <div className="relative w-full py-8 flex items-center justify-center overflow-hidden">
-            {/* Animated Gradient Line */}
-            <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="relative w-full max-w-6xl h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
-            >
-                {/* Glowing Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent blur-sm" />
+        <div className="relative w-full py-16 flex items-center justify-center overflow-hidden">
+            {/* Background Glow for Ambiance */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-24 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
 
-                {/* Animated Pulse Dots */}
+            <div className="relative w-full max-w-[90vw] flex items-center justify-center">
+
+                {/* Left Energy Beam */}
                 <motion.div
-                    animate={{
-                        x: ["-100%", "100%"],
-                    }}
-                    transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                    className="absolute top-1/2 left-0 w-2 h-2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_10px_rgba(var(--primary-rgb),0.8)]"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "circOut" }}
+                    className="flex-1 h-[1px] bg-gradient-to-l from-primary via-primary/50 to-transparent origin-right"
                 />
-            </motion.div>
 
-            {/* Center Diamond Ornament */}
-            <motion.div
-                initial={{ scale: 0, rotate: 0 }}
-                whileInView={{ scale: 1, rotate: 45 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5, ease: "backOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/50 z-10"
-            >
-                {/* Inner Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent blur-md opacity-60" />
-            </motion.div>
+                {/* Central Core Complex */}
+                <div className="relative mx-4 flex items-center justify-center">
+                    {/* Outer Rotating Ring */}
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                        className="w-8 h-8 rounded-full border border-primary/30 border-t-primary border-r-transparent shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]"
+                    />
 
-            {/* Side Decorative Elements */}
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute left-[10%] top-1/2 -translate-y-1/2 flex gap-1"
-            >
-                <div className="w-1 h-1 rounded-full bg-primary/60" />
-                <div className="w-1 h-1 rounded-full bg-primary/40" />
-                <div className="w-1 h-1 rounded-full bg-primary/20" />
-            </motion.div>
+                    {/* Inner Counter-Rotating Ring */}
+                    <motion.div
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-5 h-5 rounded-full border border-accent/40 border-b-accent border-l-transparent"
+                    />
 
-            <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute right-[10%] top-1/2 -translate-y-1/2 flex gap-1"
-            >
-                <div className="w-1 h-1 rounded-full bg-primary/20" />
-                <div className="w-1 h-1 rounded-full bg-primary/40" />
-                <div className="w-1 h-1 rounded-full bg-primary/60" />
-            </motion.div>
+                    {/* Core Singularity */}
+                    <motion.div
+                        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                    />
+
+                    {/* Orbiting Particles */}
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-12 h-12"
+                    >
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full blur-[1px]" />
+                    </motion.div>
+                </div>
+
+                {/* Right Energy Beam */}
+                <motion.div
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "circOut" }}
+                    className="flex-1 h-[1px] bg-gradient-to-r from-primary via-primary/50 to-transparent origin-left"
+                />
+
+                {/* Floating Data Particles along the line */}
+                <motion.div
+                    initial={{ x: "-40vw", opacity: 0 }}
+                    whileInView={{ x: "40vw", opacity: [0, 1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                    className="absolute top-1/2 -translate-y-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent blur-[1px]"
+                />
+            </div>
         </div>
     );
 };

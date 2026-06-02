@@ -10,6 +10,13 @@ const TerminalLoader = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Check if loader has already run in this session
+        const hasRun = sessionStorage.getItem("terminal_loader_shown");
+        if (hasRun) {
+            setShowLoader(false);
+            return;
+        }
+
         const bootSequence = [
             "> Initializing system...",
             "> Boot sequence: Portfolio v3.0.1",
@@ -34,8 +41,11 @@ const TerminalLoader = () => {
             if (currentLine >= bootSequence.length) {
                 setTimeout(() => {
                     setIsComplete(true);
-                    setTimeout(() => setShowLoader(false), 1000); // Wait for exit animation
-                }, 800);
+                    setTimeout(() => {
+                        setShowLoader(false);
+                        sessionStorage.setItem("terminal_loader_shown", "true");
+                    }, 800); // Wait for exit animation
+                }, 500);
                 return;
             }
 
@@ -46,20 +56,22 @@ const TerminalLoader = () => {
                 scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
             }
 
-            // Randomize delay for realistic typing feel
-            const nextDelay = Math.random() * 300 + 100;
+            // Reduced delay for faster loading
+            const nextDelay = Math.random() * 150 + 50;
             currentLine++;
             setTimeout(addLine, nextDelay);
         };
 
         // Start sequence
-        setTimeout(addLine, 500);
+        setTimeout(addLine, 100);
 
     }, []);
 
     // Matrix/Data fragments background effect
     const [randomChars, setRandomChars] = useState<string[]>([]);
     useEffect(() => {
+        if (!showLoader) return;
+
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
         const interval = setInterval(() => {
             const newChars = Array.from({ length: 10 }, () =>
@@ -68,7 +80,7 @@ const TerminalLoader = () => {
             setRandomChars(newChars);
         }, 100);
         return () => clearInterval(interval);
-    }, []);
+    }, [showLoader]);
 
     if (!showLoader) return null;
 
