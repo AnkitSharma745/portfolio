@@ -113,7 +113,7 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
             </motion.button>
 
             {/* Native Share (Mobile) */}
-            {typeof navigator !== "undefined" && navigator.share && (
+            {typeof navigator !== "undefined" && (navigator as any).share && (
                 <motion.button
                     onClick={handleNativeShare}
                     whileHover={{ scale: 1.1 }}

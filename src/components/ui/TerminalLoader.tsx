@@ -3,13 +3,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+interface Fragment {
+    top: string;
+    left: string;
+    rotate: string;
+    id: string;
+}
+
 const TerminalLoader = () => {
     const [lines, setLines] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
+    const [fragments, setFragments] = useState<Fragment[]>([]);
+    const [memPercent, setMemPercent] = useState<number>(45);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        setMemPercent(Math.floor(Math.random() * 50) + 20);
         // Check if loader has already run in this session
         const hasRun = sessionStorage.getItem("terminal_loader_shown");
         if (hasRun) {
@@ -72,6 +82,15 @@ const TerminalLoader = () => {
     useEffect(() => {
         if (!showLoader) return;
 
+        // Initialize background fragments style
+        const initialFragments = Array.from({ length: 5 }).map(() => ({
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            rotate: `${Math.random() * 360}deg`,
+            id: Math.random().toString(16).substring(2)
+        }));
+        setFragments(initialFragments);
+
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
         const interval = setInterval(() => {
             const newChars = Array.from({ length: 10 }, () =>
@@ -101,17 +120,17 @@ const TerminalLoader = () => {
 
                     {/* Background Data Fragments */}
                     <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
-                        {Array.from({ length: 5 }).map((_, i) => (
+                        {fragments.map((frag, i) => (
                             <div
                                 key={i}
                                 className="absolute text-xs text-green-500 whitespace-nowrap animate-pulse"
                                 style={{
-                                    top: `${Math.random() * 100}%`,
-                                    left: `${Math.random() * 100}%`,
-                                    transform: `rotate(${Math.random() * 360}deg)`
+                                    top: frag.top,
+                                    left: frag.left,
+                                    transform: `rotate(${frag.rotate})`
                                 }}
                             >
-                                {randomChars.join("")} {Math.random().toString(16).substring(2)}
+                                {randomChars.join("")} {frag.id}
                             </div>
                         ))}
                     </div>
@@ -151,7 +170,7 @@ const TerminalLoader = () => {
                         {/* Footer Status */}
                         <div className="mt-4 pt-2 border-t border-cyan-500/30 flex justify-between text-xs text-cyan-600">
                             <span>STATUS: {isComplete ? "READY" : "LOADING..."}</span>
-                            <span>MEM: {Math.floor(Math.random() * 50) + 20}%</span>
+                            <span>MEM: {memPercent}%</span>
                         </div>
                     </div>
 

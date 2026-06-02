@@ -8,7 +8,7 @@ import { Project } from "@/lib/constants/projects";
 import ShareButtons from "@/components/ShareButtons";
 
 interface ProjectModalProps {
-    project: Project | null;
+    project: (Project & { company?: string; role?: string }) | null;
     isOpen: boolean;
     onClose: () => void;
 }
@@ -66,6 +66,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                     src={project.image}
                                     alt={project.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                                     className="object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />

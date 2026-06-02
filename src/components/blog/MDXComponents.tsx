@@ -31,6 +31,7 @@ const CustomImage = (props: any) => {
                 src={props.src}
                 alt={props.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
                 className="object-cover"
             />
         </div>
