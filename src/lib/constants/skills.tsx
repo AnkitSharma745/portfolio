@@ -39,15 +39,29 @@ export const TECH_ITEMS: TechItem[] = [
     { icon: <SiFirebase />, label: "Firebase" },
 ];
 
-export const TOOLS_ITEMS: TechItem[] = [
+export const TOOLS_DEV: TechItem[] = [
     { icon: <BiLogoVisualStudio />, label: "VS Code" },
     { icon: <DiGit />, label: "Git" },
     { icon: <SiVercel />, label: "Vercel" },
-    { icon: <SiSlack />, label: "Slack" },
     { icon: <FaNpm />, label: "npm" },
     { icon: <TbJson />, label: "JSON" },
     { icon: <TbBrandVite />, label: "Vite" },
+];
+
+export const TOOLS_PRODUCTIVITY: TechItem[] = [
+    { icon: <SiSlack />, label: "Slack" },
     { icon: <TbBrandZoom />, label: "Zoom" },
+    // Add more if needed
+];
+
+export const TOOLS_COMMUNICATION: TechItem[] = [
+    { icon: <SiSlack />, label: "Slack" },
+    { icon: <TbBrandZoom />, label: "Zoom" },
+];
+
+export const TOOLS_ITEMS: TechItem[] = [
+    ...TOOLS_DEV,
+    ...TOOLS_PRODUCTIVITY,
 ];
 
 export const FAMILIARITY_ITEMS: TechItem[] = [

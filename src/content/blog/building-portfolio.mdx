@@ -1,0 +1,48 @@
+---
+title: 'Building a Next-Level Developer Portfolio'
+date: '2025-11-29'
+excerpt: 'A deep dive into the tech stack, design decisions, and performance optimizations behind my personal portfolio.'
+tags: ['Next.js', 'React', 'TailwindCSS', 'Framer Motion']
+coverImage: '/images/blog/portfolio-cover.jpg'
+---
+
+# Building a Next-Level Developer Portfolio
+
+Creating a portfolio is more than just showcasing your projects; it's about demonstrating your skills, design sense, and attention to detail. In this post, I'll walk you through how I built this portfolio using the latest web technologies.
+
+## The Tech Stack
+
+I chose a modern stack focused on performance and developer experience:
+
+- **Next.js 14**: For server-side rendering and the App Router.
+- **TypeScript**: For type safety and better tooling.
+- **Tailwind CSS**: For rapid, utility-first styling.
+- **Framer Motion**: For smooth, complex animations.
+
+## Key Features
+
+### 1. Command Palette
+
+Inspired by VS Code and macOS Spotlight, I implemented a global command palette (`Cmd+K`) to make navigation effortless.
+
+```tsx
+// Simple example of the command palette logic
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      setIsOpen((prev) => !prev);
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
+```
+
+### 2. Performance First
+
+Performance was a top priority. I used `next/image` for automatic image optimization, implemented code splitting, and ensured all animations are hardware-accelerated.
+
+## Conclusion
+
+Building this portfolio was a journey of continuous refinement. I hope this inspires you to build your own!
