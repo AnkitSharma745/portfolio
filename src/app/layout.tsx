@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { UIProvider } from "@/context/UIContext";
 import NavBar from "@/components/navigation/Navbar/Navbar";
 import Footer from "@/components/navigation/Footer/Footer";
 import ChatWidget from "@/components/ChatWidget/ChatWidget";
+import CommandPalette from "@/components/CommandPalette";
+import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import SkipToContent from "@/components/SkipToContent";
 import TerminalLoader from "@/components/ui/TerminalLoader";
+import NextSectionSuggestion from "@/components/NextSectionSuggestion";
+import ScrollToTop from "@/components/ScrollToTop";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { Inter, Outfit } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -130,13 +137,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TerminalLoader />
-          <NavBar />
-          <main className="flex flex-col min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <ChatWidget />
+          <UIProvider>
+            <SkipToContent />
+            <TerminalLoader />
+            <NavBar />
+            <main id="main-content" className="flex flex-col min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <ChatWidget />
+            <CommandPalette />
+            <NextSectionSuggestion />
+            <KeyboardShortcuts />
+            <ScrollToTop />
+            <ParticlesBackground />
+          </UIProvider>
         </ThemeProvider>
       </body>
     </html>
