@@ -7,7 +7,6 @@ import Image from "next/image";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 import IntroVideoModal from "@/components/IntroVideoModal";
-import SectionDivider from "@/components/SectionDivider";
 import { HEADLINE_FOR_TYPEWRITER } from "@/lib/constants/general";
 
 const Home = () => {
@@ -119,10 +118,7 @@ const Home = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Section Divider */}
     </section>
-    <SectionDivider />
   </>
   );
 };

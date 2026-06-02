@@ -1,143 +1,154 @@
 "use client";
 
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { FaGithub, FaExternalLinkAlt, FaYoutube, FaArrowRight } from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  liveLink?: string;
-  codeLink?: string;
-  demoVideo?: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    title: "Task Manager App",
-    description: "Manage tasks efficiently using the MERN stack.",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=800&q=80",
-    liveLink: "https://taskapp.example.com",
-    codeLink: "https://github.com/youruser/task-manager",
-    demoVideo: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    title: "Personal Blog",
-    description: "Responsive blog built with React and Markdown.",
-    image:
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?fit=crop&w=800&q=80",
-    codeLink: "https://github.com/youruser/personal-blog",
-  },
-  {
-    title: "E-commerce Store",
-    description: "Laravel + MySQL based store with cart and authentication.",
-    image:
-      "https://images.unsplash.com/photo-1542744095-291d1f67b221?fit=crop&w=800&q=80",
-    liveLink: "https://mystore.example.com",
-  },
-];
+import GradientText from "@/components/GradientText";
+import { PROJECTS_DATA } from "@/lib/constants/projects";
+import Link from "next/link";
 
 export default function Projects() {
   const { theme } = useTheme();
-
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
   const isDark = theme === "dark";
 
-  const sectionBg = "bg-background";
-
-  const cardBg = isDark
-    ? "bg-gray-800 text-white border-gray-700"
-    : "bg-white text-black border-gray-200";
-
-  const headingGradient =
-    "bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent";
-
-  const glowOverlay =
-    "absolute -inset-1 rounded-xl blur-md opacity-0 group-hover:opacity-40 transition bg-gradient-to-r from-primary via-cyan-400 to-accent z-0";
-
   return (
-    <section
-      id="projects"
-      className={`pt-24 pb-0 px-6 md:px-16 relative ${sectionBg}`}
-    >
-      <h2
-        className="text-4xl md:text-5xl font-extrabold text-center mb-16"
-        data-aos="fade-up"
-      >
-        <span className={headingGradient}>Featured Projects</span>
-      </h2>
+    <section id="projects" className="py-20 px-6 md:px-16 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-20">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center space-y-4"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Featured <GradientText>Projects</GradientText>
+          </h2>
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+            A selection of real-world applications and personal projects I&apos;ve engineered.
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        {PROJECTS.map((project, idx) => (
-          <div key={idx} className="relative group" data-aos="zoom-in">
-            {/* Glow border */}
-            <div className={glowOverlay}></div>
-
-            <div
-              className={`flex flex-col rounded-xl shadow-lg overflow-hidden border-2 ${cardBg} transform transition-all duration-300 hover:scale-105 relative z-10`}
-            >
-              <div className="relative w-full h-52">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6 space-y-4 flex-1 flex flex-col">
-                <h3 className="text-xl font-semibold text-cyan-500 dark:text-cyan-400">
-                  {project.title}
+        <div className="space-y-24">
+          {PROJECTS_DATA.map((company, companyIndex) => (
+            <div key={companyIndex} className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 border-b border-border/50 pb-4"
+              >
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                  {company.companyName}
                 </h3>
-                <p className="text-sm flex-1">{project.description}</p>
+                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                  {company.role}
+                </span>
+              </motion.div>
 
-                {/* Links */}
-                <div className="mt-4 space-x-3 text-sm">
-                  {project.liveLink && (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline font-medium"
-                    >
-                      🌐 Live
-                    </a>
-                  )}
-                  {project.codeLink && (
-                    <a
-                      href={project.codeLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:underline font-medium"
-                    >
-                      💻 Code
-                    </a>
-                  )}
-                  {project.demoVideo && (
-                    <a
-                      href={project.demoVideo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#06b6d4] hover:underline font-medium"
-                    >
-                      🎥 Demo
-                    </a>
-                  )}
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {company.projects.map((project, projectIndex) => (
+                  <motion.div
+                    key={projectIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: projectIndex * 0.1 }}
+                    whileHover={{ y: -10 }}
+                    className={`
+                      group rounded-xl overflow-hidden border transition-all duration-300 flex flex-col
+                      ${isDark
+                        ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                        : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
+                      }
+                    `}
+                  >
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+                        <div className="flex gap-3">
+                          {project.codeLink && (
+                            <a
+                              href={project.codeLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
+                              title="View Code"
+                            >
+                              <FaGithub size={18} />
+                            </a>
+                          )}
+                          {project.liveLink && (
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
+                              title="Live Demo"
+                            >
+                              <FaExternalLinkAlt size={18} />
+                            </a>
+                          )}
+                          {project.demoVideo && (
+                            <a
+                              href={project.demoVideo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
+                              title="Watch Demo"
+                            >
+                              <FaYoutube size={18} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h4>
+                      <p className="text-foreground/70 text-sm mb-4 flex-grow">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {project.techStack.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className="flex justify-center pt-8">
+          <Link href="/projects">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/25"
+            >
+              View All Projects <FaArrowRight />
+            </motion.button>
+          </Link>
+        </div>
       </div>
 
-      {/* Section Divider */}
       <SectionDivider />
     </section>
   );

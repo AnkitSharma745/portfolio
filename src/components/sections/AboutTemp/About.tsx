@@ -10,6 +10,9 @@ import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
 import { TIMELINE_DATA } from "@/lib/constants/general";
 import GradientText from "@/components/GradientText";
+import Link from "next/link";
+import StatsCard from "@/components/StatsCard";
+import { FaCode, FaCoffee, FaProjectDiagram, FaClock } from "react-icons/fa";
 
 export default function AboutMe() {
   const { theme } = useTheme();
@@ -43,6 +46,38 @@ export default function AboutMe() {
         experience, and a relentless problem-solver driven by passion.
       </motion.p>
 
+      {/* Stats Section */}
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 mb-16">
+        <StatsCard
+          icon={FaClock}
+          value={3}
+          label="Years Experience"
+          suffix="+"
+          delay={0.1}
+        />
+        <StatsCard
+          icon={FaProjectDiagram}
+          value={25}
+          label="Projects Completed"
+          suffix="+"
+          delay={0.2}
+        />
+        <StatsCard
+          icon={FaCode}
+          value={150}
+          label="Commits / Year"
+          suffix="k+"
+          delay={0.3}
+        />
+        <StatsCard
+          icon={FaCoffee}
+          value={1000}
+          label="Coffee Consumed"
+          suffix="+"
+          delay={0.4}
+        />
+      </div>
+
       {/* Timeline Section */}
       <VerticalTimeline
         lineColor={isDark ? "#06b6d4" : "#e2e8f0"}
@@ -71,6 +106,18 @@ export default function AboutMe() {
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
+
+      <div className="flex justify-center mt-12 mb-12">
+        <Link href="/about">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium shadow-lg hover:shadow-primary/25 transition-all"
+          >
+            View Full Journey
+          </motion.button>
+        </Link>
+      </div>
 
       <SectionDivider />
     </section>

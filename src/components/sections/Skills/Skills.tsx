@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./skillPage.css";
-import ParticlesBackground from "@/components/ParticlesBackground";
 import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
-import { TECH_ITEMS, TOOLS_ITEMS, FAMILIARITY_ITEMS, TechItem } from "@/lib/constants/skills";
+import { TECH_ITEMS, FAMILIARITY_ITEMS, TOOLS_ITEMS, TechItem } from "@/lib/constants/skills";
+import Link from "next/link";
+import ProgressBar from "@/components/ProgressBar";
 
 export default function SkillsPage() {
   const { theme } = useTheme();
@@ -49,9 +51,7 @@ export default function SkillsPage() {
       id="skills"
       className={`relative min-h-screen pt-24 pb-0 px-6 transition-all duration-500 overflow-hidden bg-background`}
     >
-      <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">
-        <ParticlesBackground id="skills-page" />
-      </div>
+
 
       {/* Content Layer */}
       <div className="relative z-10">
@@ -81,6 +81,35 @@ export default function SkillsPage() {
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8 justify-items-center">
           {renderCards(FAMILIARITY_ITEMS, "fade-right")}
         </div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8 justify-items-center">
+          {renderCards(FAMILIARITY_ITEMS, "fade-right")}
+        </div>
+
+        <h2 className={headingStyle} data-aos="fade-up">
+          <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
+            Proficiency
+          </span>
+        </h2>
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 px-4">
+          <ProgressBar label="React / Next.js" percentage={95} darkMode={isDark} />
+          <ProgressBar label="TypeScript" percentage={90} darkMode={isDark} />
+          <ProgressBar label="Node.js" percentage={85} darkMode={isDark} />
+          <ProgressBar label="UI/UX Design" percentage={80} darkMode={isDark} />
+          <ProgressBar label="System Architecture" percentage={85} darkMode={isDark} />
+          <ProgressBar label="DevOps" percentage={75} darkMode={isDark} />
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-12 mb-12">
+        <Link href="/skills">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium shadow-lg hover:shadow-primary/25 transition-all"
+          >
+            View Full Skills
+          </motion.button>
+        </Link>
       </div>
 
       {/* Section Divider */}
