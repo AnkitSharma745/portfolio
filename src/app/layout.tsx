@@ -9,7 +9,6 @@ import CommandPalette from "@/components/CommandPalette";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SkipToContent from "@/components/SkipToContent";
 import TerminalLoader from "@/components/ui/TerminalLoader";
-import NextSectionSuggestion from "@/components/NextSectionSuggestion";
 import ScrollToTop from "@/components/ScrollToTop";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { Inter, Outfit } from "next/font/google";
@@ -94,7 +93,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`} data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${outfit.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <head>
         <script
           type="application/ld+json"
@@ -147,7 +151,6 @@ export default function RootLayout({
             <Footer />
             <ChatWidget />
             <CommandPalette />
-            <NextSectionSuggestion />
             <KeyboardShortcuts />
             <ScrollToTop />
             <ParticlesBackground />
@@ -157,4 +160,3 @@ export default function RootLayout({
     </html>
   );
 }
-

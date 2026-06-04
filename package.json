@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d out -r https://github.com/AnkitSharma745/AnkitSharma745.github.io.git -b gh-pages"
+    "deploy": "gh-pages -d out -t -r https://github.com/AnkitSharma745/AnkitSharma745.github.io.git -b gh-pages"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

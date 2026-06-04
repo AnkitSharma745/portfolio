@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Moon, Sun, Menu, X, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,8 +10,17 @@ import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 import { useScrollNavigation } from "@/hooks/useScrollNavigation";
 
+const subscribeToHydration = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 function NavBar() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(
+    subscribeToHydration,
+    getClientSnapshot,
+    getServerSnapshot
+  );
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -19,6 +28,7 @@ function NavBar() {
   const { navigateTo } = useScrollNavigation();
 
   const RESUME_DERIVE_LINK = "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
+  const isDarkTheme = mounted && resolvedTheme === "dark";
 
   const NAV_ITEMS = [
     { label: "Home", href: "/", id: "home" },
@@ -37,6 +47,10 @@ function NavBar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(isDarkTheme ? "light" : "dark");
+  };
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     setIsMenuOpen(false);
@@ -93,11 +107,15 @@ function NavBar() {
             </button>
 
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-secondary transition-colors text-foreground"
               aria-label="Toggle Theme"
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              {mounted ? (
+                isDarkTheme ? <Sun size={20} /> : <Moon size={20} />
+              ) : (
+                <span className="block h-5 w-5" aria-hidden="true" />
+              )}
             </button>
           </div>
         </nav>
@@ -162,12 +180,12 @@ function NavBar() {
 
               <button
                 onClick={() => {
-                  setTheme(theme === "dark" ? "light" : "dark");
+                  toggleTheme();
                   setIsMenuOpen(false);
                 }}
                 className="flex items-center gap-2 text-foreground"
               >
-                {theme === "dark" ? (
+                {isDarkTheme ? (
                   <>
                     <Sun size={20} /> Light Mode
                   </>
