@@ -30,9 +30,7 @@ export default function AboutMe() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <GradientText>
-          The Code Behind the Coder
-        </GradientText>
+        <GradientText>The Code Behind the Coder</GradientText>
       </motion.h2>
 
       <motion.p
@@ -42,8 +40,9 @@ export default function AboutMe() {
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
       >
-        I&apos;m not just a developer. I&apos;m an architect of logic, a designer of
-        experience, and a relentless problem-solver driven by passion.
+        I&apos;m not just a developer. I&apos;m an architect of logic, a
+        designer of experience, and a relentless problem-solver driven by
+        passion.
       </motion.p>
 
       {/* Stats Section */}

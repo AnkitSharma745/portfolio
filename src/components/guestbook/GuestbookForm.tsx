@@ -8,128 +8,137 @@ import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
 
 export default function GuestbookForm() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-    const { toast, showToast, hideToast } = useToast();
-    const [name, setName] = useState("");
-    const [message, setMessage] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const { toast, showToast, hideToast } = useToast();
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!name.trim() || !message.trim()) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !message.trim()) return;
 
-        setIsSubmitting(true);
+    setIsSubmitting(true);
 
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        // Save to local storage (mock backend)
-        const newEntry = {
-            id: Date.now().toString(),
-            name,
-            message,
-            date: new Date().toLocaleDateString("en-US", {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            })
-        };
-
-        const existingEntries = JSON.parse(localStorage.getItem("guestbook-entries") || "[]");
-        localStorage.setItem("guestbook-entries", JSON.stringify([newEntry, ...existingEntries]));
-
-        // Dispatch custom event to update list
-        window.dispatchEvent(new Event("guestbook-updated"));
-
-        showToast("Message signed successfully!", "success");
-        setName("");
-        setMessage("");
-        setIsSubmitting(false);
+    // Save to local storage (mock backend)
+    const newEntry = {
+      id: Date.now().toString(),
+      name,
+      message,
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
     };
 
-    return (
-        <div className="relative">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`
+    const existingEntries = JSON.parse(
+      localStorage.getItem("guestbook-entries") || "[]",
+    );
+    localStorage.setItem(
+      "guestbook-entries",
+      JSON.stringify([newEntry, ...existingEntries]),
+    );
+
+    // Dispatch custom event to update list
+    window.dispatchEvent(new Event("guestbook-updated"));
+
+    showToast("Message signed successfully!", "success");
+    setName("");
+    setMessage("");
+    setIsSubmitting(false);
+  };
+
+  return (
+    <div className="relative">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={`
                     p-8 rounded-2xl border backdrop-blur-sm
-                    ${isDark
+                    ${
+                      isDark
                         ? "bg-white/5 border-white/10"
                         : "bg-white border-black/5 shadow-lg"
                     }
                 `}
-            >
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <span className="text-primary">✍️</span> Leave a Message
-                </h3>
+      >
+        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          <span className="text-primary">✍️</span> Leave a Message
+        </h3>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
-                            <FaUser size={12} /> Name
-                        </label>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Your name"
-                            required
-                            className={`
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
+              <FaUser size={12} /> Name
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              required
+              className={`
                                 w-full px-4 py-3 rounded-xl border outline-none transition-all
-                                ${isDark
+                                ${
+                                  isDark
                                     ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
                                     : "bg-gray-50 border-black/5 focus:border-primary/50"
                                 }
                             `}
-                        />
-                    </div>
+            />
+          </div>
 
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
-                            <FaComment size={12} /> Message
-                        </label>
-                        <textarea
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            placeholder="Share your thoughts..."
-                            required
-                            rows={4}
-                            className={`
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
+              <FaComment size={12} /> Message
+            </label>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Share your thoughts..."
+              required
+              rows={4}
+              className={`
                                 w-full px-4 py-3 rounded-xl border outline-none transition-all resize-none
-                                ${isDark
+                                ${
+                                  isDark
                                     ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
                                     : "bg-gray-50 border-black/5 focus:border-primary/50"
                                 }
                             `}
-                        />
-                    </div>
+            />
+          </div>
 
-                    <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        disabled={isSubmitting}
-                        className={`
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            disabled={isSubmitting}
+            className={`
                             w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all
-                            ${isSubmitting
+                            ${
+                              isSubmitting
                                 ? "bg-primary/50 cursor-not-allowed"
                                 : "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
                             }
                         `}
-                    >
-                        {isSubmitting ? (
-                            <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        ) : (
-                            <>
-                                <FaPaperPlane /> Sign Guestbook
-                            </>
-                        )}
-                    </motion.button>
-                </form>
-            </motion.div>
+          >
+            {isSubmitting ? (
+              <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <>
+                <FaPaperPlane /> Sign Guestbook
+              </>
+            )}
+          </motion.button>
+        </form>
+      </motion.div>
 
-            <Toast {...toast} onClose={hideToast} />
-        </div>
-    );
+      <Toast {...toast} onClose={hideToast} />
+    </div>
+  );
 }

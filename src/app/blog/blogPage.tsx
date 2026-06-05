@@ -16,7 +16,8 @@ const BLOG_POSTS = [
     date: "Nov 20, 2024",
     readTime: "8 min read",
     category: "React",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
   },
   {
     slug: "building-scalable-apis-nodejs",
@@ -26,7 +27,8 @@ const BLOG_POSTS = [
     date: "Nov 15, 2024",
     readTime: "12 min read",
     category: "Backend",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
   },
   {
     slug: "css-glassmorphism-guide",
@@ -36,7 +38,8 @@ const BLOG_POSTS = [
     date: "Nov 10, 2024",
     readTime: "6 min read",
     category: "Design",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
   },
   {
     slug: "typescript-advanced-patterns",
@@ -46,7 +49,8 @@ const BLOG_POSTS = [
     date: "Nov 05, 2024",
     readTime: "10 min read",
     category: "TypeScript",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=2128&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=2128&auto=format&fit=crop",
   },
 ];
 
@@ -82,8 +86,8 @@ export default function BlogPage() {
           transition={{ delay: 0.2 }}
           className="text-lg text-foreground/60 max-w-2xl mx-auto"
         >
-          Thoughts on software architecture, frontend performance, and the future
-          of web development.
+          Thoughts on software architecture, frontend performance, and the
+          future of web development.
         </motion.p>
       </div>
 
@@ -95,10 +99,11 @@ export default function BlogPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === cat
-                ? "bg-primary text-white shadow-lg shadow-primary/25"
-                : "bg-secondary text-foreground/70 hover:bg-secondary/80"
-                }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                selectedCategory === cat
+                  ? "bg-primary text-white shadow-lg shadow-primary/25"
+                  : "bg-secondary text-foreground/70 hover:bg-secondary/80"
+              }`}
             >
               {cat}
             </button>
@@ -107,7 +112,10 @@ export default function BlogPage() {
 
         {/* Search Bar */}
         <div className="relative w-full md:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/40" size={18} />
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/40"
+            size={18}
+          />
           <input
             type="text"
             placeholder="Search articles..."
@@ -177,9 +185,14 @@ export default function BlogPage() {
 
       {filteredPosts.length === 0 && (
         <div className="text-center py-20">
-          <p className="text-xl text-foreground/60">No articles found matching your criteria.</p>
+          <p className="text-xl text-foreground/60">
+            No articles found matching your criteria.
+          </p>
           <button
-            onClick={() => { setSearchQuery(""); setSelectedCategory("All") }}
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("All");
+            }}
             className="mt-4 text-primary hover:underline"
           >
             Clear filters

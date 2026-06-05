@@ -3,7 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { FaGithub, FaExternalLinkAlt, FaYoutube, FaArrowRight } from "react-icons/fa";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaYoutube,
+  FaArrowRight,
+} from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import { PROJECTS_DATA } from "@/lib/constants/projects";
@@ -14,7 +19,10 @@ export default function Projects() {
   const isDark = theme === "dark";
 
   return (
-    <section id="projects" className="py-20 px-6 md:px-16 relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-20 px-6 md:px-16 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto space-y-20">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -26,7 +34,8 @@ export default function Projects() {
             Featured <GradientText>Projects</GradientText>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            A selection of real-world applications and personal projects I&apos;ve engineered.
+            A selection of real-world applications and personal projects
+            I&apos;ve engineered.
           </p>
         </motion.div>
 
@@ -58,9 +67,10 @@ export default function Projects() {
                     whileHover={{ y: -10 }}
                     className={`
                       group rounded-xl overflow-hidden border transition-all duration-300 flex flex-col
-                      ${isDark
-                        ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                        : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
+                      ${
+                        isDark
+                          ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                          : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
                       }
                     `}
                   >

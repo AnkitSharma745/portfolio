@@ -16,6 +16,7 @@ These instructions apply to this portfolio repository.
 - This is a Next.js portfolio project.
 - The package manager is `pnpm`.
 - On this Windows environment, use `pnpm.cmd` instead of `pnpm` when the user asks for package-manager commands, because PowerShell execution policy can block `pnpm.ps1`.
+- Visual components should be theme-aware. Prefer semantic Tailwind colors such as `bg-background`, `text-foreground`, `border-border`, `primary`, and `accent`, with `dark:` variants where needed. Avoid hard-coded white glow/beam colors unless they are scoped to dark mode.
 
 ## Maintenance
 

@@ -31,7 +31,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-foreground">Quick Links</h3>
+          <h3 className="text-lg font-semibold mb-4 text-foreground">
+            Quick Links
+          </h3>
           <ul className="space-y-2 text-sm">
             {["Home", "About", "Projects", "GitHub", "Contact"].map((link) => (
               <li key={link}>
@@ -47,7 +49,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-foreground">Tech Stack</h3>
+          <h3 className="text-lg font-semibold mb-4 text-foreground">
+            Tech Stack
+          </h3>
           <div className="flex flex-wrap gap-4 text-2xl text-foreground/70">
             <FaReact
               title="React"
@@ -73,7 +77,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-foreground">Connect</h3>
+          <h3 className="text-lg font-semibold mb-4 text-foreground">
+            Connect
+          </h3>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/ankitsharma745"

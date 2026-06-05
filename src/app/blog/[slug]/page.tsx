@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.excerpt,
     keywords: post.tags,
     image: post.coverImage,
-    type: "article"
+    type: "article",
   });
 }
 
@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: Props) {
                   options={{
                     mdxOptions: {
                       rehypePlugins: [], // Add plugins here if needed directly
-                    }
+                    },
                   }}
                 />
               </div>
@@ -138,7 +138,10 @@ export default async function BlogPostPage({ params }: Props) {
                     <span className="font-medium">Tags:</span>
                     <div className="flex gap-2">
                       {post.tags.map((tag) => (
-                        <span key={tag} className="bg-secondary px-2 py-1 rounded text-sm">
+                        <span
+                          key={tag}
+                          className="bg-secondary px-2 py-1 rounded text-sm"
+                        >
                           {tag}
                         </span>
                       ))}
@@ -160,8 +163,6 @@ export default async function BlogPostPage({ params }: Props) {
             </aside>
           </div>
         </div>
-
-
       </main>
     </PageTransition>
   );

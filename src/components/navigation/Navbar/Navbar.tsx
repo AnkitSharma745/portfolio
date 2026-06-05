@@ -19,7 +19,7 @@ function NavBar() {
   const mounted = useSyncExternalStore(
     subscribeToHydration,
     getClientSnapshot,
-    getServerSnapshot
+    getServerSnapshot,
   );
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,8 @@ function NavBar() {
 
   const { navigateTo } = useScrollNavigation();
 
-  const RESUME_DERIVE_LINK = "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
+  const RESUME_DERIVE_LINK =
+    "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
   const isDarkTheme = mounted && resolvedTheme === "dark";
 
   const NAV_ITEMS = [
@@ -65,16 +66,19 @@ function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" onClick={(e) => handleNavClick(e, "/#home")} className="group relative">
+        <Link
+          href="/"
+          onClick={(e) => handleNavClick(e, "/#home")}
+          className="group relative"
+        >
           <h1 className="text-3xl font-bold tracking-tighter">
-            <GradientText>
-              Ankit
-            </GradientText>
+            <GradientText>Ankit</GradientText>
             <span className="text-foreground">.dev</span>
           </h1>
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
@@ -83,7 +87,6 @@ function NavBar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {NAV_ITEMS.map((item) => {
-
             return (
               <Link
                 key={item.label}
@@ -112,7 +115,11 @@ function NavBar() {
               aria-label="Toggle Theme"
             >
               {mounted ? (
-                isDarkTheme ? <Sun size={20} /> : <Moon size={20} />
+                isDarkTheme ? (
+                  <Sun size={20} />
+                ) : (
+                  <Moon size={20} />
+                )
               ) : (
                 <span className="block h-5 w-5" aria-hidden="true" />
               )}
@@ -159,7 +166,7 @@ function NavBar() {
                     {item.label}
                   </Link>
                 </motion.div>
-              )
+              );
             })}
 
             <motion.div

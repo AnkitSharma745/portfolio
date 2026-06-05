@@ -7,7 +7,12 @@ import "aos/dist/aos.css";
 import "./skillPage.css";
 import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
-import { TECH_ITEMS, FAMILIARITY_ITEMS, TOOLS_ITEMS, TechItem } from "@/lib/constants/skills";
+import {
+  TECH_ITEMS,
+  FAMILIARITY_ITEMS,
+  TOOLS_ITEMS,
+  TechItem,
+} from "@/lib/constants/skills";
 import Link from "next/link";
 import ProgressBar from "@/components/ProgressBar";
 
@@ -51,8 +56,6 @@ export default function SkillsPage() {
       id="skills"
       className={`relative min-h-screen pt-24 pb-0 px-6 transition-all duration-500 overflow-hidden bg-background`}
     >
-
-
       {/* Content Layer */}
       <div className="relative z-10">
         <h2 className={headingStyle} data-aos="fade-up">
@@ -91,11 +94,19 @@ export default function SkillsPage() {
           </span>
         </h2>
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 px-4">
-          <ProgressBar label="React / Next.js" percentage={95} darkMode={isDark} />
+          <ProgressBar
+            label="React / Next.js"
+            percentage={95}
+            darkMode={isDark}
+          />
           <ProgressBar label="TypeScript" percentage={90} darkMode={isDark} />
           <ProgressBar label="Node.js" percentage={85} darkMode={isDark} />
           <ProgressBar label="UI/UX Design" percentage={80} darkMode={isDark} />
-          <ProgressBar label="System Architecture" percentage={85} darkMode={isDark} />
+          <ProgressBar
+            label="System Architecture"
+            percentage={85}
+            darkMode={isDark}
+          />
           <ProgressBar label="DevOps" percentage={75} darkMode={isDark} />
         </div>
       </div>

@@ -12,15 +12,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ParticlesBackground from "@/components/ParticlesBackground";
 
-
 function ContactDetails() {
-
-
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
-
 
   const contacts = [
     {

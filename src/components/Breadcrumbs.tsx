@@ -6,91 +6,89 @@ import { FaHome, FaChevronRight } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
 interface BreadcrumbItem {
-    label: string;
-    href: string;
+  label: string;
+  href: string;
 }
 
 export default function Breadcrumbs() {
-    const pathname = usePathname();
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
+  const pathname = usePathname();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-    // Generate breadcrumb items from pathname
-    const generateBreadcrumbs = (): BreadcrumbItem[] => {
-        const paths = pathname.split("/").filter(Boolean);
-        const breadcrumbs: BreadcrumbItem[] = [
-            { label: "Home", href: "/" }
-        ];
+  // Generate breadcrumb items from pathname
+  const generateBreadcrumbs = (): BreadcrumbItem[] => {
+    const paths = pathname.split("/").filter(Boolean);
+    const breadcrumbs: BreadcrumbItem[] = [{ label: "Home", href: "/" }];
 
-        let currentPath = "";
-        paths.forEach((path) => {
-            currentPath += `/${path}`;
-            const label = path
-                .split("-")
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(" ");
-            breadcrumbs.push({ label, href: currentPath });
-        });
+    let currentPath = "";
+    paths.forEach((path) => {
+      currentPath += `/${path}`;
+      const label = path
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      breadcrumbs.push({ label, href: currentPath });
+    });
 
-        return breadcrumbs;
-    };
+    return breadcrumbs;
+  };
 
-    const breadcrumbs = generateBreadcrumbs();
+  const breadcrumbs = generateBreadcrumbs();
 
-    // Don't show breadcrumbs on home page
-    if (pathname === "/") return null;
+  // Don't show breadcrumbs on home page
+  if (pathname === "/") return null;
 
-    return (
-        <nav
-            aria-label="Breadcrumb"
-            className={`
+  return (
+    <nav
+      aria-label="Breadcrumb"
+      className={`
                 flex items-center gap-2 text-sm mb-6
                 ${isDark ? "text-foreground/60" : "text-foreground/70"}
             `}
-        >
-            {/* Schema.org BreadcrumbList */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "BreadcrumbList",
-                        "itemListElement": breadcrumbs.map((crumb, index) => ({
-                            "@type": "ListItem",
-                            "position": index + 1,
-                            "name": crumb.label,
-                            "item": `https://ankitsharma.dev${crumb.href}`
-                        }))
-                    })
-                }}
-            />
+    >
+      {/* Schema.org BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: breadcrumbs.map((crumb, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: crumb.label,
+              item: `https://ankitsharma.dev${crumb.href}`,
+            })),
+          }),
+        }}
+      />
 
-            {breadcrumbs.map((crumb, index) => {
-                const isLast = index === breadcrumbs.length - 1;
-                const isHome = index === 0;
+      {breadcrumbs.map((crumb, index) => {
+        const isLast = index === breadcrumbs.length - 1;
+        const isHome = index === 0;
 
-                return (
-                    <div key={crumb.href} className="flex items-center gap-2">
-                        {isLast ? (
-                            <span className="text-foreground font-medium flex items-center gap-2">
-                                {isHome && <FaHome />}
-                                {crumb.label}
-                            </span>
-                        ) : (
-                            <>
-                                <Link
-                                    href={crumb.href}
-                                    className="hover:text-primary transition-colors flex items-center gap-2"
-                                >
-                                    {isHome && <FaHome />}
-                                    {crumb.label}
-                                </Link>
-                                <FaChevronRight className="text-xs text-foreground/40" />
-                            </>
-                        )}
-                    </div>
-                );
-            })}
-        </nav>
-    );
+        return (
+          <div key={crumb.href} className="flex items-center gap-2">
+            {isLast ? (
+              <span className="text-foreground font-medium flex items-center gap-2">
+                {isHome && <FaHome />}
+                {crumb.label}
+              </span>
+            ) : (
+              <>
+                <Link
+                  href={crumb.href}
+                  className="hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  {isHome && <FaHome />}
+                  {crumb.label}
+                </Link>
+                <FaChevronRight className="text-xs text-foreground/40" />
+              </>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
 }

@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import HomePage from "@/views/HomePage/HomePage";
 
