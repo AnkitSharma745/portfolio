@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaTags } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { BlogPost } from "@/lib/blog";
 import BlogCard from "./BlogCard";
 import { useTheme } from "next-themes";
@@ -106,7 +106,7 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
           <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-2xl font-bold mb-2">No articles found</h3>
           <p className="text-foreground/60">
-            Try adjusting your search or filters to find what you're looking
+            Try adjusting your search or filters to find what you&apos;re looking
             for.
           </p>
           <button

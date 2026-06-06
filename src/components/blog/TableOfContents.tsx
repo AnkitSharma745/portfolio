@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 
 interface TOCItem {
   id: string;
@@ -13,10 +11,9 @@ interface TOCItem {
 export default function TableOfContents() {
   const [headings, setHeadings] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   useEffect(() => {
+    let isMounted = true;
     const elements = Array.from(document.querySelectorAll("h2, h3")).map(
       (elem) => ({
         id: elem.id,
@@ -24,7 +21,11 @@ export default function TableOfContents() {
         level: Number(elem.tagName.substring(1)),
       }),
     );
-    setHeadings(elements);
+    queueMicrotask(() => {
+      if (isMounted) {
+        setHeadings(elements);
+      }
+    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,7 +43,10 @@ export default function TableOfContents() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      isMounted = false;
+      observer.disconnect();
+    };
   }, []);
 
   if (headings.length === 0) return null;

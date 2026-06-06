@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { FaQuoteLeft } from "react-icons/fa";
 import CopyButton from "@/components/CopyButton";
-import { ReactNode } from "react";
+import { isValidElement } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-const CustomLink = (props: any) => {
-  const href = props.href;
-  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
+const CustomLink = ({
+  href = "",
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"a">) => {
+  const isInternalLink = href.startsWith("/") || href.startsWith("#");
 
   if (isInternalLink) {
     return (
@@ -18,7 +21,7 @@ const CustomLink = (props: any) => {
         className="text-primary hover:underline font-medium"
         {...props}
       >
-        {props.children}
+        {children}
       </Link>
     );
   }
@@ -29,16 +32,22 @@ const CustomLink = (props: any) => {
       rel="noopener noreferrer"
       className="text-primary hover:underline font-medium"
       {...props}
-    />
+    >
+      {children}
+    </a>
   );
 };
 
-const CustomImage = (props: any) => {
+const CustomImage = ({ src, alt = "" }: ComponentPropsWithoutRef<"img">) => {
+  if (typeof src !== "string") {
+    return null;
+  }
+
   return (
     <div className="my-8 relative w-full h-64 md:h-96 rounded-xl overflow-hidden">
       <Image
-        src={props.src}
-        alt={props.alt}
+        src={src}
+        alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
         className="object-cover"
@@ -47,7 +56,7 @@ const CustomImage = (props: any) => {
   );
 };
 
-const CustomCode = (props: any) => {
+const CustomCode = (props: ComponentPropsWithoutRef<"code">) => {
   return (
     <code
       className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded text-sm font-mono"
@@ -56,17 +65,13 @@ const CustomCode = (props: any) => {
   );
 };
 
-const CustomPre = (props: any) => {
+const CustomPre = (props: ComponentPropsWithoutRef<"pre">) => {
   // Extract text content from children for copy button
   const getTextContent = (children: ReactNode): string => {
     if (typeof children === "string") return children;
     if (Array.isArray(children)) return children.map(getTextContent).join("");
-    if (
-      typeof children === "object" &&
-      children !== null &&
-      "props" in children
-    ) {
-      return getTextContent((children as any).props.children);
+    if (isValidElement<{ children?: ReactNode }>(children)) {
+      return getTextContent(children.props.children);
     }
     return "";
   };
@@ -84,7 +89,7 @@ const CustomPre = (props: any) => {
   );
 };
 
-const CustomBlockquote = (props: any) => {
+const CustomBlockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
   return (
     <blockquote className="border-l-4 border-primary pl-6 py-2 my-8 italic text-foreground/80 bg-secondary/20 rounded-r-xl relative">
       <FaQuoteLeft className="absolute top-2 left-2 text-primary/20 text-xl" />
@@ -93,14 +98,14 @@ const CustomBlockquote = (props: any) => {
   );
 };
 
-const CustomH1 = (props: any) => (
+const CustomH1 = (props: ComponentPropsWithoutRef<"h1">) => (
   <h1
     className="text-3xl md:text-4xl font-bold mt-12 mb-6 text-foreground"
     {...props}
   />
 );
 
-const CustomH2 = (props: any) => (
+const CustomH2 = (props: ComponentPropsWithoutRef<"h2">) => (
   <h2
     className="text-2xl md:text-3xl font-bold mt-10 mb-5 text-foreground flex items-center gap-2 group"
     {...props}
@@ -112,25 +117,25 @@ const CustomH2 = (props: any) => (
   </h2>
 );
 
-const CustomH3 = (props: any) => (
+const CustomH3 = (props: ComponentPropsWithoutRef<"h3">) => (
   <h3
     className="text-xl md:text-2xl font-bold mt-8 mb-4 text-foreground"
     {...props}
   />
 );
 
-const CustomP = (props: any) => (
+const CustomP = (props: ComponentPropsWithoutRef<"p">) => (
   <p className="text-lg leading-relaxed mb-6 text-foreground/80" {...props} />
 );
 
-const CustomUl = (props: any) => (
+const CustomUl = (props: ComponentPropsWithoutRef<"ul">) => (
   <ul
     className="list-disc list-inside mb-6 space-y-2 text-foreground/80 ml-4"
     {...props}
   />
 );
 
-const CustomOl = (props: any) => (
+const CustomOl = (props: ComponentPropsWithoutRef<"ol">) => (
   <ol
     className="list-decimal list-inside mb-6 space-y-2 text-foreground/80 ml-4"
     {...props}

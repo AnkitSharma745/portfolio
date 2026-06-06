@@ -12,37 +12,72 @@ interface GuestbookEntry {
   date: string;
 }
 
+const initialEntries: GuestbookEntry[] = [
+  {
+    id: "1",
+    name: "Ankit Sharma",
+    message:
+      "Welcome to my portfolio! Feel free to look around and leave a message.",
+    date: "November 29, 2025",
+  },
+];
+
+const isGuestbookEntry = (entry: unknown): entry is GuestbookEntry => {
+  if (!entry || typeof entry !== "object") {
+    return false;
+  }
+
+  const candidate = entry as Partial<Record<keyof GuestbookEntry, unknown>>;
+  return (
+    typeof candidate.id === "string" &&
+    typeof candidate.name === "string" &&
+    typeof candidate.message === "string" &&
+    typeof candidate.date === "string"
+  );
+};
+
+const readGuestbookEntries = (): GuestbookEntry[] => {
+  const saved = localStorage.getItem("guestbook-entries");
+
+  if (!saved) {
+    localStorage.setItem("guestbook-entries", JSON.stringify(initialEntries));
+    return initialEntries;
+  }
+
+  try {
+    const parsed: unknown = JSON.parse(saved);
+    if (Array.isArray(parsed) && parsed.every(isGuestbookEntry)) {
+      return parsed;
+    }
+  } catch {
+    // Fall back to the known-good initial entry below.
+  }
+
+  localStorage.setItem("guestbook-entries", JSON.stringify(initialEntries));
+  return initialEntries;
+};
+
 export default function GuestbookList() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
 
-  const loadEntries = () => {
-    const saved = localStorage.getItem("guestbook-entries");
-    if (saved) {
-      setEntries(JSON.parse(saved));
-    } else {
-      // Initial mock data
-      const initialData = [
-        {
-          id: "1",
-          name: "Ankit Sharma",
-          message:
-            "Welcome to my portfolio! Feel free to look around and leave a message.",
-          date: "November 29, 2025",
-        },
-      ];
-      setEntries(initialData);
-      localStorage.setItem("guestbook-entries", JSON.stringify(initialData));
-    }
-  };
-
   useEffect(() => {
-    loadEntries();
+    let isMounted = true;
+
+    const loadEntries = () => {
+      if (isMounted) {
+        setEntries(readGuestbookEntries());
+      }
+    };
 
     const handleUpdate = () => loadEntries();
+    queueMicrotask(loadEntries);
     window.addEventListener("guestbook-updated", handleUpdate);
-    return () => window.removeEventListener("guestbook-updated", handleUpdate);
+    return () => {
+      isMounted = false;
+      window.removeEventListener("guestbook-updated", handleUpdate);
+    };
   }, []);
 
   return (

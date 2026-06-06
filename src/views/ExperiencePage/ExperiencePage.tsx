@@ -9,22 +9,11 @@ import Link from "next/link";
 import { FaArrowLeft, FaBriefcase, FaCalendarAlt, FaCheckCircle, FaSearch, FaBuilding, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { EXPERIENCE_DATA } from "@/lib/constants/experience";
+import { EXPERIENCE_DATA, ExperienceItem } from "@/lib/constants/experience";
 import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";
 import FilterControls from "@/components/FilterControls";
 import SortControls from "@/components/SortControls";
-
-// Define interface locally if not exported, or use any if structure is complex
-interface ExperienceItem {
-    company: string;
-    role: string;
-    period: string;
-    description: string;
-    achievements: string[];
-    techStack: string[];
-    color: string;
-}
 
 const FILTER_OPTIONS = [
     { label: "All", value: "All" },

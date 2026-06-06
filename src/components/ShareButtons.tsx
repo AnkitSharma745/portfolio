@@ -18,7 +18,6 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
 
     const shareUrl = encodeURIComponent(url);
     const shareTitle = encodeURIComponent(title);
-    const shareDescription = encodeURIComponent(description);
 
     const shareLinks = {
         twitter: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`,
@@ -113,7 +112,7 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
             </motion.button>
 
             {/* Native Share (Mobile) */}
-            {typeof navigator !== "undefined" && (navigator as any).share && (
+            {typeof navigator !== "undefined" && typeof navigator.share === "function" && (
                 <motion.button
                     onClick={handleNativeShare}
                     whileHover={{ scale: 1.1 }}
