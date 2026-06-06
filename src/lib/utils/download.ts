@@ -1,11 +1,12 @@
-const resume = "/assets/files/AnkitSharmaResume.pdf";
+import { resumeAsset } from "@/content/assets/resume";
+
 export const onDownloadResume = () => {
     
     const downloadLink = document.createElement('a');
-    downloadLink.href = resume; 
-    downloadLink.download = "AnkitSharmaResume.pdf"; 
+    downloadLink.href = resumeAsset.localPath; 
+    downloadLink.download = resumeAsset.localDownloadFileName; 
     downloadLink.click();
 
     // Open Google Drive link in a new tab
-    window.open('https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=drive_link', '_blank'); // Replace with your Google Drive link
+    window.open(resumeAsset.driveViewUrl, '_blank'); // Replace with your Google Drive link
   };

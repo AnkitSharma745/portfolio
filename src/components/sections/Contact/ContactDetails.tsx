@@ -11,41 +11,23 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import {
+  contactChannels,
+  type ContactChannelIcon,
+} from "@/content/contact/contactChannels";
+
+const contactIcons: Record<ContactChannelIcon, React.ReactNode> = {
+  github: <FaGithub />,
+  linkedin: <FaLinkedin />,
+  twitter: <FaTwitter />,
+  phone: <FaPhone />,
+  email: <FaEnvelope />,
+};
 
 function ContactDetails() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
-  const contacts = [
-    {
-      icon: <FaGithub />,
-      title: "GitHub",
-      link: "https://github.com/ankitsharma745",
-    },
-    {
-      icon: <FaLinkedin />,
-      title: "LinkedIn",
-      link: "https://www.linkedin.com/in/ankit-sharma745",
-    },
-    {
-      icon: <FaTwitter />,
-      title: "Twitter",
-      link: "https://twitter.com",
-    },
-    {
-      icon: <FaPhone />,
-      title: "Phone",
-      link: "tel:+917351474546",
-      text: "+91 73514 74546",
-    },
-    {
-      icon: <FaEnvelope />,
-      title: "Email",
-      link: "mailto:ankitaksharma9763@gmail.com",
-      text: "ankitaksharma9763@gmail.com",
-    },
-  ];
 
   const cardStyle = `group w-full sm:w-64 h-56 flex flex-col items-center justify-center rounded-2xl 
     shadow-xl border border-primary/20 backdrop-blur-md bg-white/5 transition-all duration-300 
@@ -73,7 +55,7 @@ function ContactDetails() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {contacts.map((item, index) => (
+        {contactChannels.map((item, index) => (
           <a
             key={index}
             href={item.link}
@@ -90,13 +72,13 @@ function ContactDetails() {
             }}
           >
             <div className="text-4xl text-primary group-hover:text-accent group-hover:scale-125 transition-all duration-300">
-              {item.icon}
+              {contactIcons[item.icon]}
             </div>
             <div className="text-xl font-semibold tracking-wide">
               {item.title}
             </div>
             <div className="text-sm opacity-90 font-light">
-              {item.text ? item.text : `Visit my ${item.title}`}
+              {item.detailText ? item.detailText : `Visit my ${item.title}`}
             </div>
           </a>
         ))}

@@ -9,6 +9,11 @@ import { usePathname } from "next/navigation";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 import { useScrollNavigation } from "@/hooks/useScrollNavigation";
+import { resumeAsset } from "@/content/assets/resume";
+import {
+  navigationItems,
+  navigationLabels,
+} from "@/content/shared/navigation";
 
 const subscribeToHydration = () => () => {};
 const getClientSnapshot = () => true;
@@ -27,21 +32,7 @@ function NavBar() {
 
   const { navigateTo } = useScrollNavigation();
 
-  const RESUME_DERIVE_LINK =
-    "https://drive.google.com/file/d/1JoEIb7jWp_K1yelIFObAnIKE6VbxF4MR/view?usp=sharing";
   const isDarkTheme = mounted && resolvedTheme === "dark";
-
-  const NAV_ITEMS = [
-    { label: "Home", href: "/", id: "home" },
-    { label: "About", href: "/about", id: "about" },
-    { label: "Skills", href: "/skills", id: "skills" },
-    { label: "Experience", href: "/experience", id: "experience" },
-    { label: "Projects", href: "/projects", id: "projects" },
-    { label: "Open Source", href: "/open-source", id: "open-source" },
-    { label: "Guestbook", href: "/guestbook", id: "guestbook" },
-    { label: "Contact", href: "/contact", id: "contact" },
-    { label: "Blog", href: "/blog", id: "blog" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -66,9 +57,8 @@ function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -86,7 +76,7 @@ function NavBar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => {
+          {navigationItems.map((item) => {
             return (
               <Link
                 key={item.label}
@@ -106,13 +96,13 @@ function NavBar() {
               className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/25"
             >
               <Download size={16} />
-              Resume
+              {navigationLabels.resume}
             </button>
 
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-secondary transition-colors text-foreground"
-              aria-label="Toggle Theme"
+              aria-label={navigationLabels.toggleTheme}
             >
               {mounted ? (
                 isDarkTheme ? (
@@ -131,7 +121,7 @@ function NavBar() {
         <button
           className="md:hidden p-2 text-foreground"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle Menu"
+          aria-label={navigationLabels.toggleMenu}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -146,7 +136,7 @@ function NavBar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden fixed inset-0 top-[60px] bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
           >
-            {NAV_ITEMS.map((item, index) => {
+            {navigationItems.map((item, index) => {
               // Hide active route link in mobile menu too
               if (pathname === item.href) return null;
               if (pathname === "/" && item.href === "/") return null;
@@ -177,12 +167,12 @@ function NavBar() {
             >
               <button
                 onClick={() => {
-                  window.open(RESUME_DERIVE_LINK, "_blank");
+                  window.open(resumeAsset.sharedDriveViewUrl, "_blank");
                   setIsMenuOpen(false);
                 }}
                 className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium shadow-lg"
               >
-                Resume
+                {navigationLabels.resume}
               </button>
 
               <button
@@ -194,11 +184,11 @@ function NavBar() {
               >
                 {isDarkTheme ? (
                   <>
-                    <Sun size={20} /> Light Mode
+                    <Sun size={20} /> {navigationLabels.lightMode}
                   </>
                 ) : (
                   <>
-                    <Moon size={20} /> Dark Mode
+                    <Moon size={20} /> {navigationLabels.darkMode}
                   </>
                 )}
               </button>

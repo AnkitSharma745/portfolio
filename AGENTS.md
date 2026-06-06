@@ -17,6 +17,9 @@ These instructions apply to this portfolio repository.
 - The package manager is `pnpm`.
 - On this Windows environment, use `pnpm.cmd` instead of `pnpm` when the user asks for package-manager commands, because PowerShell execution policy can block `pnpm.ps1`.
 - Visual components should be theme-aware. Prefer semantic Tailwind colors such as `bg-background`, `text-foreground`, `border-border`, `primary`, and `accent`, with `dark:` variants where needed. Avoid hard-coded white glow/beam colors unless they are scoped to dark mode.
+- Content architecture lives under `src/content` because the project already stores MDX blog content there and the `@/*` alias resolves to `src/*`.
+- During content refactors, preserve existing component markup, Tailwind classes, animation props, and behavior. Extract human-readable text, URLs, and labels first; avoid moving rendering logic into content modules.
+- Command palette content belongs under `src/content/command`; keep command execution functions, router calls, theme toggling, icon rendering, filtering, and keyboard handling inside `CommandPalette.tsx`.
 
 ## Maintenance
 

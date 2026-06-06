@@ -16,15 +16,49 @@ import {
     openTwitter,
     downloadResume
 } from "@/utils/actions";
+import {
+    commandPaletteContent,
+    type CommandCategory,
+    type NavigationCommandId,
+    type SocialCommandId,
+    type StaticActionCommandId,
+} from "@/content/command/commandPalette";
 
 interface Command {
     id: string;
     label: string;
     icon: React.ReactNode;
     action: () => void;
-    category: "Navigation" | "Actions" | "Social";
-    keywords?: string[];
+    category: CommandCategory;
+    keywords?: readonly string[];
 }
+
+const navigationCommandIcons: Record<NavigationCommandId, React.ReactNode> = {
+    home: <FaHome />,
+    about: <FaUser />,
+    experience: <FaBriefcase />,
+    projects: <FaProjectDiagram />,
+    opensource: <FaGithub />,
+    blog: <FaBlog />,
+    contact: <FaEnvelope />,
+};
+
+const staticActionCommandIcons: Record<StaticActionCommandId, React.ReactNode> = {
+    "ask-ai": <FaRobot />,
+    "download-resume": <FaDownload />,
+};
+
+const socialCommandIcons: Record<SocialCommandId, React.ReactNode> = {
+    github: <FaGithub />,
+    linkedin: <FaLinkedin />,
+    twitter: <FaTwitter />,
+};
+
+const socialCommandActions: Record<SocialCommandId, () => void> = {
+    github: openGithub,
+    linkedin: openLinkedin,
+    twitter: openTwitter,
+};
 
 export default function CommandPalette() {
     const { isCommandPaletteOpen, toggleCommandPalette, closeCommandPalette, openChat } = useUI();
@@ -34,44 +68,52 @@ export default function CommandPalette() {
 
     const commands: Command[] = useMemo(() => [
         // Navigation
-        { id: "home", label: "Go to Home", icon: <FaHome />, action: () => router.push("/"), category: "Navigation", keywords: ["home", "main"] },
-        { id: "about", label: "Go to About", icon: <FaUser />, action: () => router.push("/about"), category: "Navigation", keywords: ["about", "me", "bio"] },
-        { id: "experience", label: "Go to Experience", icon: <FaBriefcase />, action: () => router.push("/experience"), category: "Navigation", keywords: ["experience", "work", "career"] },
-        { id: "projects", label: "Go to Projects", icon: <FaProjectDiagram />, action: () => router.push("/projects"), category: "Navigation", keywords: ["projects", "portfolio", "work"] },
-        { id: "opensource", label: "Go to Open Source", icon: <FaGithub />, action: () => router.push("/open-source"), category: "Navigation", keywords: ["open source", "github", "contributions"] },
-        { id: "blog", label: "Go to Blog", icon: <FaBlog />, action: () => router.push("/blog"), category: "Navigation", keywords: ["blog", "articles", "posts"] },
-        { id: "contact", label: "Go to Contact", icon: <FaEnvelope />, action: () => router.push("/contact"), category: "Navigation", keywords: ["contact", "email", "message"] },
+        ...commandPaletteContent.navigationCommands.map((command) => ({
+            id: command.id,
+            label: command.label,
+            icon: navigationCommandIcons[command.id],
+            action: () => router.push(command.route),
+            category: command.category,
+            keywords: command.keywords,
+        })),
 
         // Actions
         {
-            id: "ask-ai",
-            label: "Ask AI Assistant",
-            icon: <FaRobot />,
+            id: commandPaletteContent.actionCommands.askAi.id,
+            label: commandPaletteContent.actionCommands.askAi.label,
+            icon: staticActionCommandIcons[commandPaletteContent.actionCommands.askAi.id],
             action: () => openChat(),
-            category: "Actions",
-            keywords: ["ai", "chat", "bot", "assistant", "help"]
+            category: commandPaletteContent.actionCommands.askAi.category,
+            keywords: commandPaletteContent.actionCommands.askAi.keywords
         },
         {
-            id: "theme-toggle",
-            label: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
+            id: commandPaletteContent.actionCommands.themeToggle.id,
+            label: theme === "dark"
+                ? commandPaletteContent.actionCommands.themeToggle.labels.whenDarkTheme
+                : commandPaletteContent.actionCommands.themeToggle.labels.whenLightTheme,
             icon: theme === "dark" ? <FaSun /> : <FaMoon />,
             action: () => setTheme(theme === "dark" ? "light" : "dark"),
-            category: "Actions",
-            keywords: ["theme", "dark", "light", "mode"]
+            category: commandPaletteContent.actionCommands.themeToggle.category,
+            keywords: commandPaletteContent.actionCommands.themeToggle.keywords
         },
         {
-            id: "download-resume",
-            label: "Download Resume",
-            icon: <FaDownload />,
+            id: commandPaletteContent.actionCommands.downloadResume.id,
+            label: commandPaletteContent.actionCommands.downloadResume.label,
+            icon: staticActionCommandIcons[commandPaletteContent.actionCommands.downloadResume.id],
             action: downloadResume,
-            category: "Actions",
-            keywords: ["resume", "cv", "download"]
+            category: commandPaletteContent.actionCommands.downloadResume.category,
+            keywords: commandPaletteContent.actionCommands.downloadResume.keywords
         },
 
         // Social
-        { id: "github", label: "Open GitHub", icon: <FaGithub />, action: openGithub, category: "Social", keywords: ["github", "code"] },
-        { id: "linkedin", label: "Open LinkedIn", icon: <FaLinkedin />, action: openLinkedin, category: "Social", keywords: ["linkedin", "professional"] },
-        { id: "twitter", label: "Open Twitter", icon: <FaTwitter />, action: openTwitter, category: "Social", keywords: ["twitter", "social"] }
+        ...commandPaletteContent.socialCommands.map((command) => ({
+            id: command.id,
+            label: command.label,
+            icon: socialCommandIcons[command.id],
+            action: socialCommandActions[command.id],
+            category: command.category,
+            keywords: command.keywords,
+        }))
     ], [router, theme, setTheme, openChat]);
 
     const filteredCommands = useMemo(() => {
@@ -158,7 +200,7 @@ export default function CommandPalette() {
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleCommandPalette}
                 className="fixed bottom-24 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-gray-800 to-black text-white shadow-lg shadow-black/30 hover:shadow-black/50 transition-shadow border border-white/10"
-                title="Open Command Palette (Cmd+K)"
+                title={commandPaletteContent.triggerTitle}
             >
                 <FaTerminal size={20} />
             </motion.button>
@@ -191,7 +233,7 @@ export default function CommandPalette() {
                                     <FaSearch className="text-foreground/40" />
                                     <input
                                         type="text"
-                                        placeholder="Type a command or search..."
+                                        placeholder={commandPaletteContent.searchPlaceholder}
                                         value={search}
                                         onChange={(e) => {
                                             setSearch(e.target.value);
@@ -247,7 +289,7 @@ export default function CommandPalette() {
 
                                     {filteredCommands.length === 0 && (
                                         <div className="text-center py-12 text-foreground/50">
-                                            No commands found for &quot;{search}&quot;
+                                            {commandPaletteContent.emptyStatePrefix} &quot;{search}&quot;
                                         </div>
                                     )}
                                 </div>
@@ -255,12 +297,12 @@ export default function CommandPalette() {
                                 {/* Footer */}
                                 <div className="flex items-center justify-between px-4 py-3 border-t border-border/50 text-xs text-foreground/50">
                                     <div className="flex gap-4">
-                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">↑↓</kbd> Navigate</span>
-                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">Enter</kbd> Select</span>
-                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">Esc</kbd> Close</span>
+                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">{commandPaletteContent.keyboardHints.navigate.keys}</kbd> {commandPaletteContent.keyboardHints.navigate.label}</span>
+                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">{commandPaletteContent.keyboardHints.select.keys}</kbd> {commandPaletteContent.keyboardHints.select.label}</span>
+                                        <span><kbd className="px-2 py-1 rounded bg-foreground/10">{commandPaletteContent.keyboardHints.close.keys}</kbd> {commandPaletteContent.keyboardHints.close.label}</span>
                                     </div>
                                     <span>
-                                        <kbd className="px-2 py-1 rounded bg-foreground/10">⌘K</kbd> to open
+                                        <kbd className="px-2 py-1 rounded bg-foreground/10">{commandPaletteContent.keyboardHints.open.keys}</kbd> {commandPaletteContent.keyboardHints.open.label}
                                     </span>
                                 </div>
                             </motion.div>
