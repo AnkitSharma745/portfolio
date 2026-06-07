@@ -4,58 +4,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { FaQuoteLeft } from "react-icons/fa";
-
-interface GuestbookEntry {
-  id: string;
-  name: string;
-  message: string;
-  date: string;
-}
-
-const initialEntries: GuestbookEntry[] = [
-  {
-    id: "1",
-    name: "Ankit Sharma",
-    message:
-      "Welcome to my portfolio! Feel free to look around and leave a message.",
-    date: "November 29, 2025",
-  },
-];
-
-const isGuestbookEntry = (entry: unknown): entry is GuestbookEntry => {
-  if (!entry || typeof entry !== "object") {
-    return false;
-  }
-
-  const candidate = entry as Partial<Record<keyof GuestbookEntry, unknown>>;
-  return (
-    typeof candidate.id === "string" &&
-    typeof candidate.name === "string" &&
-    typeof candidate.message === "string" &&
-    typeof candidate.date === "string"
-  );
-};
-
-const readGuestbookEntries = (): GuestbookEntry[] => {
-  const saved = localStorage.getItem("guestbook-entries");
-
-  if (!saved) {
-    localStorage.setItem("guestbook-entries", JSON.stringify(initialEntries));
-    return initialEntries;
-  }
-
-  try {
-    const parsed: unknown = JSON.parse(saved);
-    if (Array.isArray(parsed) && parsed.every(isGuestbookEntry)) {
-      return parsed;
-    }
-  } catch {
-    // Fall back to the known-good initial entry below.
-  }
-
-  localStorage.setItem("guestbook-entries", JSON.stringify(initialEntries));
-  return initialEntries;
-};
+import {
+  GUESTBOOK_UPDATED_EVENT,
+  readGuestbookEntries,
+  type GuestbookEntry,
+} from "@/lib/guestbook";
 
 export default function GuestbookList() {
   const { theme } = useTheme();
@@ -73,10 +26,10 @@ export default function GuestbookList() {
 
     const handleUpdate = () => loadEntries();
     queueMicrotask(loadEntries);
-    window.addEventListener("guestbook-updated", handleUpdate);
+    window.addEventListener(GUESTBOOK_UPDATED_EVENT, handleUpdate);
     return () => {
       isMounted = false;
-      window.removeEventListener("guestbook-updated", handleUpdate);
+      window.removeEventListener(GUESTBOOK_UPDATED_EVENT, handleUpdate);
     };
   }, []);
 

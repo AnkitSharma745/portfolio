@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FaTwitter, FaLinkedin, FaFacebook, FaLink } from "react-icons/fa";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ShareButtonsProps {
     url: string;
@@ -15,6 +15,13 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
     const { theme } = useTheme();
     const isDark = theme === "dark";
     const [copied, setCopied] = useState(false);
+    const [canNativeShare, setCanNativeShare] = useState(false);
+
+    useEffect(() => {
+        queueMicrotask(() => {
+            setCanNativeShare(typeof navigator.share === "function");
+        });
+    }, []);
 
     const shareUrl = encodeURIComponent(url);
     const shareTitle = encodeURIComponent(title);
@@ -112,7 +119,7 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
             </motion.button>
 
             {/* Native Share (Mobile) */}
-            {typeof navigator !== "undefined" && typeof navigator.share === "function" && (
+            {canNativeShare && (
                 <motion.button
                     onClick={handleNativeShare}
                     whileHover={{ scale: 1.1 }}

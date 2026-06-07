@@ -2,7 +2,8 @@
 
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
-import React, { useState } from "react";
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -44,7 +45,7 @@ export default function ContactPage() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         if (!validate()) {
@@ -57,9 +58,6 @@ export default function ContactPage() {
         try {
             // Simulate API call - Replace with actual implementation
             await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // For now, just log to console
-            console.log("Form submitted:", formData);
 
             showToast("Message sent successfully! I'll get back to you soon.", "success");
 
@@ -74,7 +72,7 @@ export default function ContactPage() {
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         // Clear error when user starts typing

@@ -21,31 +21,52 @@ export interface BlogPost {
     source?: MDXRemoteSerializeResult;
 }
 
+interface BlogFrontmatter {
+    title: string;
+    date: string;
+    excerpt: string;
+    coverImage?: string;
+    tags: string[];
+}
+
+const getStringValue = (value: unknown, fallback: string = ""): string =>
+    typeof value === "string" ? value : fallback;
+
+const getStringArray = (value: unknown): string[] =>
+    Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+
+const getBlogFrontmatter = (
+    data: Record<string, unknown>,
+    slug: string,
+): BlogFrontmatter => ({
+    title: getStringValue(data.title, slug),
+    date: getStringValue(data.date),
+    excerpt: getStringValue(data.excerpt),
+    coverImage: typeof data.coverImage === "string" ? data.coverImage : undefined,
+    tags: getStringArray(data.tags),
+});
+
 export function getBlogPosts(): BlogPost[] {
     // Create directory if it doesn't exist
     if (!fs.existsSync(blogDirectory)) {
         return [];
     }
 
-    const fileNames = fs.readdirSync(blogDirectory);
+    const fileNames = fs.readdirSync(blogDirectory).filter((fileName) => fileName.endsWith(".mdx"));
     const allPostsData = fileNames.map((fileName) => {
         const slug = fileName.replace(/\.mdx$/, '');
         const fullPath = path.join(blogDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
         const stats = readingTime(content);
+        const frontmatter = getBlogFrontmatter(data, slug);
 
         return {
             slug,
-            title: data.title,
-            date: data.date,
-            excerpt: data.excerpt,
-            coverImage: data.coverImage,
-            tags: data.tags || [],
+            ...frontmatter,
             readingTime: stats.text,
             content,
-            ...data,
-        } as BlogPost;
+        };
     });
 
     // Sort posts by date
@@ -68,6 +89,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     const stats = readingTime(content);
+    const frontmatter = getBlogFrontmatter(data, slug);
 
     const mdxSource = await serialize(content, {
         mdxOptions: {
@@ -77,16 +99,11 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
     return {
         slug,
-        title: data.title,
-        date: data.date,
-        excerpt: data.excerpt,
-        coverImage: data.coverImage,
-        tags: data.tags || [],
+        ...frontmatter,
         readingTime: stats.text,
         content,
         source: mdxSource,
-        ...data,
-    } as BlogPost;
+    };
 }
 
 export function getAllTags(): string[] {

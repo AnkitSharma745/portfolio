@@ -6,6 +6,12 @@ import { FaPaperPlane, FaUser, FaComment } from "react-icons/fa";
 import { useTheme } from "next-themes";
 import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
+import {
+  GUESTBOOK_UPDATED_EVENT,
+  readGuestbookEntries,
+  writeGuestbookEntries,
+  type GuestbookEntry,
+} from "@/lib/guestbook";
 
 export default function GuestbookForm() {
   const { theme } = useTheme();
@@ -25,7 +31,7 @@ export default function GuestbookForm() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Save to local storage (mock backend)
-    const newEntry = {
+    const newEntry: GuestbookEntry = {
       id: Date.now().toString(),
       name,
       message,
@@ -36,16 +42,11 @@ export default function GuestbookForm() {
       }),
     };
 
-    const existingEntries = JSON.parse(
-      localStorage.getItem("guestbook-entries") || "[]",
-    );
-    localStorage.setItem(
-      "guestbook-entries",
-      JSON.stringify([newEntry, ...existingEntries]),
-    );
+    const existingEntries = readGuestbookEntries();
+    writeGuestbookEntries([newEntry, ...existingEntries]);
 
     // Dispatch custom event to update list
-    window.dispatchEvent(new Event("guestbook-updated"));
+    window.dispatchEvent(new Event(GUESTBOOK_UPDATED_EVENT));
 
     showToast("Message signed successfully!", "success");
     setName("");
