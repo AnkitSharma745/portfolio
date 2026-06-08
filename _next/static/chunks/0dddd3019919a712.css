@@ -1,1 +1,0 @@
-@keyframes gradientText{0%{background-position:0%}to{background-position:100%}}.animate-gradient-text{-webkit-text-fill-color:transparent;background:linear-gradient(90deg,#06b6d4,#3b82f6,#9333ea) 0 0/200% 200%;-webkit-background-clip:text;background-clip:text;animation:4s infinite gradientText}
