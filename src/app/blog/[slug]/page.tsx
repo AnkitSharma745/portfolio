@@ -148,7 +148,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                   </div>
                   <ShareButtons
-                    url={`https://ankitsharma.dev/blog/${post.slug}`}
+                    url={`https://ankitsharma745.github.io/blog/${post.slug}`}
                     title={post.title}
                     description={post.excerpt}
                   />

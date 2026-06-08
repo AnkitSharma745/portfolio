@@ -159,7 +159,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                     {/* Share Buttons */}
                                     <div className="pt-6 border-t border-border/50">
                                         <ShareButtons
-                                            url={`https://ankitsharma.dev/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                            url={`https://ankitsharma745.github.io/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
                                             title={project.title}
                                             description={project.description}
                                         />

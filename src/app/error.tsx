@@ -72,11 +72,10 @@ export default function Error({
               whileTap={{ scale: 0.95 }}
               className={`
                                 px-8 py-3 rounded-full font-medium transition-all flex items-center gap-2 justify-center border
-                                ${
-                                  isDark
-                                    ? "border-white/20 hover:bg-white/10"
-                                    : "border-black/20 hover:bg-black/5"
-                                }
+                                ${isDark
+                  ? "border-white/20 hover:bg-white/10"
+                  : "border-black/20 hover:bg-black/5"
+                }
                             `}
             >
               Go Home

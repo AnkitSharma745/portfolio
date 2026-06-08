@@ -57,7 +57,7 @@ export default function Breadcrumbs() {
               "@type": "ListItem",
               position: index + 1,
               name: crumb.label,
-              item: `https://ankitsharma.dev${crumb.href}`,
+              item: `https://ankitsharma745.github.io/${crumb.href}`,
             })),
           }),
         }}

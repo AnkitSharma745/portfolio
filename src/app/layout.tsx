@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     "UI/UX Design",
     "Performance Optimization",
   ],
-  authors: [{ name: "Ankit Sharma", url: "https://ankitsharma.dev" }],
+  authors: [{ name: "Ankit Sharma", url: "https://ankitsharma745.github.io/" }],
   creator: "Ankit Sharma",
-  metadataBase: new URL("https://ankitsharma.dev"),
+  metadataBase: new URL("https://ankitsharma745.github.io/"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ankitsharma.dev",
+    url: "https://ankitsharma745.github.io/",
     title: "Ankit Sharma | Full-Stack Developer & Tech Consultant",
     description:
       "Explore the portfolio of Ankit Sharma. specialized in building scalable, high-performance web applications with modern technologies.",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://ankitsharma.dev",
+    canonical: "https://ankitsharma745.github.io/",
   },
 };
 
@@ -107,8 +107,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Ankit Sharma",
-              url: "https://ankitsharma.dev",
-              image: "https://ankitsharma.dev/profile.jpg",
+              url: "https://ankitsharma745.github.io/",
+              image: "https://ankitsharma745.github.io/profile.jpg",
               jobTitle: "Full-Stack Developer",
               worksFor: {
                 "@type": "Organization",

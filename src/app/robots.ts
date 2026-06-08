@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://ankitsharma.dev/sitemap.xml",
+    sitemap: "https://ankitsharma745.github.io/sitemap.xml",
   };
 }
