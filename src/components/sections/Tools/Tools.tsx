@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import {
@@ -20,9 +19,6 @@ const ToolCategory = ({
   tools: TechItem[];
   delay: number;
 }) => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -42,14 +38,7 @@ const ToolCategory = ({
           <motion.div
             key={index}
             whileHover={{ scale: 1.05, y: -5 }}
-            className={`
-              flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-300
-              ${
-                isDark
-                  ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]"
-                  : "bg-black/5 border-black/5 hover:bg-black/10 hover:border-primary/50 hover:shadow-lg"
-              }
-            `}
+            className="flex flex-col items-center justify-center p-4 rounded-xl border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10 hover:dark:bg-white/10 hover:border-primary/50 hover:shadow-lg dark:hover:shadow-primary/30 transition-all duration-300"
           >
             <div className="text-4xl mb-2 text-foreground/80 group-hover:text-primary transition-colors">
               {tool.icon}

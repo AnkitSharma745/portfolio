@@ -4,7 +4,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FaArrowLeft, FaBriefcase, FaCalendarAlt, FaCheckCircle, FaSearch, FaBuilding, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
@@ -28,8 +27,6 @@ const SORT_OPTIONS = [
 ];
 
 export default function ExperiencePage() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const [activeFilter, setActiveFilter] = useState("All");
     const [activeSort, setActiveSort] = useState("recent");
     const [searchQuery, setSearchQuery] = useState("");
@@ -147,13 +144,7 @@ export default function ExperiencePage() {
                                 placeholder="Search by company, role, or technology..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`
-                                w-full pl-12 pr-4 py-4 rounded-xl border outline-none transition-all duration-300
-                                ${isDark
-                                        ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                                        : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
-                                    }
-                            `}
+                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 focus:border-primary/50 focus:bg-white/10 focus:dark:bg-white/10 shadow-sm outline-none transition-all duration-300"
                             />
                         </div>
 
@@ -194,13 +185,7 @@ export default function ExperiencePage() {
                                         {/* Content Side */}
                                         <div className="w-full md:w-1/2 md:px-12">
                                             <div
-                                                className={`
-                                                p-8 rounded-2xl border transition-all duration-300 relative group
-                                                ${isDark
-                                                        ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-                                                        : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                                                    }
-                                            `}
+                                                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:bg-black/5 hover:dark:bg-white/10 shadow-lg dark:shadow-none transition-all duration-300 relative group"
                                             >
                                                 {/* Connector Line (Mobile) */}
                                                 <div className="absolute left-[-33px] top-10 w-8 h-[2px] bg-primary/50 md:hidden" />

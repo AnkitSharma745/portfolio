@@ -6,7 +6,6 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
 import { TIMELINE_DATA } from "@/lib/constants/general";
 import GradientText from "@/components/GradientText";
@@ -15,9 +14,6 @@ import StatsCard from "@/components/StatsCard";
 import { FaCode, FaCoffee, FaProjectDiagram, FaClock } from "react-icons/fa";
 
 export default function AboutMe() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <section
       id="about"
@@ -79,7 +75,7 @@ export default function AboutMe() {
 
       {/* Timeline Section */}
       <VerticalTimeline
-        lineColor={isDark ? "#06b6d4" : "#e2e8f0"}
+        lineColor="var(--timeline-line)"
         className="mt-16"
       >
         {TIMELINE_DATA.map((item, index) => (
@@ -90,14 +86,14 @@ export default function AboutMe() {
             iconStyle={{ background: "var(--primary)", color: "#fff" }}
             icon={item.icon}
             contentStyle={{
-              background: isDark ? "rgba(30, 41, 59, 0.6)" : "#fff",
-              color: isDark ? "#fff" : "#0f172a",
-              border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "#e2e8f0"}`,
+              background: "var(--timeline-bg)",
+              color: "var(--timeline-color)",
+              border: "var(--timeline-border)",
               boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
               backdropFilter: "blur(12px)",
             }}
             contentArrowStyle={{
-              borderRight: `7px solid ${isDark ? "rgba(30, 41, 59, 0.6)" : "#fff"}`,
+              borderRight: "7px solid var(--timeline-bg)",
             }}
           >
             <h3 className="font-semibold text-xl">{item.title}</h3>

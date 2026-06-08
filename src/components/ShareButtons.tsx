@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { FaTwitter, FaLinkedin, FaFacebook, FaLink } from "react-icons/fa";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 interface ShareButtonsProps {
@@ -12,8 +11,6 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ url, title, description = "" }: ShareButtonsProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const [copied, setCopied] = useState(false);
     const [canNativeShare, setCanNativeShare] = useState(false);
 
@@ -56,13 +53,7 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
         }
     };
 
-    const buttonClass = `
-        p-3 rounded-full transition-all
-        ${isDark
-            ? "bg-white/10 hover:bg-white/20"
-            : "bg-black/5 hover:bg-black/10"
-        }
-    `;
+    const buttonClass = "p-3 rounded-full transition-all bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20";
 
     return (
         <div className="flex items-center gap-3">

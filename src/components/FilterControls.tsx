@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import { FaTimes } from "react-icons/fa";
 
 interface FilterOption {
@@ -22,9 +21,6 @@ export default function FilterControls({
     onFilterChange,
     label = "Filter by"
 }: FilterControlsProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-
     const hasActiveFilter = activeFilter !== "All" && activeFilter !== "";
 
     return (
@@ -57,9 +53,7 @@ export default function FilterControls({
                             px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
                             ${activeFilter === option.value
                                 ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                                : isDark
-                                    ? "bg-white/5 text-foreground hover:bg-white/10 border border-white/10"
-                                    : "bg-white text-foreground hover:bg-gray-50 border border-black/5 shadow-sm"
+                                : "bg-white dark:bg-white/5 text-foreground hover:bg-gray-50 hover:dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-sm"
                             }
                         `}
                     >

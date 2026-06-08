@@ -4,7 +4,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaYoutube, FaProjectDiagram, FaCode, FaLaptopCode } from "react-icons/fa";
@@ -41,8 +40,6 @@ const SORT_OPTIONS = [
 ];
 
 export default function ProjectsPage() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const [activeFilter, setActiveFilter] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
     const [activeSort, setActiveSort] = useState("featured");
@@ -176,13 +173,7 @@ export default function ProjectsPage() {
                                         transition={{ delay: index * 0.1 }}
                                         whileHover={{ y: -10 }}
                                         onClick={() => setSelectedProject(project)}
-                                        className={`
-                                        group rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer
-                                        ${isDark
-                                                ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                                                : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                                            }
-                                    `}
+                                        className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none cursor-pointer"
                                     >
                                         <div className="relative h-48 w-full overflow-hidden">
                                             <Image
@@ -235,13 +226,7 @@ export default function ProjectsPage() {
                                 placeholder="Search projects by name, tech, or description..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`
-                                w-full pl-12 pr-4 py-4 rounded-xl border outline-none transition-all duration-300
-                                ${isDark
-                                        ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                                        : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
-                                    }
-                            `}
+                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 focus:border-primary/50 focus:bg-black/5 focus:dark:bg-white/10 shadow-sm outline-none transition-all duration-300"
                             />
                         </div>
 
@@ -279,13 +264,7 @@ export default function ProjectsPage() {
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
                                     onClick={() => setSelectedProject(project)}
-                                    className={`
-                                    group rounded-xl overflow-hidden border transition-all duration-300 flex flex-col cursor-pointer
-                                    ${isDark
-                                            ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                                            : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                                        }
-                                `}
+                                    className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none transition-all duration-300 flex flex-col cursor-pointer"
                                 >
                                     <div className="relative h-48 w-full overflow-hidden">
                                         <Image

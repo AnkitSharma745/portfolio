@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 
 interface SortOption {
@@ -26,9 +25,6 @@ export default function SortControls({
     onToggleOrder,
     label = "Sort by"
 }: SortControlsProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-
     return (
         <div className="space-y-3">
             {label && (
@@ -50,9 +46,7 @@ export default function SortControls({
                                 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
                                 ${activeSort === option.value
                                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                                    : isDark
-                                        ? "bg-white/5 text-foreground hover:bg-white/10 border border-white/10"
-                                        : "bg-white text-foreground hover:bg-gray-50 border border-black/5 shadow-sm"
+                                    : "bg-white dark:bg-white/5 text-foreground hover:bg-gray-50 hover:dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-sm"
                                 }
                             `}
                         >
@@ -67,13 +61,7 @@ export default function SortControls({
                         onClick={onToggleOrder}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`
-                            p-2 rounded-full transition-all duration-300
-                            ${isDark
-                                ? "bg-white/5 text-foreground hover:bg-white/10 border border-white/10"
-                                : "bg-white text-foreground hover:bg-gray-50 border border-black/5 shadow-sm"
-                            }
-                        `}
+                        className="p-2 rounded-full bg-white dark:bg-white/5 text-foreground hover:bg-gray-50 hover:dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-sm transition-all duration-300"
                         title={ascending ? "Ascending" : "Descending"}
                     >
                         {ascending ? <FaSortAmountUp size={16} /> : <FaSortAmountDown size={16} />}

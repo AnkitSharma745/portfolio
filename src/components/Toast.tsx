@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCheckCircle, FaExclamationCircle, FaInfoCircle, FaTimes } from "react-icons/fa";
-import { useTheme } from "next-themes";
 
 export type ToastType = "success" | "error" | "info";
 
@@ -14,9 +13,6 @@ interface ToastProps {
 }
 
 export default function Toast({ message, type, isVisible, onClose }: ToastProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-
     const icons = {
         success: <FaCheckCircle className="text-green-500" />,
         error: <FaExclamationCircle className="text-red-500" />,
@@ -24,9 +20,9 @@ export default function Toast({ message, type, isVisible, onClose }: ToastProps)
     };
 
     const bgColors = {
-        success: isDark ? "bg-green-500/10 border-green-500/20" : "bg-green-50 border-green-200",
-        error: isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200",
-        info: isDark ? "bg-blue-500/10 border-blue-500/20" : "bg-blue-50 border-blue-200"
+        success: "bg-green-50 dark:bg-green-500/10 border-green-200 dark:border-green-500/20",
+        error: "bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/20",
+        info: "bg-blue-50 dark:bg-blue-500/10 border-blue-200 dark:border-blue-500/20"
     };
 
     return (
@@ -42,7 +38,7 @@ export default function Toast({ message, type, isVisible, onClose }: ToastProps)
                         className={`
                             flex items-center gap-3 p-4 rounded-lg border shadow-lg backdrop-blur-sm
                             ${bgColors[type]}
-                            ${isDark ? "bg-gray-900/90" : "bg-white/90"}
+                            bg-white/90 dark:bg-gray-900/90
                         `}
                     >
                         <span className="text-2xl">{icons[type]}</span>

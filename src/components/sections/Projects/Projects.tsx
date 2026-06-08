@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -15,9 +14,6 @@ import { PROJECTS_DATA } from "@/lib/constants/projects";
 import Link from "next/link";
 
 export default function Projects() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <section
       id="projects"
@@ -65,14 +61,7 @@ export default function Projects() {
                     viewport={{ once: true }}
                     transition={{ delay: projectIndex * 0.1 }}
                     whileHover={{ y: -10 }}
-                    className={`
-                      group rounded-xl overflow-hidden border transition-all duration-300 flex flex-col
-                      ${
-                        isDark
-                          ? "bg-white/5 border-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                          : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                      }
-                    `}
+                    className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 transition-all duration-300 flex flex-col"
                   >
                     <div className="relative h-48 w-full overflow-hidden">
                       <Image

@@ -1,16 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import { FaGithub, FaCheckCircle } from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import { SOLUTIONS_DATA } from "@/lib/constants/solutions";
 
 export default function Solutions() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <section
       id="solutions"
@@ -41,14 +37,7 @@ export default function Solutions() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className={`
-                flex flex-col p-8 rounded-2xl border transition-all duration-300 group
-                ${
-                  isDark
-                    ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                    : "bg-white border-black/5 hover:border-primary/50 shadow-lg hover:shadow-xl"
-                }
-              `}
+              className="flex flex-col p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-white/10 hover:dark:bg-white/10 hover:border-primary/50 hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-primary/10 transition-all duration-300 group"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-3xl group-hover:scale-110 transition-transform duration-300">

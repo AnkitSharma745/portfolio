@@ -1,12 +1,12 @@
 interface ProgressBarProps {
   label: string;
-  percentage?: number; // Optional custom % (random for now)
-  darkMode: boolean;
+  percentage?: number; // Optional custom %
+  darkMode?: boolean;  // Deprecated
 }
 
 export default function ProgressBar({
   label,
-  percentage = Math.floor(70 + Math.random() * 30),
+  percentage = 80,
   darkMode,
 }: ProgressBarProps) {
   return (
@@ -16,7 +16,7 @@ export default function ProgressBar({
         <span>{percentage}%</span>
       </div>
       <div
-        className={`w-full h-2 rounded-full ${darkMode ? "bg-gray-700" : "bg-gray-200"}`}
+        className="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700"
       >
         <div
           className="h-full rounded-full"

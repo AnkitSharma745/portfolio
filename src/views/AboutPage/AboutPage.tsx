@@ -3,7 +3,6 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   FaCode,
   FaLaptopCode,
@@ -22,9 +21,6 @@ import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export default function AboutPage() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   const skills = [
     { name: "React.js", level: 95 },
     { name: "TypeScript", level: 90 },
@@ -78,7 +74,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
-              About <GradientText>Me</GradientText>
+              About Me <GradientText>Me</GradientText>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -150,14 +146,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className={`
-                p-8 rounded-2xl border transition-all duration-300 text-center group
-                ${
-                  isDark
-                    ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-                    : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                }
-              `}
+                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:bg-black/5 hover:dark:bg-white/10 shadow-lg dark:shadow-none transition-all duration-300 text-center group"
               >
                 <div className="text-5xl mb-6 text-primary group-hover:scale-110 transition-transform duration-300 inline-block">
                   {role.icon}
@@ -189,7 +178,7 @@ export default function AboutPage() {
                     </span>
                   </div>
                   <div
-                    className={`h-3 rounded-full overflow-hidden ${isDark ? "bg-white/10" : "bg-black/5"}`}
+                    className="h-3 rounded-full overflow-hidden bg-black/5 dark:bg-white/10"
                   >
                     <motion.div
                       initial={{ width: 0 }}
@@ -233,11 +222,7 @@ export default function AboutPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-8 py-3 rounded-full font-medium transition-all border ${
-                    isDark
-                      ? "border-white/20 hover:bg-white/10"
-                      : "border-black/20 hover:bg-black/5"
-                  }`}
+                  className="px-8 py-3 rounded-full font-medium transition-all border border-black/20 dark:border-white/20 hover:bg-black/5 hover:dark:bg-white/10"
                 >
                   Explore Projects
                 </motion.button>

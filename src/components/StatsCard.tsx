@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import { IconType } from "react-icons";
 
 interface StatsCardProps {
@@ -24,8 +23,6 @@ export default function StatsCard({
     delay = 0,
     gradient = "from-primary via-cyan-400 to-accent"
 }: StatsCardProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const [count, setCount] = useState(0);
@@ -58,13 +55,7 @@ export default function StatsCard({
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay }}
             whileHover={{ y: -5, scale: 1.02 }}
-            className={`
-                relative p-6 rounded-xl border overflow-hidden group
-                ${isDark
-                    ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-                    : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                }
-            `}
+            className="relative p-6 rounded-xl border overflow-hidden group bg-white dark:bg-white/5 border-black/5 dark:border-white/10 hover:border-primary/50 hover:bg-white/10 hover:dark:bg-white/10 shadow-lg dark:shadow-none"
         >
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />

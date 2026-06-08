@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./skillPage.css";
-import { useTheme } from "next-themes";
 import SectionDivider from "@/components/SectionDivider";
 import {
   TECH_ITEMS,
@@ -17,23 +16,19 @@ import Link from "next/link";
 import ProgressBar from "@/components/ProgressBar";
 
 export default function SkillsPage() {
-  const { theme } = useTheme();
-
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  const isDark = theme === "dark";
-
   const boxStyle = `group relative w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 flex flex-col items-center justify-center
     rounded-2xl bg-gradient-to-br shadow-lg backdrop-blur-lg transition-all duration-500 hover:scale-110
     cursor-pointer border border-gray-200 dark:border-gray-700
-    ${isDark ? "bg-gray-800/50 text-white" : "bg-white/60 text-black"}`;
+    bg-white/60 text-black dark:bg-gray-800/50 dark:text-white`;
 
   const wrapperClass = `bg-gradient-to-r from-primary via-cyan-400 to-accent p-[2px] rounded-2xl`;
 
   const headingStyle = `text-3xl md:text-4xl font-extrabold text-center mb-12 tracking-tight 
-    ${isDark ? "text-white" : "text-gray-900"}`;
+    text-gray-900 dark:text-white`;
 
   type AosAnimation = "zoom-in" | "fade-left" | "fade-right" | string;
 
@@ -97,17 +92,15 @@ export default function SkillsPage() {
           <ProgressBar
             label="React / Next.js"
             percentage={95}
-            darkMode={isDark}
           />
-          <ProgressBar label="TypeScript" percentage={90} darkMode={isDark} />
-          <ProgressBar label="Node.js" percentage={85} darkMode={isDark} />
-          <ProgressBar label="UI/UX Design" percentage={80} darkMode={isDark} />
+          <ProgressBar label="TypeScript" percentage={90} />
+          <ProgressBar label="Node.js" percentage={85} />
+          <ProgressBar label="UI/UX Design" percentage={80} />
           <ProgressBar
             label="System Architecture"
             percentage={85}
-            darkMode={isDark}
           />
-          <ProgressBar label="DevOps" percentage={75} darkMode={isDark} />
+          <ProgressBar label="DevOps" percentage={75} />
         </div>
       </div>
 

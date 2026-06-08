@@ -5,7 +5,6 @@ import PageTransition from "@/components/PageTransition";
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FaArrowLeft, FaEnvelope, FaUser, FaPaperPlane, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
@@ -15,8 +14,6 @@ import Toast from "@/components/Toast";
 import { useToast } from "@/hooks/useToast";
 
 export default function ContactPage() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const { toast, showToast, hideToast } = useToast();
 
     const [formData, setFormData] = useState({
@@ -85,9 +82,7 @@ export default function ContactPage() {
         w-full px-4 py-3 rounded-lg border outline-none transition-all duration-300
         ${errors[fieldName]
             ? "border-red-500 focus:border-red-500"
-            : isDark
-                ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
+            : "bg-white dark:bg-white/5 border-black/5 dark:border-white/10 focus:border-primary/50 focus:bg-white/10 focus:dark:bg-white/10 shadow-sm"
         }
     `;
 
@@ -144,10 +139,7 @@ export default function ContactPage() {
                             className="md:col-span-2"
                         >
                             <div
-                                className={`
-                                p-8 rounded-2xl border
-                                ${isDark ? "bg-white/5 border-white/10" : "bg-white border-black/5 shadow-lg"}
-                            `}
+                                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 shadow-lg dark:shadow-none"
                             >
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     {/* Name */}
@@ -259,10 +251,7 @@ export default function ContactPage() {
                         >
                             {/* Email */}
                             <div
-                                className={`
-                                p-6 rounded-2xl border
-                                ${isDark ? "bg-white/5 border-white/10" : "bg-white border-black/5 shadow-lg"}
-                            `}
+                                className="p-6 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 shadow-lg dark:shadow-none"
                             >
                                 <h3 className="font-bold text-lg mb-2">Email</h3>
                                 <a href="mailto:ankit@example.com" className="text-primary hover:underline">
@@ -272,10 +261,7 @@ export default function ContactPage() {
 
                             {/* Social Links */}
                             <div
-                                className={`
-                                p-6 rounded-2xl border
-                                ${isDark ? "bg-white/5 border-white/10" : "bg-white border-black/5 shadow-lg"}
-                            `}
+                                className="p-6 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 shadow-lg dark:shadow-none"
                             >
                                 <h3 className="font-bold text-lg mb-4">Connect</h3>
                                 <div className="space-y-3">

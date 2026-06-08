@@ -3,12 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowUp } from "react-icons/fa";
-import { useTheme } from "next-themes";
 
 export default function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -40,14 +37,7 @@ export default function ScrollToTop() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={scrollToTop}
-                    className={`
-                        fixed bottom-44 right-6 z-50 p-4 rounded-full shadow-lg
-                        transition-all duration-300
-                        ${isDark
-                            ? "bg-primary text-primary-foreground hover:shadow-primary/50"
-                            : "bg-primary text-primary-foreground hover:shadow-primary/30"
-                        }
-                    `}
+                    className="fixed bottom-44 right-6 z-50 p-4 rounded-full shadow-lg bg-primary text-primary-foreground hover:shadow-primary/25 dark:hover:shadow-primary/50 transition-all duration-300"
                     aria-label="Scroll to top"
                 >
                     <FaArrowUp size={20} />

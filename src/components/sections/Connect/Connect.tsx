@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   FaGithub,
   FaLinkedin,
@@ -27,9 +26,6 @@ const contactIcons: Record<ContactChannelIcon, React.ReactNode> = {
 };
 
 export default function Connect() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <section
       id="connect"
@@ -64,14 +60,7 @@ export default function Connect() {
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className={`
-                group relative flex flex-col items-center justify-center p-8 rounded-2xl border transition-all duration-300
-                ${
-                  isDark
-                    ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
-                    : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                }
-              `}
+              className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-white/10 hover:dark:bg-white/10 hover:border-primary/50 shadow-lg dark:shadow-none transition-all duration-300"
             >
               <div
                 className={`text-5xl mb-4 text-foreground/80 transition-colors duration-300 ${contact.hoverColor}`}

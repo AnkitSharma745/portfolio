@@ -78,6 +78,12 @@
 
   --border: #e2e8f0;
 
+  /* Timeline Variables */
+  --timeline-line: #e2e8f0;
+  --timeline-bg: #ffffff;
+  --timeline-color: #0f172a;
+  --timeline-border: 1px solid #e2e8f0;
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
   --gradient-dark: linear-gradient(135deg, #000000 0%, #111827 100%);
@@ -100,6 +106,12 @@
   --card-foreground: #e0f2fe;
 
   --border: #1e293b; /* slate-800 */
+
+  /* Timeline Variables */
+  --timeline-line: #06b6d4;
+  --timeline-bg: rgba(30, 41, 59, 0.6);
+  --timeline-color: #ffffff;
+  --timeline-border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body {

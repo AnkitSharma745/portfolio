@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   FaGithub,
   FaStar,
@@ -14,9 +13,6 @@ import { OPEN_SOURCE_CONTRIBUTIONS } from "@/lib/constants/openSource";
 import Link from "next/link";
 
 export default function OpenSource() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <section
       id="open-source"
@@ -47,14 +43,7 @@ export default function OpenSource() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className={`
-                p-6 rounded-xl border transition-all duration-300 group relative overflow-hidden
-                ${
-                  isDark
-                    ? "bg-white/5 border-white/10 hover:border-primary/50"
-                    : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                }
-              `}
+              className="p-6 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 shadow-lg dark:shadow-none transition-all duration-300 group relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <FaGithub size={100} />

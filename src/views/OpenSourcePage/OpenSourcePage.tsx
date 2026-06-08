@@ -4,7 +4,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FaArrowLeft, FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
@@ -36,8 +35,6 @@ const SORT_OPTIONS = [
 ];
 
 export default function OpenSourcePage() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
     const [languageFilter, setLanguageFilter] = useState("All");
     const [typeFilter, setTypeFilter] = useState("All");
     const [activeSort, setActiveSort] = useState("stars");
@@ -157,13 +154,7 @@ export default function OpenSourcePage() {
                                 placeholder="Search by repository name or description..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`
-                                w-full pl-12 pr-4 py-4 rounded-xl border outline-none transition-all duration-300
-                                ${isDark
-                                        ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                                        : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
-                                    }
-                            `}
+                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 focus:border-primary/50 focus:bg-black/5 focus:dark:bg-white/10 shadow-sm outline-none transition-all duration-300"
                             />
                         </div>
 
@@ -202,13 +193,7 @@ export default function OpenSourcePage() {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
                                 whileHover={{ y: -5 }}
-                                className={`
-                                p-8 rounded-2xl border transition-all duration-300 group relative overflow-hidden flex flex-col
-                                ${isDark
-                                        ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-                                        : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                                    }
-                            `}
+                                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:bg-black/5 hover:dark:bg-white/10 shadow-lg dark:shadow-none transition-all duration-300 group relative overflow-hidden flex flex-col"
                             >
                                 <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                                     <FaGithub size={120} />

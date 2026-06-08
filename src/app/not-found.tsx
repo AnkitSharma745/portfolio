@@ -3,13 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaHome, FaSearch } from "react-icons/fa";
-import { useTheme } from "next-themes";
 import GradientText from "@/components/GradientText";
 
 export default function NotFound() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-
     return (
         <div className="min-h-screen flex items-center justify-center px-6 bg-background">
             <div className="max-w-2xl w-full text-center">
@@ -47,13 +43,7 @@ export default function NotFound() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`
-                                    px-8 py-3 rounded-full font-medium transition-all flex items-center gap-2 justify-center w-full sm:w-auto border
-                                    ${isDark
-                                        ? "border-white/20 hover:bg-white/10"
-                                        : "border-black/20 hover:bg-black/5"
-                                    }
-                                `}
+                                className="px-8 py-3 rounded-full font-medium transition-all flex items-center gap-2 justify-center w-full sm:w-auto border border-black/20 dark:border-white/20 hover:bg-black/5 hover:dark:bg-white/10"
                             >
                                 <FaSearch />
                                 Browse Projects
