@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://ankitsharma.dev/sitemap.xml
+Sitemap: https://ankitsharma745.github.io/sitemap.xml
