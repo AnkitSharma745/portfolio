@@ -49,11 +49,10 @@ export default function GuestbookList() {
             transition={{ delay: index * 0.05 }}
             className={`
                             p-6 rounded-xl border relative group transition-all
-                            ${
-                              isDark
-                                ? "bg-white/5 border-white/10 hover:bg-white/10"
-                                : "bg-white border-black/5 hover:shadow-md"
-                            }
+                            ${isDark
+                ? "bg-white/5 border-white/10 hover:bg-white/10"
+                : "bg-white border-black/5 hover:shadow-md"
+              }
                         `}
           >
             <FaQuoteLeft className="absolute top-6 right-6 text-primary/10 text-4xl group-hover:text-primary/20 transition-colors" />

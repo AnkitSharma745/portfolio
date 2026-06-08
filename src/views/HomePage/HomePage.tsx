@@ -1,29 +1,18 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import SectionDivider from "@/components/SectionDivider";
-
-const GitHubJourney = dynamic(() => import("@/components/github/Github"));
-
-const Hero = dynamic(() => import("@/components/sections/Hero/Hero"));
-const About = dynamic(() => import("@/components/sections/AboutTemp/About"));
-const Skills = dynamic(() => import("@/components/sections/Skills/Skills"));
-const Tools = dynamic(() => import("@/components/sections/Tools/Tools"));
-const Projects = dynamic(
-  () => import("@/components/sections/Projects/Projects"),
-);
-const OpenSource = dynamic(
-  () => import("@/components/sections/OpenSource/OpenSource"),
-);
-const Solutions = dynamic(
-  () => import("@/components/sections/Solutions/Solutions"),
-);
-const Connect = dynamic(() => import("@/components/sections/Connect/Connect"));
-const Contact = dynamic(() => import("@/components/sections/Contact/Contact"));
-const CodingYearJourney = dynamic(
-  () => import("@/views/CodingYearJourney/CodingYearJourney"),
-);
+import GitHubJourney from "@/components/github/Github";
+import Hero from "@/components/sections/Hero/Hero";
+import About from "@/components/sections/About/About";
+import Skills from "@/components/sections/Skills/Skills";
+import Tools from "@/components/sections/Tools/Tools";
+import Projects from "@/components/sections/Projects/Projects";
+import OpenSource from "@/components/sections/OpenSource/OpenSource";
+import Solutions from "@/components/sections/Solutions/Solutions";
+import Connect from "@/components/sections/Connect/Connect";
+import Contact from "@/components/sections/Contact/Contact";
+import CodingYearJourney from "@/views/CodingYearJourney/CodingYearJourney";
 
 export default function HomePage() {
   return (

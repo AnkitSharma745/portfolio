@@ -5,7 +5,7 @@ import { Moon, Sun, Menu, X, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 import { useScrollNavigation } from "@/hooks/useScrollNavigation";
@@ -15,7 +15,7 @@ import {
   navigationLabels,
 } from "@/content/shared/navigation";
 
-const subscribeToHydration = () => () => {};
+const subscribeToHydration = () => () => { };
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
@@ -29,6 +29,7 @@ function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const { navigateTo } = useScrollNavigation();
 
@@ -39,6 +40,32 @@ function NavBar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const routesToPrefetch = Array.from(
+      new Set(
+        navigationItems
+          .map((item) => item.href)
+          .filter((href) => href.startsWith("/") && !href.startsWith("/#")),
+      ),
+    );
+
+    const prefetchRoutes = () => {
+      routesToPrefetch.forEach((href) => router.prefetch(href));
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(prefetchRoutes, {
+        timeout: 2500,
+      });
+
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(prefetchRoutes, 1200);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [router]);
 
   const toggleTheme = () => {
     setTheme(isDarkTheme ? "light" : "dark");

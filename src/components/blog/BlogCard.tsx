@@ -25,11 +25,10 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         whileHover={{ y: -5 }}
         className={`
                     h-full flex flex-col p-6 rounded-2xl border transition-all duration-300 group
-                    ${
-                      isDark
-                        ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-                        : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-                    }
+                    ${isDark
+            ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
+            : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
+          }
                 `}
       >
         {/* Tags */}

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -119,7 +118,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full py-6 border-t border-border text-center text-sm text-foreground/60 bg-secondary/30">
+      <div className="w-full py-3 border-t border-border text-center text-sm text-foreground/60 bg-secondary/30">
         © {new Date().getFullYear()} Ankit Sharma. All rights reserved.
       </div>
     </footer>

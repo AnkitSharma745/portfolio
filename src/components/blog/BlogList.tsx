@@ -44,11 +44,10 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
             className={`
                             w-full pl-12 pr-4 py-3 rounded-xl border outline-none transition-all duration-300
-                            ${
-                              isDark
-                                ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                                : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
-                            }
+                            ${isDark
+                ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
+                : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
+              }
                         `}
           />
         </div>
@@ -59,11 +58,10 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
             onClick={() => setSelectedTag(null)}
             className={`
                             px-4 py-2 rounded-full text-sm font-medium transition-all
-                            ${
-                              selectedTag === null
-                                ? "bg-primary text-primary-foreground"
-                                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                            }
+                            ${selectedTag === null
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+              }
                         `}
           >
             All
@@ -74,11 +72,10 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
               onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
               className={`
                                 px-4 py-2 rounded-full text-sm font-medium transition-all
-                                ${
-                                  selectedTag === tag
-                                    ? "bg-primary text-primary-foreground"
-                                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                                }
+                                ${selectedTag === tag
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }
                             `}
             >
               {tag}

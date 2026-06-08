@@ -241,16 +241,14 @@ export default function ChatWidget() {
               {messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex items-start gap-2 ${
-                    msg.sender === "user" ? "flex-row-reverse" : "flex-row"
-                  }`}
+                  className={`flex items-start gap-2 ${msg.sender === "user" ? "flex-row-reverse" : "flex-row"
+                    }`}
                 >
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                      msg.sender === "user"
-                        ? "bg-primary text-white"
-                        : "bg-purple-600 text-white"
-                    }`}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.sender === "user"
+                      ? "bg-primary text-white"
+                      : "bg-purple-600 text-white"
+                      }`}
                   >
                     {msg.sender === "user" ? (
                       <User size={14} />
@@ -259,11 +257,10 @@ export default function ChatWidget() {
                     )}
                   </div>
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                      msg.sender === "user"
-                        ? "bg-primary text-white rounded-tr-none"
-                        : "bg-secondary text-foreground rounded-tl-none border border-border"
-                    }`}
+                    className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.sender === "user"
+                      ? "bg-primary text-white rounded-tr-none"
+                      : "bg-secondary text-foreground rounded-tl-none border border-border"
+                      }`}
                   >
                     {msg.text}
                   </div>

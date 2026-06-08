@@ -66,11 +66,10 @@ export default function TableOfContents() {
               href={`#${heading.id}`}
               className={`
                                 block py-1 transition-colors duration-200 border-l-2 pl-4
-                                ${
-                                  activeId === heading.id
-                                    ? "border-primary text-primary font-medium"
-                                    : "border-transparent text-foreground/60 hover:text-foreground hover:border-foreground/20"
-                                }
+                                ${activeId === heading.id
+                  ? "border-primary text-primary font-medium"
+                  : "border-transparent text-foreground/60 hover:text-foreground hover:border-foreground/20"
+                }
                             `}
               onClick={(e) => {
                 e.preventDefault();

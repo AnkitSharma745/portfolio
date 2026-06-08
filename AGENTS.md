@@ -24,6 +24,7 @@ These instructions apply to this portfolio repository.
 - Content architecture lives under `src/content` because the project already stores MDX blog content there and the `@/*` alias resolves to `src/*`.
 - During content refactors, preserve existing component markup, Tailwind classes, animation props, and behavior. Extract human-readable text, URLs, and labels first; avoid moving rendering logic into content modules.
 - Command palette content belongs under `src/content/command`; keep command execution functions, router calls, theme toggling, icon rendering, filtering, and keyboard handling inside `CommandPalette.tsx`.
+- Avoid `next/dynamic` for components that are rendered immediately in the initial tree. Prefer static imports when the terminal loader or app shell already masks initial loading; reserve dynamic imports for truly conditional, below-the-fold, or rarely used heavy widgets.
 
 ## Maintenance
 

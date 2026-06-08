@@ -61,11 +61,10 @@ export default function GuestbookForm() {
         animate={{ opacity: 1, y: 0 }}
         className={`
                     p-8 rounded-2xl border backdrop-blur-sm
-                    ${
-                      isDark
-                        ? "bg-white/5 border-white/10"
-                        : "bg-white border-black/5 shadow-lg"
-                    }
+                    ${isDark
+            ? "bg-white/5 border-white/10"
+            : "bg-white border-black/5 shadow-lg"
+          }
                 `}
       >
         <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
@@ -85,11 +84,10 @@ export default function GuestbookForm() {
               required
               className={`
                                 w-full px-4 py-3 rounded-xl border outline-none transition-all
-                                ${
-                                  isDark
-                                    ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
-                                    : "bg-gray-50 border-black/5 focus:border-primary/50"
-                                }
+                                ${isDark
+                  ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
+                  : "bg-gray-50 border-black/5 focus:border-primary/50"
+                }
                             `}
             />
           </div>
@@ -106,11 +104,10 @@ export default function GuestbookForm() {
               rows={4}
               className={`
                                 w-full px-4 py-3 rounded-xl border outline-none transition-all resize-none
-                                ${
-                                  isDark
-                                    ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
-                                    : "bg-gray-50 border-black/5 focus:border-primary/50"
-                                }
+                                ${isDark
+                  ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
+                  : "bg-gray-50 border-black/5 focus:border-primary/50"
+                }
                             `}
             />
           </div>
@@ -121,11 +118,10 @@ export default function GuestbookForm() {
             disabled={isSubmitting}
             className={`
                             w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all
-                            ${
-                              isSubmitting
-                                ? "bg-primary/50 cursor-not-allowed"
-                                : "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
-                            }
+                            ${isSubmitting
+                ? "bg-primary/50 cursor-not-allowed"
+                : "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
+              }
                         `}
           >
             {isSubmitting ? (
