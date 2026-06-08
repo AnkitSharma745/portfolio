@@ -658,9 +658,9 @@ The dedicated Contact page currently simulates sending the message instead of ca
 The homepage includes a "Let's Connect" section with contact cards for:
 
 - GitHub: `https://github.com/ankitsharma745`
-- LinkedIn: `https://www.linkedin.com/in/ankit-sharma745`
+- LinkedIn: `https://www.linkedin.com/in/ankitsharma745`
 - Twitter: `https://twitter.com`
-- Phone: `+91 73514 74546`
+- Phone: `+91 6395794139`
 - Email: `ankitaksharma9763@gmail.com`
 
 Some social/contact values differ in other parts of the app, so contact details should be reviewed before production handoff.

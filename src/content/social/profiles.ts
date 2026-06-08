@@ -15,7 +15,7 @@ export const socialProfiles: Record<SocialProfileId, SocialProfile> = {
   linkedin: {
     id: "linkedin",
     title: "LinkedIn",
-    url: "https://www.linkedin.com/in/ankit-sharma745",
+    url: "https://www.linkedin.com/in/ankitsharma745",
   },
   twitter: {
     id: "twitter",

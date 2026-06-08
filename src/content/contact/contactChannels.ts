@@ -1,9 +1,9 @@
-import { socialProfiles, type SocialProfileId } from "@/content/social/profiles";
+import {
+  socialProfiles,
+  type SocialProfileId,
+} from "@/content/social/profiles";
 
-export type ContactChannelIcon =
-  | SocialProfileId
-  | "phone"
-  | "email";
+export type ContactChannelIcon = SocialProfileId | "phone" | "email";
 
 export interface ContactChannel {
   id: string;
@@ -44,9 +44,9 @@ export const contactChannels: ContactChannel[] = [
     id: "phone",
     icon: "phone",
     title: "Phone",
-    link: "tel:+917351474546",
-    description: "+91 73514 74546",
-    detailText: "+91 73514 74546",
+    link: "tel:+916395794139",
+    description: "+91 63957 94139",
+    detailText: "+91 63957 94139",
     hoverColor: "group-hover:text-green-500",
   },
   {
