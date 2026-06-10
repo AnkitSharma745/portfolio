@@ -9,7 +9,7 @@ import Image from "next/image";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaYoutube, FaProjectDiagram, FaCode, FaLaptopCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { PROJECTS_DATA, Project } from "@/lib/constants/projects";
+import { PROJECTS_DATA, Project } from "@/content/portfolio/projects";
 import ProjectModal from "@/components/ProjectModal";
 import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";

@@ -20,7 +20,7 @@ import {
   downloadResume,
   navigateTo,
 } from "@/utils/actions";
-import { JOURNEY_PHASES } from "@/utils/constants";
+import { JOURNEY_PHASES } from "@/content/portfolio/journey";
 
 interface Message {
   id: string;

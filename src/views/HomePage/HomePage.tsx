@@ -2,17 +2,17 @@
 
 import ParticlesBackground from "@/components/ParticlesBackground";
 import SectionDivider from "@/components/SectionDivider";
-import GitHubJourney from "@/components/github/Github";
-import Hero from "@/components/sections/Hero/Hero";
-import About from "@/components/sections/About/About";
-import Skills from "@/components/sections/Skills/Skills";
-import Tools from "@/components/sections/Tools/Tools";
-import Projects from "@/components/sections/Projects/Projects";
-import OpenSource from "@/components/sections/OpenSource/OpenSource";
-import Solutions from "@/components/sections/Solutions/Solutions";
-import Connect from "@/components/sections/Connect/Connect";
-import Contact from "@/components/sections/Contact/Contact";
-import CodingYearJourney from "@/views/CodingYearJourney/CodingYearJourney";
+import GitHubJourney from "@/sections/github/Github";
+import Hero from "@/sections/Hero/Hero";
+import About from "@/sections/About/About";
+import Skills from "@/sections/Skills/Skills";
+import Tools from "@/sections/Tools/Tools";
+import Projects from "@/sections/Projects/Projects";
+import OpenSource from "@/sections/OpenSource/OpenSource";
+import Solutions from "@/sections/Solutions/Solutions";
+import Connect from "@/sections/Connect/Connect";
+import Contact from "@/sections/Contact/Contact";
+import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
 
 export default function HomePage() {
   return (

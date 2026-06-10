@@ -26,6 +26,52 @@ These instructions apply to this portfolio repository.
 - Command palette content belongs under `src/content/command`; keep command execution functions, router calls, theme toggling, icon rendering, filtering, and keyboard handling inside `CommandPalette.tsx`.
 - Avoid `next/dynamic` for components that are rendered immediately in the initial tree. Prefer static imports when the terminal loader or app shell already masks initial loading; reserve dynamic imports for truly conditional, below-the-fold, or rarely used heavy widgets.
 
+## Folder Architecture (Canonical — Do Not Deviate)
+
+The project follows a strict four-layer architecture. Each layer has one responsibility.
+
+### Layer Summary
+
+| Layer | Location | Role |
+|---|---|---|
+| Routing Shell | `src/app/` | Next.js page routes + static metadata only |
+| Full-Page Views | `src/views/` | Client layout wrappers, one per route |
+| Page Sections | `src/sections/` | Homepage/page visual section modules |
+| Generic UI | `src/components/` | Reusable content-agnostic atoms & molecules |
+| Portfolio Data | `src/content/portfolio/` | Pure static data arrays and TypeScript types |
+
+### Critical Rules
+
+- **`src/app/**/page.tsx` files must NEVER have `"use client"`.** They are Server Components used for SSR metadata. All client rendering belongs in `src/views/`.
+- **Section components live in `src/sections/`** — not `src/components/sections/` (that old location has been removed).
+- **Portfolio data lives in `src/content/portfolio/`** — not `src/lib/constants/` (that old location has been removed).
+- **`src/utils/constants.ts` has been deleted** — `JOURNEY_PHASES` now lives in `src/content/portfolio/journey.ts`.
+- **Never create a folder with the `Section` suffix** (e.g., `AboutSection`). The `src/sections/` directory already provides context — use clean names like `About`, `Hero`, `Skills`.
+- **Never import a section from inside another section.** Sections are siblings, not nested.
+- **Never hard-code portfolio text (names, URLs, descriptions, labels) inside section or component `.tsx` files.** All human-readable content must live in `src/content/portfolio/`.
+
+### Import Paths (Canonical)
+
+| To import | Use this path |
+|---|---|
+| Homepage sections | `@/sections/<Name>/<Name>` |
+| Portfolio data arrays | `@/content/portfolio/<filename>` |
+| Blog MDX utilities | `@/lib/blog` |
+| Shared animations | `@/lib/animations` |
+| Command palette text | `@/content/command/commandPalette` |
+| Social profile URLs | `@/content/social/profiles` |
+| Contact data | `@/content/contact/contactChannels` |
+| Nav link definitions | `@/content/shared/navigation` |
+| Actions (openGithub, etc.) | `@/utils/actions` |
+| Download helpers | `@/lib/utils/download` |
+| Email helpers | `@/lib/utils/email` |
+| UI Context (chat/command) | `@/context/UIContext` |
+| Hooks | `@/hooks/<hookname>` |
+
+### Architecture Reference
+
+Full details, rationale, and anti-patterns are documented in `docs/ARCHITECTURE.md`.
+
 ## Maintenance
 
 - When stable repo-specific rules, constraints, or conventions are discovered while working, update this file with the relevant guidance.

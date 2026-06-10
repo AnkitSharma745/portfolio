@@ -19,6 +19,7 @@ export const HEADLINE_FOR_TYPEWRITER = [
   "Engineering Digital Experiences",
   "Turning Ideas into Products",
 ];
+
 export const TIMELINE_DATA = [
   {
     date: "2018",

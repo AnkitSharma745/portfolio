@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaGithub, FaCheckCircle } from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
-import { SOLUTIONS_DATA } from "@/lib/constants/solutions";
+import { SOLUTIONS_DATA } from "@/content/portfolio/solutions";
 
 export default function Solutions() {
   return (

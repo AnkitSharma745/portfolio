@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
-import { OPEN_SOURCE_CONTRIBUTIONS } from "@/lib/constants/openSource";
+import { OPEN_SOURCE_CONTRIBUTIONS } from "@/content/portfolio/openSource";
 import Link from "next/link";
 
 export default function OpenSource() {

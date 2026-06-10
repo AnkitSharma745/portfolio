@@ -8,7 +8,7 @@ import {
   TOOLS_PRODUCTIVITY,
   TOOLS_COMMUNICATION,
   TechItem,
-} from "@/lib/constants/skills";
+} from "@/content/portfolio/skills";
 
 const ToolCategory = ({
   title,

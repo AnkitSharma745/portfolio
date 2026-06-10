@@ -7,7 +7,7 @@ import Image from "next/image";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
 import IntroVideoModal from "@/components/IntroVideoModal";
-import { HEADLINE_FOR_TYPEWRITER } from "@/lib/constants/general";
+import { HEADLINE_FOR_TYPEWRITER } from "@/content/portfolio/general";
 
 const Home = () => {
   const ProfileImage = "/assets/images/ankit.png";
@@ -69,7 +69,6 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsVideoOpen(true)}
                 className="px-8 py-4 rounded-full bg-linear-to-r from-primary to-cyan-600 text-foreground font-bold text-lg border border-border/50 flex items-center justify-center gap-3 hover:bg-secondary/80 hover:border-primary/30 transition-all active:scale-95"
-              // className="px-8 py-4 rounded-full bg-linear-to-r from-primary to-cyan-600 text-white font-bold text-lg shadow-lg shadow-primary/25 flex items-center justify-center gap-3 hover:border-primary/30 transition-all"
               >
                 <FaPlay className="text-xl group-hover:scale-110 transition-transform" />{" "}
                 Watch Intro

@@ -7,7 +7,7 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
 import SectionDivider from "@/components/SectionDivider";
-import { TIMELINE_DATA } from "@/lib/constants/general";
+import { TIMELINE_DATA } from "@/content/portfolio/general";
 import GradientText from "@/components/GradientText";
 import Link from "next/link";
 import StatsCard from "@/components/StatsCard";

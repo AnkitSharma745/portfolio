@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import GradientText from "@/components/GradientText";
-import CodingYearJourney from "@/views/CodingYearJourney/CodingYearJourney";
+import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";

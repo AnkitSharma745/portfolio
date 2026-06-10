@@ -8,7 +8,7 @@ import Link from "next/link";
 import { FaArrowLeft, FaGithub, FaStar, FaCodeBranch, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { OPEN_SOURCE_CONTRIBUTIONS, Contribution } from "@/lib/constants/openSource";
+import { OPEN_SOURCE_CONTRIBUTIONS, Contribution } from "@/content/portfolio/openSource";
 import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";
 import FilterControls from "@/components/FilterControls";

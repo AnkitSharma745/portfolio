@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { FaTimes, FaGithub, FaExternalLinkAlt, FaYoutube } from "react-icons/fa";
-import { Project } from "@/lib/constants/projects";
+import { Project } from "@/content/portfolio/projects";
 import ShareButtons from "@/components/ShareButtons";
 
 interface ProjectModalProps {

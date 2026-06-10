@@ -11,7 +11,7 @@ import {
   FAMILIARITY_ITEMS,
   TOOLS_ITEMS,
   TechItem,
-} from "@/lib/constants/skills";
+} from "@/content/portfolio/skills";
 import Link from "next/link";
 import ProgressBar from "@/components/ProgressBar";
 

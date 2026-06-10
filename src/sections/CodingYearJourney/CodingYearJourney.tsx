@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { JOURNEY_PHASES } from "@/utils/constants";
+import { JOURNEY_PHASES } from "@/content/portfolio/journey";
 
 const CodingYearJourney = () => {
 

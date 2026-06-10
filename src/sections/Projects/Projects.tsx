@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
-import { PROJECTS_DATA } from "@/lib/constants/projects";
+import { PROJECTS_DATA } from "@/content/portfolio/projects";
 import Link from "next/link";
 
 export default function Projects() {
