@@ -1,78 +1,277 @@
-# Project Instructions
+> Repository Laws
+>
+> The highest-priority rules in this document were created after real regressions, infinite AI loops, hydration issues, architectural drift, and wasted development time.
+>
+> Treat these instructions as non-negotiable.
+>
+> If any future instruction conflicts with these laws, these laws take precedence unless the user explicitly overrides them.
 
-These instructions apply to this portfolio repository.
+## Repository Laws (Highest Priority)
 
-## User Preferences
+- NEVER run build verification commands unless explicitly requested by
+  the user.
+- NEVER execute:
+  - `pnpm.cmd run build`
+  - `pnpm.cmd build`
+  - `next build`
+  - export/production verification commands without user approval.
+- Ask before expensive verification.
+- NEVER install packages without approval.
+- Explain package purpose, alternatives, and why it is needed.
+- Use `pnpm.cmd` on Windows.
 
-- Do not run build verification commands unless the user explicitly asks for them.
-  - This includes `pnpm run build`, `pnpm.cmd run build`, `next build`, and similar production build checks.
-- Before running expensive verification, ask the user whether to verify.
-- Do not install packages without user approval.
-  - If a package is needed, explain the package, why it is needed, and ask the user before installing it.
-- Keep verification focused on what the user requested. Avoid spending tokens and runtime on broad checks unless approved.
+## Scope Control Laws
 
-## Repo Notes
+- Only modify what the user requested.
+- Do NOT opportunistically refactor unrelated areas.
+- Do NOT introduce competing patterns.
+- Preserve existing good implementations.
 
-- This is a Next.js portfolio project.
-- The package manager is `pnpm`.
-- On this Windows environment, use `pnpm.cmd` instead of `pnpm` when the user asks for package-manager commands, because PowerShell execution policy can block `pnpm.ps1`.
-- Visual components should be theme-aware. Prefer semantic Tailwind colors such as `bg-background`, `text-foreground`, `border-border`, `primary`, and `accent`, with `dark:` variants where needed. Avoid hard-coded white glow/beam colors unless they are scoped to dark mode.
-- **Hydration Safety (Next.js SSR/Hydration Mismatches):**
-  - **No dynamic theme conditionals in classNames:** Never toggle tailwind class names in JS using `isDark` or `theme === "dark"`. During SSR, the theme resolves to `undefined`, leading to hydration mismatches when the client updates classNames post-hydration. Instead, use static Tailwind utility classes with native `dark:` variants (e.g. `bg-white dark:bg-black/5`).
-  - **No inline style theme evaluations:** Avoid inline style objects that dynamically change properties like background, color, or border based on JS theme checks (e.g., `style={{ background: isDark ? "#000" : "#fff" }}`). Use CSS variables defined in `src/app/globals.css` instead (e.g., `style={{ background: "var(--timeline-bg)" }}`).
-  - **No unsafe random/date calls:** Do not use random generators (`Math.random()`), timestamps (`Date.now()`), or browser-only APIs during the initial render. If needed, wrap in a `mounted` state check via `useEffect`, or supply stable static defaults.
-- Content architecture lives under `src/content` because the project already stores MDX blog content there and the `@/*` alias resolves to `src/*`.
-- During content refactors, preserve existing component markup, Tailwind classes, animation props, and behavior. Extract human-readable text, URLs, and labels first; avoid moving rendering logic into content modules.
-- Command palette content belongs under `src/content/command`; keep command execution functions, router calls, theme toggling, icon rendering, filtering, and keyboard handling inside `CommandPalette.tsx`.
-- Avoid `next/dynamic` for components that are rendered immediately in the initial tree. Prefer static imports when the terminal loader or app shell already masks initial loading; reserve dynamic imports for truly conditional, below-the-fold, or rarely used heavy widgets.
+## Change Classification
 
-## Folder Architecture (Canonical — Do Not Deviate)
+- KEEP: Preserve as-is.
+- CLEAN UP: Minor safe improvements.
+- HARDEN: Production-quality fixes.
+- EVOLVE: Architectural enhancements.
+- MANUAL REVIEW: Document uncertainty.
 
-The project follows a strict four-layer architecture. Each layer has one responsibility.
+## Canonical Architecture
 
-### Layer Summary
+- `src/app`: Routing shell + metadata only.
+- `src/views`: Full-page wrappers.
+- `src/sections`: Visual sections.
+- `src/components`: Generic reusable UI.
+- `src/content`: Portfolio knowledge.
 
-| Layer | Location | Role |
-|---|---|---|
-| Routing Shell | `src/app/` | Next.js page routes + static metadata only |
-| Full-Page Views | `src/views/` | Client layout wrappers, one per route |
-| Page Sections | `src/sections/` | Homepage/page visual section modules |
-| Generic UI | `src/components/` | Reusable content-agnostic atoms & molecules |
-| Portfolio Data | `src/content/portfolio/` | Pure static data arrays and TypeScript types |
+### Routing Rules
 
-### Critical Rules
+- `src/app/**/page.tsx` must NEVER use `"use client"`.
 
-- **`src/app/**/page.tsx` files must NEVER have `"use client"`.** They are Server Components used for SSR metadata. All client rendering belongs in `src/views/`.
-- **Section components live in `src/sections/`** — not `src/components/sections/` (that old location has been removed).
-- **Portfolio data lives in `src/content/portfolio/`** — not `src/lib/constants/` (that old location has been removed).
-- **`src/utils/constants.ts` has been deleted** — `JOURNEY_PHASES` now lives in `src/content/portfolio/journey.ts`.
-- **Never create a folder with the `Section` suffix** (e.g., `AboutSection`). The `src/sections/` directory already provides context — use clean names like `About`, `Hero`, `Skills`.
-- **Never import a section from inside another section.** Sections are siblings, not nested.
-- **Never hard-code portfolio text (names, URLs, descriptions, labels) inside section or component `.tsx` files.** All human-readable content must live in `src/content/portfolio/`.
+### Sections Rules
 
-### Import Paths (Canonical)
+- Sections are siblings.
+- Never import sections into sections.
+- Never create folders ending with `Section`.
 
-| To import | Use this path |
-|---|---|
-| Homepage sections | `@/sections/<Name>/<Name>` |
-| Portfolio data arrays | `@/content/portfolio/<filename>` |
-| Blog MDX utilities | `@/lib/blog` |
-| Shared animations | `@/lib/animations` |
-| Command palette text | `@/content/command/commandPalette` |
-| Social profile URLs | `@/content/social/profiles` |
-| Contact data | `@/content/contact/contactChannels` |
-| Nav link definitions | `@/content/shared/navigation` |
-| Actions (openGithub, etc.) | `@/utils/actions` |
-| Download helpers | `@/lib/utils/download` |
-| Email helpers | `@/lib/utils/email` |
-| UI Context (chat/command) | `@/context/UIContext` |
-| Hooks | `@/hooks/<hookname>` |
+## Content Philosophy
 
-### Architecture Reference
+- Components render.
+- Content describes.
+- Configuration controls.
+- Move all editable portfolio knowledge to `src/content`.
+- Preserve JSX semantics.
 
-Full details, rationale, and anti-patterns are documented in `docs/ARCHITECTURE.md`.
+### Move
 
-## Maintenance
+- Headings
+- Labels
+- Paragraphs
+- Stats
+- Quick prompts
+- Filters
+- SEO text
+- Guestbook text
+- Chat content
 
-- When stable repo-specific rules, constraints, or conventions are discovered while working, update this file with the relevant guidance.
-- Keep updates concise and practical. Avoid recording one-off observations that are not useful for future work.
+### Do NOT Move
+
+- Hooks
+- Event handlers
+- State
+- Tailwind classes
+- Animations
+- Layouts
+
+## Hydration Safety
+
+- Never use JS theme conditionals for Tailwind classes.
+- Prefer `dark:` variants.
+- Avoid inline theme styles.
+- Avoid `Math.random()` and `Date.now()` during SSR.
+- Use mounted checks for browser-only logic.
+
+## Command Palette
+
+- Content: `src/content/command`
+- Execution logic remains in `CommandPalette.tsx`
+
+## Dynamic Imports
+
+- Avoid `next/dynamic` for immediately rendered components.
+- Use only for truly conditional/heavy experiences.
+
+## Blog System
+
+- Use MDX.
+- One file per post.
+- Frontmatter:
+  - title
+  - description
+  - slug
+  - date
+  - tags
+  - coverImage
+  - seoTitle
+  - seoDescription
+  - canonical
+  - ogImage
+  - featured
+
+## TypeScript Excellence
+
+- ZERO `any` unless technically unavoidable.
+- Prefer:
+  - interfaces
+  - type aliases
+  - generics
+  - utility types
+  - unknown
+  - discriminated unions
+- Justify any remaining `any`.
+
+## React Standards
+
+Avoid: - state updates during render - infinite effect loops - stale
+closures - memory leaks - improper cleanup - derived state misuse -
+StrictMode warnings
+
+Fix only verified issues.
+
+## Next.js Standards
+
+Verify: - App Router conventions - generateMetadata usage -
+client/server boundaries - hydration safety - Image usage - Link usage -
+static export compatibility
+
+Preserve behavior.
+
+## Accessibility Standards
+
+Ensure: - semantic HTML - keyboard support - aria labels - modal
+accessibility - focus management - reduced motion support - image alt
+text
+
+## Performance Philosophy
+
+- Measure before optimizing.
+- Avoid premature memoization.
+- Avoid unnecessary client components.
+- Optimize only verified bottlenecks.
+
+## Skills Experience Philosophy
+
+Progressive disclosure:
+
+Overview → Capabilities → Technologies → Usage → Practices → Proof →
+Artifacts → Lessons Learned
+
+Desktop: - Hover interactions
+
+Mobile: - Tap interactions
+
+No hover-only experiences.
+
+## Routing Philosophy
+
+Every meaningful interaction should support routing.
+
+Examples: - /skills/frontend-systems - /skills/frontend-systems/react -
+/projects/\[slug\] - /blog/\[slug\]
+
+Support: - breadcrumbs - copyable URLs - SEO indexing - chat
+navigation - command palette navigation
+
+## Missing Information Handling
+
+Use graceful fallbacks:
+
+- Public artifacts unavailable due to confidentiality.
+- Technical write-up coming soon.
+- Architecture insights will be shared in future publications.
+
+Never show broken states.
+
+## SEO Philosophy
+
+Maintain: - metadata - Open Graph - Twitter metadata - canonical URLs -
+JSON-LD - sitemap.xml - robots.txt - RSS - llms.txt
+
+Single source of truth.
+
+## Discoverability
+
+Prepare for: - Google Search Console - Bing indexing - AI
+discoverability
+
+Ensure meaningful routes are indexable.
+
+## Validation Rules
+
+After every approved change verify:
+
+- no runtime regressions
+- no broken interactions
+- no accessibility regressions
+- no SEO regressions
+
+Only run builds when explicitly approved.
+
+## Agent Output Requirements
+
+For every task report:
+
+- files scanned
+- implementations preserved
+- issues discovered
+- changes made
+- why changes are safe
+- validations performed
+- manual review recommendations
+- remaining technical debt
+
+Never silently skip decisions.
+
+## Portfolio Vision
+
+The portfolio should feel like:
+
+- Apple Precision
+- Linear Efficiency
+- Raycast Discoverability
+- Vercel Polish
+- Stripe Storytelling
+
+It should communicate:
+
+"This engineer can take ideas, leverage modern tools including AI, and
+build production-grade products end-to-end."
+
+The portfolio should progressively reveal:
+
+- identity
+- capabilities
+- proof of work
+- engineering thinking
+- AI-era workflow
+- technical depth
+
+Avoid: - fake percentages - vanity metrics - meaningless labels -
+gimmicky effects - template-like experiences
+
+Prefer: - evidence over adjectives - proof over claims - clarity over
+complexity - progressive disclosure over information dumping
+
+## Final Objective
+
+Evolve this repository into:
+
+A production-grade, content-driven, AI-era portfolio engine that
+progressively reveals identity, capabilities, engineering depth, proof
+of work, and technical thinking while remaining elegant, fast,
+maintainable, discoverable, and trustworthy.
+
+Protect existing quality.
+
+Evolve intentionally.
+
+Leave the codebase better than you found it.

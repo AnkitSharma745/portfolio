@@ -20,21 +20,6 @@ export const socialProfiles: Record<SocialProfileId, SocialProfile> = {
   twitter: {
     id: "twitter",
     title: "Twitter",
-    url: "https://twitter.com",
-  },
-};
-
-export const actionSocialProfiles = {
-  github: {
-    ...socialProfiles.github,
-    url: "https://github.com/ankitsharma745",
-  },
-  linkedin: {
-    ...socialProfiles.linkedin,
-    url: "https://linkedin.com/in/ankitsharma745",
-  },
-  twitter: {
-    ...socialProfiles.twitter,
     url: "https://twitter.com/ankitsharma745",
   },
-} satisfies Record<SocialProfileId, SocialProfile>;
+};

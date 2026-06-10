@@ -16,6 +16,7 @@ export interface CompanyProjects {
   projects: Project[];
 }
 
+// TODO: Replace "example.com" and "youruser" with actual URLs and GitHub username
 export const PROJECTS_DATA: CompanyProjects[] = [
   {
     companyName: "Retail Solutions Inc.",

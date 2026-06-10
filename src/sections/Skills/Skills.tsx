@@ -79,9 +79,6 @@ export default function SkillsPage() {
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8 justify-items-center">
           {renderCards(FAMILIARITY_ITEMS, "fade-right")}
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8 justify-items-center">
-          {renderCards(FAMILIARITY_ITEMS, "fade-right")}
-        </div>
 
         <h2 className={headingStyle} data-aos="fade-up">
           <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">

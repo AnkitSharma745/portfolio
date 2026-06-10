@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaSpinner } from "react-icons/fa";
 
@@ -15,6 +15,16 @@ const IntroVideoModal: React.FC<IntroVideoModalProps> = ({
 }) => {
     const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        if (isOpen) {
+            document.addEventListener("keydown", handleKeyDown);
+        }
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [isOpen, onClose]);
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -29,6 +39,9 @@ const IntroVideoModal: React.FC<IntroVideoModalProps> = ({
                     >
                         {/* Modal Container */}
                         <motion.div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label="Introduction Video"
                             initial={{ scale: 0.5, opacity: 0, y: 100 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.5, opacity: 0, y: 100 }}
@@ -42,6 +55,7 @@ const IntroVideoModal: React.FC<IntroVideoModalProps> = ({
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
+                                aria-label="Close video"
                                 className="absolute top-4 right-4 z-30 p-2 bg-black/50 hover:bg-primary/80 text-white rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 group/close"
                             >
                                 <FaTimes className="text-xl group-hover/close:rotate-90 transition-transform duration-300" />

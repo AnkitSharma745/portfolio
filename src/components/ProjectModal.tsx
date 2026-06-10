@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaTimes, FaGithub, FaExternalLinkAlt, FaYoutube } from "react-icons/fa";
 import { Project } from "@/content/portfolio/projects";
@@ -14,8 +14,43 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+            if (e.key === "Tab" && modalRef.current) {
+                const focusableElements = modalRef.current.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0] as HTMLElement;
+                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                } else if (!e.shiftKey && document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("keydown", handleKeyDown);
+            // Small timeout to allow animation to start before focusing
+            setTimeout(() => {
+                if (modalRef.current) {
+                    const firstFocusable = modalRef.current.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') as HTMLElement;
+                    if (firstFocusable) firstFocusable.focus();
+                }
+            }, 50);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isOpen, onClose]);
 
     if (!project) return null;
 
@@ -35,27 +70,20 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     {/* Modal */}
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
                         <motion.div
+                            ref={modalRef}
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="modal-title"
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className={`
-                                relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border
-                                ${isDark
-                                    ? "bg-gray-900/95 border-white/10"
-                                    : "bg-white border-black/5"
-                                }
-                            `}
+                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border bg-white border-black/5 dark:bg-gray-900/95 dark:border-white/10"
                         >
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className={`
-                                    absolute top-4 right-4 z-10 p-2 rounded-full transition-colors
-                                    ${isDark
-                                        ? "bg-white/10 hover:bg-white/20 text-white"
-                                        : "bg-black/5 hover:bg-black/10 text-black"
-                                    }
-                                `}
+                                aria-label="Close dialog"
+                                className="absolute top-4 right-4 z-10 p-2 rounded-full transition-colors bg-black/5 hover:bg-black/10 text-black dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
                             >
                                 <FaTimes size={20} />
                             </button>
@@ -76,7 +104,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                             <div className="p-8">
                                 {/* Header */}
                                 <div className="mb-6">
-                                    <h2 className="text-3xl md:text-4xl font-bold mb-2">
+                                    <h2 id="modal-title" className="text-3xl md:text-4xl font-bold mb-2">
                                         {project.title}
                                     </h2>
                                     {project.company && (
@@ -127,13 +155,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                             href={project.liveLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className={`
-                                                flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all
-                                                ${isDark
-                                                    ? "bg-white/10 hover:bg-white/20 text-white"
-                                                    : "bg-black/5 hover:bg-black/10 text-black"
-                                                }
-                                            `}
+                                            className="flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all bg-black/5 hover:bg-black/10 text-black dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
                                         >
                                             <FaExternalLinkAlt size={18} />
                                             Live Demo
@@ -144,13 +166,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                             href={project.demoVideo}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className={`
-                                                flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all
-                                                ${isDark
-                                                    ? "bg-white/10 hover:bg-white/20 text-white"
-                                                    : "bg-black/5 hover:bg-black/10 text-black"
-                                                }
-                                            `}
+                                            className="flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all bg-black/5 hover:bg-black/10 text-black dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
                                         >
                                             <FaYoutube size={18} />
                                             Watch Demo

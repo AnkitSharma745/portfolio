@@ -12,6 +12,7 @@ import TerminalLoader from "@/components/ui/TerminalLoader";
 import ScrollToTop from "@/components/ScrollToTop";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { Inter, Outfit } from "next/font/google";
+import { siteConfig, generatePersonSchema } from "@/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ankit Sharma", url: "https://ankitsharma745.github.io/" }],
   creator: "Ankit Sharma",
-  metadataBase: new URL("https://ankitsharma745.github.io/"),
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -103,34 +104,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Ankit Sharma",
-              url: "https://ankitsharma745.github.io/",
-              image: "https://ankitsharma745.github.io/profile.jpg",
-              jobTitle: "Full-Stack Developer",
-              worksFor: {
-                "@type": "Organization",
-                name: "Freelance / Open to Work",
-              },
-              sameAs: [
-                "https://github.com/ankitsharma745",
-                "https://www.linkedin.com/in/ankit-sharma745",
-                "https://twitter.com/ankitsharma745",
-              ],
-              description:
-                "Full-Stack Developer specializing in React, TypeScript, Node.js, and enterprise applications.",
-              knowsAbout: [
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Node.js",
-                "GraphQL",
-                "AWS",
-                "System Design",
-              ],
-            }),
+            __html: JSON.stringify(generatePersonSchema()),
           }}
         />
       </head>

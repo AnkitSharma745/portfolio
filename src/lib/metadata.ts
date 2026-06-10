@@ -1,15 +1,16 @@
 import { Metadata } from "next";
+import { socialProfiles } from "@/content/social/profiles";
 
 export const siteConfig = {
     name: "Ankit Sharma",
     title: "Ankit Sharma - Full Stack Developer & Desktop App Specialist",
     description: "Full Stack Developer specializing in React, TypeScript, Node.js, and Electron. Building high-performance web and desktop applications with modern technologies.",
     url: "https://ankitsharma745.github.io/", // Update with your actual domain
-    ogImage: "https://ankitsharma745.github.io/og-image.png", // Update with your actual OG image
+    ogImage: "https://ankitsharma745.github.io/og-image.jpg", // Update with your actual OG image
     links: {
-        github: "https://github.com/ankitsharma745",
-        linkedin: "https://www.linkedin.com/in/ankitsharma745",
-        twitter: "https://twitter.com/ankitsharma745",
+        github: socialProfiles.github.url,
+        linkedin: socialProfiles.linkedin.url,
+        twitter: socialProfiles.twitter.url,
         email: "mailto:ankitaksharma9763@gmail.com"
     },
     keywords: [

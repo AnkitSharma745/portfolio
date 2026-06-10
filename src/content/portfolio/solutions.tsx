@@ -10,6 +10,7 @@ export interface Solution {
     tags: string[];
 }
 
+// TODO: Replace "yourusername" with actual GitHub username and update URLs
 export const SOLUTIONS_DATA: Solution[] = [
     {
         title: "Next.js Theme Wrapper",

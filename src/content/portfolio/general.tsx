@@ -9,15 +9,12 @@ import {
 export const HEADLINE_FOR_TYPEWRITER = [
   "Software Engineer",
   "Product-Focused Engineer",
-  "Modern Software Architect",
-  "Intelligent Systems Builder",
-  "Building the Future with AI",
-  "Automation & Platform Engineer",
-  "Full-Stack Developer",
-  "AI-Driven Developer",
-  "Scalable Product Developer",
-  "Engineering Digital Experiences",
-  "Turning Ideas into Products",
+  "Tech Enthusiast",
+  "Electron and Desktop App Specialist",
+  "Retail Automation Innovator",
+  "Performance Optimizer",
+  "Frontend Craftsman",
+  "System Reliability Builder",
 ];
 
 export const TIMELINE_DATA = [

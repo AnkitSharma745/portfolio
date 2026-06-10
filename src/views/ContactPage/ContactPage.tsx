@@ -12,6 +12,9 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import ScrollToTop from "@/components/ScrollToTop";
 import Toast from "@/components/Toast";
 import { useToast } from "@/hooks/useToast";
+import { sendEmails } from "@/lib/utils/email";
+import { socialProfiles } from "@/content/social/profiles";
+import { contactChannels } from "@/content/contact/contactChannels";
 
 export default function ContactPage() {
     const { toast, showToast, hideToast } = useToast();
@@ -53,14 +56,24 @@ export default function ContactPage() {
         setIsSubmitting(true);
 
         try {
-            // Simulate API call - Replace with actual implementation
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            const [firstName, ...lastNameParts] = formData.name.trim().split(" ");
+            const lastName = lastNameParts.join(" ") || "";
+            
+            const result = await sendEmails({
+                firstName: firstName || "Visitor",
+                lastName,
+                email: formData.email,
+                phone: "N/A (Contact Page)",
+                message: `Subject: ${formData.subject}\n\n${formData.message}`
+            });
 
-            showToast("Message sent successfully! I'll get back to you soon.", "success");
-
-            // Reset form
-            setFormData({ name: "", email: "", subject: "", message: "" });
-            setErrors({});
+            if (result.success) {
+                showToast("Message sent successfully! I'll get back to you soon.", "success");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+                setErrors({});
+            } else {
+                throw new Error(result.message);
+            }
         } catch (error) {
             console.error("Contact form error:", error);
             showToast("Failed to send message. Please try again.", "error");
@@ -144,12 +157,13 @@ export default function ContactPage() {
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     {/* Name */}
                                     <div>
-                                        <label className="block text-sm font-semibold mb-2">
+                                        <label htmlFor="name" className="block text-sm font-semibold mb-2">
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <div className="relative">
                                             <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/40" />
                                             <input
+                                                id="name"
                                                 type="text"
                                                 name="name"
                                                 value={formData.name}
@@ -163,12 +177,13 @@ export default function ContactPage() {
 
                                     {/* Email */}
                                     <div>
-                                        <label className="block text-sm font-semibold mb-2">
+                                        <label htmlFor="email" className="block text-sm font-semibold mb-2">
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <div className="relative">
                                             <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/40" />
                                             <input
+                                                id="email"
                                                 type="email"
                                                 name="email"
                                                 value={formData.email}
@@ -182,10 +197,11 @@ export default function ContactPage() {
 
                                     {/* Subject */}
                                     <div>
-                                        <label className="block text-sm font-semibold mb-2">
+                                        <label htmlFor="subject" className="block text-sm font-semibold mb-2">
                                             Subject <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            id="subject"
                                             type="text"
                                             name="subject"
                                             value={formData.subject}
@@ -198,10 +214,11 @@ export default function ContactPage() {
 
                                     {/* Message */}
                                     <div>
-                                        <label className="block text-sm font-semibold mb-2">
+                                        <label htmlFor="message" className="block text-sm font-semibold mb-2">
                                             Message <span className="text-red-500">*</span>
                                         </label>
                                         <textarea
+                                            id="message"
                                             name="message"
                                             value={formData.message}
                                             onChange={handleChange}
@@ -254,8 +271,8 @@ export default function ContactPage() {
                                 className="p-6 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 shadow-lg dark:shadow-none"
                             >
                                 <h3 className="font-bold text-lg mb-2">Email</h3>
-                                <a href="mailto:ankit@example.com" className="text-primary hover:underline">
-                                    ankit@example.com
+                                <a href={contactChannels.find(c => c.id === "email")?.link} className="text-primary hover:underline">
+                                    {contactChannels.find(c => c.id === "email")?.detailText}
                                 </a>
                             </div>
 
@@ -266,7 +283,7 @@ export default function ContactPage() {
                                 <h3 className="font-bold text-lg mb-4">Connect</h3>
                                 <div className="space-y-3">
                                     <a
-                                        href="https://github.com/ankitsharma745"
+                                        href={socialProfiles.github.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors"
@@ -275,7 +292,7 @@ export default function ContactPage() {
                                         GitHub
                                     </a>
                                     <a
-                                        href="https://linkedin.com/in/ankitsharma745"
+                                        href={socialProfiles.linkedin.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors"
@@ -284,7 +301,7 @@ export default function ContactPage() {
                                         LinkedIn
                                     </a>
                                     <a
-                                        href="https://twitter.com/ankitsharma745"
+                                        href={socialProfiles.twitter.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors"

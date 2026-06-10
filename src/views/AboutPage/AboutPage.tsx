@@ -9,9 +9,6 @@ import {
   FaUserSecret,
   FaArrowLeft,
   FaDownload,
-  FaBriefcase,
-  FaProjectDiagram,
-  FaTools,
 } from "react-icons/fa";
 import Link from "next/link";
 import GradientText from "@/components/GradientText";
@@ -19,25 +16,12 @@ import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import StatsCard from "@/components/StatsCard";
 import ScrollToTop from "@/components/ScrollToTop";
+import { ABOUT_CONTENT } from "@/content/portfolio/about";
+import { onDownloadResume } from "@/lib/utils/download";
 
 export default function AboutPage() {
-  const skills = [
-    { name: "React.js", level: 95 },
-    { name: "TypeScript", level: 90 },
-    { name: "Node.js", level: 85 },
-    { name: "Next.js", level: 88 },
-    { name: "MongoDB", level: 80 },
-    { name: "Electron", level: 85 },
-  ];
-
   const handleDownloadResume = () => {
-    // Create a link element and trigger download
-    const link = document.createElement("a");
-    link.href = "/resume.pdf"; // Make sure to add your resume.pdf to the public folder
-    link.download = "Ankit_Sharma_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    onDownloadResume();
   };
 
   return (
@@ -82,63 +66,27 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-xl text-foreground/70 leading-relaxed"
             >
-              I&apos;m a passionate Full Stack Developer and Desktop App
-              Specialist with a knack for building high-performance, scalable
-              applications. My journey is defined by a relentless pursuit of
-              code perfection and user-centric design.
+              {ABOUT_CONTENT.summary}
             </motion.p>
           </div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
-            <StatsCard
-              icon={FaBriefcase}
-              value={3}
-              label="Years Experience"
-              suffix="+"
-              delay={0}
-            />
-            <StatsCard
-              icon={FaProjectDiagram}
-              value={25}
-              label="Projects Completed"
-              suffix="+"
-              delay={0.1}
-            />
-            <StatsCard
-              icon={FaTools}
-              value={15}
-              label="Technologies"
-              suffix="+"
-              delay={0.2}
-            />
-            <StatsCard
-              icon={FaCode}
-              value={50}
-              label="K+ Lines of Code"
-              delay={0.3}
-            />
+            {ABOUT_CONTENT.stats.map((stat, index) => (
+              <StatsCard
+                key={index}
+                icon={stat.icon}
+                value={stat.value}
+                label={stat.label}
+                suffix={stat.suffix}
+                delay={stat.delay}
+              />
+            ))}
           </div>
 
           {/* Roles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-            {[
-              {
-                icon: <FaCode />,
-                title: "The Coder",
-                desc: "Writing clean, type-safe, and maintainable code is my obsession. I believe in code that speaks for itself.",
-              },
-              {
-                icon: <FaUserSecret />,
-                title: "The Optimizer",
-                desc: "Performance isn't an afterthought; it's a feature. I optimize every byte to ensure lightning-fast experiences.",
-              },
-              {
-                icon: <FaLaptopCode />,
-                title: "The Builder",
-                desc: "From concept to deployment, I love the entire process of bringing ideas to life through software.",
-              },
-            ].map((role, index) => (
+            {ABOUT_CONTENT.roles.map((role, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -163,7 +111,7 @@ export default function AboutPage() {
               Core <GradientText>Skills</GradientText>
             </h2>
             <div className="max-w-3xl mx-auto space-y-6">
-              {skills.map((skill, index) => (
+              {ABOUT_CONTENT.coreSkills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, x: -20 }}

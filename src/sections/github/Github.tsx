@@ -17,24 +17,22 @@ export default function GitHubJourney() {
   );
   const [year, setYear] = useState<number | undefined>(undefined);
 
+  const [mounted, setMounted] = useState(false);
+  
   useEffect(() => {
     AOS.init({ duration: 1000 });
+    setMounted(true);
   }, []);
 
-  const isDark = resolvedTheme === "dark";
-
-  const gradient = isDark
-    ? "from-slate-900 to-slate-950"
-    : "from-gray-50 to-blue-50";
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <section
       id="github-journey"
-      className={`pt-20 pb-20 px-4 sm:px-10 md:px-20 bg-gradient-to-br transition-colors duration-700 ${gradient}`}
+      className="pt-20 pb-20 px-4 sm:px-10 md:px-20 bg-gradient-to-br transition-colors duration-700 from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-950"
     >
       <h2
-        className={`text-4xl sm:text-5xl font-extrabold text-center mb-12 tracking-tight ${isDark ? "text-white" : "text-gray-900"
-          }`}
+        className="text-4xl sm:text-5xl font-extrabold text-center mb-12 tracking-tight text-gray-900 dark:text-white"
         data-aos="fade-up"
       >
         My{" "}
@@ -71,8 +69,7 @@ export default function GitHubJourney() {
 
         <div className="text-center w-full" data-aos="fade-up">
           <h3
-            className={`text-2xl font-semibold mb-4 ${isDark ? "text-white" : "text-gray-800"
-              }`}
+            className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white"
           >
             Contribution Calendar {year && ` - ${year}`}
           </h3>
