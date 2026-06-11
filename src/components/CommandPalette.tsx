@@ -8,7 +8,7 @@ import { useUI } from "@/context/UIContext";
 import {
     FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaGithub,
     FaBlog, FaEnvelope, FaMoon, FaSun, FaDownload, FaLinkedin,
-    FaTwitter, FaSearch, FaTimes, FaRobot, FaTerminal
+    FaTwitter, FaSearch, FaTimes, FaRobot, FaTerminal, FaCode
 } from "react-icons/fa";
 import {
     openGithub,
@@ -36,11 +36,18 @@ interface Command {
 const navigationCommandIcons: Record<NavigationCommandId, React.ReactNode> = {
     home: <FaHome />,
     about: <FaUser />,
+    skills: <FaCode />,
     experience: <FaBriefcase />,
     projects: <FaProjectDiagram />,
     opensource: <FaGithub />,
     blog: <FaBlog />,
     contact: <FaEnvelope />,
+    "frontend-systems": <FaCode />,
+    "backend-systems": <FaCode />,
+    "desktop-applications": <FaCode />,
+    "product-engineering": <FaCode />,
+    "ai-augmented-development": <FaCode />,
+    "automation-platforms": <FaCode />,
 };
 
 const staticActionCommandIcons: Record<StaticActionCommandId, React.ReactNode> = {

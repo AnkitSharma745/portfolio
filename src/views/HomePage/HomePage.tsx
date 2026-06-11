@@ -24,9 +24,11 @@ export default function HomePage() {
       <div className="relative z-10">
         <Hero />
         <SectionDivider />
-        <About />
+        {/* <About /> */}
         <Skills />
+        <SectionDivider />
         <Tools />
+        <SectionDivider />
         <Connect />
         <Contact />
         <Projects />

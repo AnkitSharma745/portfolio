@@ -165,6 +165,12 @@ Progressive disclosure:
 Overview → Capabilities → Technologies → Usage → Practices → Proof →
 Artifacts → Lessons Learned
 
+- Skills content lives in `src/content/skills`.
+- The home skills section should be instantly scannable: direct skill
+  cards first, deeper capability links second.
+- Avoid proficiency percentages, fake bars, and dense capability copy on
+  the homepage.
+
 Desktop: - Hover interactions
 
 Mobile: - Tap interactions

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import SkillsPage from "@/views/SkillsPage/SkillsPage";
+import { skillsOverviewPageContent } from "@/content/skills/capabilities";
 
 import { generateMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Skills | Ankit Sharma",
-  description:
-    "Technical skills and expertise of Ankit Sharma, including React, Next.js, Node.js, and more.",
+  title: skillsOverviewPageContent.seo.title,
+  description: skillsOverviewPageContent.seo.description,
+  keywords: [...skillsOverviewPageContent.seo.keywords],
 });
 
 export default function Page() {

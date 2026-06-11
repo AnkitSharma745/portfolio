@@ -55,10 +55,7 @@ const ToolCategory = ({
 
 export default function Tools() {
   return (
-    <section
-      id="tools"
-      className="py-20 px-6 md:px-16 relative overflow-hidden"
-    >
+    <section id="tools" className="relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -93,8 +90,6 @@ export default function Tools() {
           </div>
         </div>
       </div>
-
-      <SectionDivider />
     </section>
   );
 }

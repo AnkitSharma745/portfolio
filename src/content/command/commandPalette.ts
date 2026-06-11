@@ -10,11 +10,18 @@ export type CommandCategory =
 export type NavigationCommandId =
   | "home"
   | "about"
+  | "skills"
   | "experience"
   | "projects"
   | "opensource"
   | "blog"
-  | "contact";
+  | "contact"
+  | "frontend-systems"
+  | "backend-systems"
+  | "desktop-applications"
+  | "product-engineering"
+  | "ai-augmented-development"
+  | "automation-platforms";
 
 export type StaticActionCommandId = "ask-ai" | "download-resume";
 
@@ -90,6 +97,13 @@ export const commandPaletteContent = {
       keywords: ["about", "me", "bio"],
     },
     {
+      id: "skills",
+      label: "Go to Skills",
+      route: "/skills",
+      category: commandCategories.navigation,
+      keywords: ["skills", "capabilities", "engineering"],
+    },
+    {
       id: "experience",
       label: "Go to Experience",
       route: "/experience",
@@ -123,6 +137,48 @@ export const commandPaletteContent = {
       route: "/contact",
       category: commandCategories.navigation,
       keywords: ["contact", "email", "message"],
+    },
+    {
+      id: "frontend-systems",
+      label: "Explore Frontend Systems",
+      route: "/skills/frontend-systems",
+      category: commandCategories.navigation,
+      keywords: ["frontend", "react", "typescript", "next.js"],
+    },
+    {
+      id: "backend-systems",
+      label: "Explore Backend Systems",
+      route: "/skills/backend-systems",
+      category: commandCategories.navigation,
+      keywords: ["backend", "node", "api", ".net"],
+    },
+    {
+      id: "desktop-applications",
+      label: "Explore Desktop Applications",
+      route: "/skills/desktop-applications",
+      category: commandCategories.navigation,
+      keywords: ["desktop", "electron", ".net", "c#"],
+    },
+    {
+      id: "product-engineering",
+      label: "Explore Product Engineering",
+      route: "/skills/product-engineering",
+      category: commandCategories.navigation,
+      keywords: ["product", "ux", "delivery"],
+    },
+    {
+      id: "ai-augmented-development",
+      label: "Explore AI-Augmented Development",
+      route: "/skills/ai-augmented-development",
+      category: commandCategories.navigation,
+      keywords: ["ai", "codex", "workflow", "automation"],
+    },
+    {
+      id: "automation-platforms",
+      label: "Explore Automation Platforms",
+      route: "/skills/automation-platforms",
+      category: commandCategories.navigation,
+      keywords: ["automation", "workflow", "integrations"],
     },
   ] satisfies NavigationCommandContent[],
   actionCommands: {

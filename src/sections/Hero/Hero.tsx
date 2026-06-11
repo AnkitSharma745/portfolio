@@ -28,7 +28,7 @@ const Home = () => {
         <IntroVideoModal
           isOpen={isVideoOpen}
           onClose={() => setIsVideoOpen(false)}
-          videoSrc="https://www.pexels.com/download/video/30339655/"
+          videoSrc="https://www.pexels.com"
         />
 
         {/* Main Content Container */}

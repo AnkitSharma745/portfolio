@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FaHome, FaChevronRight } from "react-icons/fa";
-import { useTheme } from "next-themes";
 
 interface BreadcrumbItem {
   label: string;
@@ -12,8 +11,6 @@ interface BreadcrumbItem {
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   // Generate breadcrumb items from pathname
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
@@ -41,10 +38,7 @@ export default function Breadcrumbs() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`
-                flex items-center gap-2 text-sm mb-6
-                ${isDark ? "text-foreground/60" : "text-foreground/70"}
-            `}
+      className="flex items-center gap-2 text-sm mb-6 text-foreground/70 dark:text-foreground/60"
     >
       {/* Schema.org BreadcrumbList */}
       <script
