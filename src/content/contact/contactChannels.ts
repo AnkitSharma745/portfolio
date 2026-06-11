@@ -38,7 +38,7 @@ export const contactChannels: ContactChannel[] = [
     title: socialProfiles.twitter.title,
     link: socialProfiles.twitter.url,
     description: "Follow my updates",
-    hoverColor: "group-hover:text-sky-400",
+    hoverColor: "group-hover:text-foreground",
   },
   {
     id: "phone",

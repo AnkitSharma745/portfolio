@@ -1,18 +1,16 @@
 "use client";
-
 import ParticlesBackground from "@/components/ParticlesBackground";
 import SectionDivider from "@/components/SectionDivider";
 import GitHubJourney from "@/sections/github/Github";
 import Hero from "@/sections/Hero/Hero";
-import About from "@/sections/About/About";
 import Skills from "@/sections/Skills/Skills";
 import Tools from "@/sections/Tools/Tools";
 import Projects from "@/sections/Projects/Projects";
 import OpenSource from "@/sections/OpenSource/OpenSource";
 import Solutions from "@/sections/Solutions/Solutions";
-import Connect from "@/sections/Connect/Connect";
-import Contact from "@/sections/Contact/Contact";
+import ContactMe from "@/sections/ContactMe/ContactMe";
 import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
+import AboutMe from "@/sections/About/About";
 
 export default function HomePage() {
   return (
@@ -20,17 +18,17 @@ export default function HomePage() {
       <div className="fixed inset-0 z-0">
         <ParticlesBackground />
       </div>
-
       <div className="relative z-10">
         <Hero />
         <SectionDivider />
-        {/* <About /> */}
+        <AboutMe />
+        <SectionDivider/>
         <Skills />
         <SectionDivider />
         <Tools />
         <SectionDivider />
-        <Connect />
-        <Contact />
+        <ContactMe />
+        <SectionDivider />
         <Projects />
         <OpenSource />
         <Solutions />

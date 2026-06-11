@@ -16,7 +16,6 @@
     "@headlessui/react": "^2.2.9",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",
-    "aos": "^2.3.4",
     "chart.js": "^4.5.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.24",
@@ -46,7 +45,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/aos": "^3.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

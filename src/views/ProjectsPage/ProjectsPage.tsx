@@ -12,7 +12,6 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import { PROJECTS_DATA, Project } from "@/content/portfolio/projects";
 import ProjectModal from "@/components/ProjectModal";
 import StatsCard from "@/components/StatsCard";
-import ScrollToTop from "@/components/ScrollToTop";
 import FilterControls from "@/components/FilterControls";
 import SortControls from "@/components/SortControls";
 
@@ -366,8 +365,6 @@ export default function ProjectsPage() {
                     isOpen={!!selectedProject}
                     onClose={() => setSelectedProject(null)}
                 />
-
-                <ScrollToTop />
             </main>
         </PageTransition>
     );

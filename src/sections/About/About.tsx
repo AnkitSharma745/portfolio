@@ -6,7 +6,6 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import SectionDivider from "@/components/SectionDivider";
 import { TIMELINE_DATA } from "@/content/portfolio/general";
 import GradientText from "@/components/GradientText";
 import Link from "next/link";
@@ -17,7 +16,7 @@ export default function AboutMe() {
   return (
     <section
       id="about"
-      className="w-full min-h-screen pt-20 pb-0 px-6 md:px-20 transition-colors duration-300 bg-background text-foreground"
+      className="w-full min-h-screen transition-colors duration-300 bg-background text-foreground"
     >
       <motion.h2
         className="text-4xl sm:text-5xl font-bold text-center mb-10"
@@ -113,8 +112,6 @@ export default function AboutMe() {
           </motion.button>
         </Link>
       </div>
-
-      <SectionDivider />
     </section>
   );
 }

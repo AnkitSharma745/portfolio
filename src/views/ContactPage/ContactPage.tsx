@@ -9,7 +9,6 @@ import Link from "next/link";
 import { FaArrowLeft, FaEnvelope, FaUser, FaPaperPlane, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import ScrollToTop from "@/components/ScrollToTop";
 import Toast from "@/components/Toast";
 import { useToast } from "@/hooks/useToast";
 import { sendEmails } from "@/lib/utils/email";
@@ -321,8 +320,6 @@ export default function ContactPage() {
                     isVisible={toast.isVisible}
                     onClose={hideToast}
                 />
-
-                <ScrollToTop />
             </main>
         </PageTransition>
     );

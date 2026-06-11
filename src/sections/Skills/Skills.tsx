@@ -8,11 +8,12 @@ import {
   type HomeSkillGroup,
   type HomeSkillItem,
 } from "@/content/skills/homeSkills";
+import GradientText from "@/components/GradientText";
 
 function SkillCard({ skill }: { skill: HomeSkillItem }) {
   return (
     <div className="group relative flex min-h-[120px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-background/40 px-3 py-4 text-center shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/50 hover:bg-background/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-primary/20 dark:border-white/10 dark:bg-white/[0.02] dark:hover:border-primary/40 dark:hover:bg-white/[0.05]">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-border/50 bg-gradient-to-b from-background to-background/50 text-3xl text-primary/80 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:border-primary/30 group-hover:text-primary dark:border-white/10 dark:from-white/10 dark:to-white/5 md:text-4xl">
         {skill.icon}
       </div>
@@ -45,7 +46,7 @@ function SkillGroup({
       className="group/article relative overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-6 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 sm:p-8"
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/article:opacity-100" />
-      
+
       <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-2xl font-bold tracking-tight text-gray-950 dark:text-white md:text-3xl">
@@ -63,7 +64,10 @@ function SkillGroup({
               className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-2.5 text-sm font-semibold text-primary outline-none backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(var(--primary),0.15)] focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
               {homeSkillsContent.detailLinkLabel}
-              <FaArrowRight aria-hidden="true" className="text-xs transition-transform duration-300 group-hover/btn:translate-x-1" />
+              <FaArrowRight
+                aria-hidden="true"
+                className="text-xs transition-transform duration-300 group-hover/btn:translate-x-1"
+              />
             </Link>
             {/* Tooltip */}
             <div className="pointer-events-none absolute -top-12 left-1/2 z-20 w-max -translate-x-1/2 translate-y-2 rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background opacity-0 shadow-lg transition-all duration-300 group-hover/btn:translate-y-0 group-hover/btn:opacity-100">
@@ -105,9 +109,7 @@ export default function Skills() {
             className="text-4xl font-extrabold tracking-tight text-gray-950 dark:text-white md:text-5xl"
           >
             {homeSkillsContent.title.beforeHighlight}{" "}
-            <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
-              {homeSkillsContent.title.highlighted}
-            </span>
+            <GradientText> {homeSkillsContent.title.highlighted}</GradientText>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-foreground/65 md:text-lg">
             {homeSkillsContent.description}

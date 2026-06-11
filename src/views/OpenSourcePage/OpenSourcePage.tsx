@@ -10,7 +10,6 @@ import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { OPEN_SOURCE_CONTRIBUTIONS, Contribution } from "@/content/portfolio/openSource";
 import StatsCard from "@/components/StatsCard";
-import ScrollToTop from "@/components/ScrollToTop";
 import FilterControls from "@/components/FilterControls";
 import SortControls from "@/components/SortControls";
 
@@ -283,8 +282,6 @@ export default function OpenSourcePage() {
                         </a>
                     </div>
                 </div>
-
-                <ScrollToTop />
             </main>
         </PageTransition>
     );

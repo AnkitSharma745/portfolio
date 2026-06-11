@@ -9,7 +9,6 @@ import CommandPalette from "@/components/CommandPalette";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SkipToContent from "@/components/SkipToContent";
 import TerminalLoader from "@/components/ui/TerminalLoader";
-import ScrollToTop from "@/components/ScrollToTop";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { Inter, Outfit } from "next/font/google";
 import { siteConfig, generatePersonSchema } from "@/lib/metadata";
@@ -126,7 +125,6 @@ export default function RootLayout({
             <ChatWidget />
             <CommandPalette />
             <KeyboardShortcuts />
-            <ScrollToTop />
             <ParticlesBackground />
           </UIProvider>
         </ThemeProvider>

@@ -3,19 +3,12 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import {
-  FaCode,
-  FaLaptopCode,
-  FaUserSecret,
-  FaArrowLeft,
-  FaDownload,
-} from "react-icons/fa";
+import { FaArrowLeft, FaDownload } from "react-icons/fa";
 import Link from "next/link";
 import GradientText from "@/components/GradientText";
 import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import StatsCard from "@/components/StatsCard";
-import ScrollToTop from "@/components/ScrollToTop";
 import { ABOUT_CONTENT } from "@/content/portfolio/about";
 import { onDownloadResume } from "@/lib/utils/download";
 
@@ -178,8 +171,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
-        <ScrollToTop />
       </main>
     </PageTransition>
   );

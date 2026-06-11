@@ -10,7 +10,6 @@ import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { EXPERIENCE_DATA, ExperienceItem } from "@/content/portfolio/experience";
 import StatsCard from "@/components/StatsCard";
-import ScrollToTop from "@/components/ScrollToTop";
 import FilterControls from "@/components/FilterControls";
 import SortControls from "@/components/SortControls";
 
@@ -286,8 +285,6 @@ export default function ExperiencePage() {
                         </div>
                     </div>
                 </div>
-
-                <ScrollToTop />
             </main>
         </PageTransition>
     );

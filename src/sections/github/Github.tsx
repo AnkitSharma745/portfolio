@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import GitHubCalendar from "react-github-calendar";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export default function GitHubJourney() {
@@ -20,7 +19,6 @@ export default function GitHubJourney() {
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
-    AOS.init({ duration: 1000 });
     setMounted(true);
   }, []);
 
@@ -31,21 +29,27 @@ export default function GitHubJourney() {
       id="github-journey"
       className="pt-20 pb-20 px-4 sm:px-10 md:px-20 bg-gradient-to-br transition-colors duration-700 from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-950"
     >
-      <h2
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
         className="text-4xl sm:text-5xl font-extrabold text-center mb-12 tracking-tight text-gray-900 dark:text-white"
-        data-aos="fade-up"
       >
         My{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
           GitHub
         </span>{" "}
         Journey
-      </h2>
+      </motion.h2>
 
       <div className="flex flex-col items-center gap-14 max-w-7xl mx-auto">
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full justify-items-center"
-          data-aos="fade-up"
         >
           <Image
             src={`https://streak-stats.demolab.com?user=ankitsharma745&theme=${isDark ? "dark" : "default"
@@ -65,9 +69,15 @@ export default function GitHubJourney() {
             className="rounded-xl shadow-xl w-full max-w-md"
             unoptimized
           />
-        </div>
+        </motion.div>
 
-        <div className="text-center w-full" data-aos="fade-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center w-full"
+        >
           <h3
             className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white"
           >
@@ -115,7 +125,7 @@ export default function GitHubJourney() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

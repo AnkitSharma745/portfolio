@@ -1,14 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionDivider from "@/components/SectionDivider";
-import GradientText from "@/components/GradientText";
 import {
   TOOLS_DEV,
   TOOLS_PRODUCTIVITY,
   TOOLS_COMMUNICATION,
   TechItem,
 } from "@/content/portfolio/skills";
+import GradientText from "@/components/GradientText";
+
+function ToolCard({ tool }: { tool: TechItem }) {
+  return (
+    <div className="group relative flex min-h-[120px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-background/40 px-3 py-4 text-center shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/50 hover:bg-background/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-primary/20 dark:border-white/10 dark:bg-white/[0.02] dark:hover:border-primary/40 dark:hover:bg-white/[0.05]">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-border/50 bg-gradient-to-b from-background to-background/50 text-3xl text-primary/80 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:border-primary/30 group-hover:text-primary dark:border-white/10 dark:from-white/10 dark:to-white/5 md:text-4xl">
+        {tool.icon}
+      </div>
+      <span className="relative z-10 mt-3 text-sm font-bold tracking-wide text-foreground/70 transition-colors duration-300 group-hover:text-foreground">
+        {tool.label}
+      </span>
+    </div>
+  );
+}
 
 const ToolCategory = ({
   title,
@@ -20,74 +33,69 @@ const ToolCategory = ({
   delay: number;
 }) => {
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="flex flex-col gap-6"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.5,
+        delay,
+        ease: "easeOut",
+      }}
+      className="group/article relative overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-6 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 sm:p-8"
     >
-      <h3 className="text-2xl font-bold text-center md:text-left">
-        <span className="bg-gradient-to-r from-primary/80 to-accent/80 bg-clip-text text-transparent">
-          {title}
-        </span>
-      </h3>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/article:opacity-100" />
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h3 className="text-2xl font-bold tracking-tight text-gray-950 dark:text-white md:text-3xl">
+          {title}
+        </h3>
+      </div>
+
+      <div className="relative z-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
         {tools.map((tool, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="flex flex-col items-center justify-center p-4 rounded-xl border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10 hover:dark:bg-white/10 hover:border-primary/50 hover:shadow-lg dark:hover:shadow-primary/30 transition-all duration-300"
-          >
-            <div className="text-4xl mb-2 text-foreground/80 group-hover:text-primary transition-colors">
-              {tool.icon}
-            </div>
-            <span className="text-sm font-medium text-foreground/70">
-              {tool.label}
-            </span>
-          </motion.div>
+          <ToolCard key={index} tool={tool} />
         ))}
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 
 export default function Tools() {
   return (
-    <section id="tools" className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section
+      id="tools"
+      className="relative overflow-hidden bg-background transition-all duration-500"
+    >
+      <div className="mx-auto max-w-7xl space-y-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center space-y-4"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold">
-            <GradientText>Tools I Use</GradientText>
+          <h2 className="text-4xl font-extrabold tracking-tight text-gray-950 dark:text-white md:text-5xl">
+            Tools <GradientText> I Use</GradientText>
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+          <p className="mt-5 text-base leading-relaxed text-foreground/65 md:text-lg">
             The software and hardware that power my development workflow and
             productivity.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-12">
-            <ToolCategory title="Development" tools={TOOLS_DEV} delay={0.2} />
-          </div>
-          <div className="space-y-12">
-            <ToolCategory
-              title="Productivity"
-              tools={TOOLS_PRODUCTIVITY}
-              delay={0.4}
-            />
-            <ToolCategory
-              title="Communication"
-              tools={TOOLS_COMMUNICATION}
-              delay={0.6}
-            />
-          </div>
+        <div className="space-y-5">
+          <ToolCategory title="Development" tools={TOOLS_DEV} delay={0.0} />
+          <ToolCategory
+            title="Productivity"
+            tools={TOOLS_PRODUCTIVITY}
+            delay={0.1}
+          />
+          <ToolCategory
+            title="Communication"
+            tools={TOOLS_COMMUNICATION}
+            delay={0.2}
+          />
         </div>
       </div>
     </section>

@@ -19,7 +19,7 @@ export const socialProfiles: Record<SocialProfileId, SocialProfile> = {
   },
   twitter: {
     id: "twitter",
-    title: "Twitter",
-    url: "https://twitter.com/ankitsharma745",
+    title: "X (Twitter)",
+    url: "https://x.com/ankitsharma745",
   },
 };

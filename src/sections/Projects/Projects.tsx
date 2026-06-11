@@ -17,7 +17,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-6 md:px-16 relative overflow-hidden"
+      className="relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto space-y-20">
         <motion.div
@@ -148,8 +148,6 @@ export default function Projects() {
           </Link>
         </div>
       </div>
-
-      <SectionDivider />
     </section>
   );
 }
