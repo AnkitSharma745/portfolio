@@ -16,7 +16,7 @@ export default function OpenSource() {
   return (
     <section
       id="open-source"
-      className="py-20 px-6 md:px-16 relative overflow-hidden"
+      className="relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto space-y-16">
         <motion.div
@@ -26,7 +26,7 @@ export default function OpenSource() {
           className="text-center space-y-4"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            <GradientText>Open Source Contributions</GradientText>
+            Open Source <GradientText>Contributions</GradientText>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             Giving back to the community by contributing to the tools and
@@ -108,8 +108,6 @@ export default function OpenSource() {
           </Link>
         </div>
       </div>
-
-      <SectionDivider />
     </section>
   );
 }

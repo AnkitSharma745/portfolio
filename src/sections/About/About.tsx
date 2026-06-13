@@ -1,16 +1,12 @@
 "use client";
 
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
-import { TIMELINE_DATA } from "@/content/portfolio/general";
 import GradientText from "@/components/GradientText";
 import Link from "next/link";
 import StatsCard from "@/components/StatsCard";
 import { FaCode, FaCoffee, FaProjectDiagram, FaClock } from "react-icons/fa";
+import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
 
 export default function AboutMe() {
   return (
@@ -25,7 +21,7 @@ export default function AboutMe() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <GradientText>The Code Behind the Coder</GradientText>
+        The Code<GradientText> Behind the Coder</GradientText>
       </motion.h2>
 
       <motion.p
@@ -71,36 +67,7 @@ export default function AboutMe() {
           delay={0.4}
         />
       </div>
-
-      {/* Timeline Section */}
-      <VerticalTimeline
-        lineColor="var(--timeline-line)"
-        className="mt-16"
-      >
-        {TIMELINE_DATA.map((item, index) => (
-          <VerticalTimelineElement
-            key={index}
-            date={item.date}
-            dateClassName="text-foreground font-bold"
-            iconStyle={{ background: "var(--primary)", color: "#fff" }}
-            icon={item.icon}
-            contentStyle={{
-              background: "var(--timeline-bg)",
-              color: "var(--timeline-color)",
-              border: "var(--timeline-border)",
-              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              backdropFilter: "blur(12px)",
-            }}
-            contentArrowStyle={{
-              borderRight: "7px solid var(--timeline-bg)",
-            }}
-          >
-            <h3 className="font-semibold text-xl">{item.title}</h3>
-            <p className="text-sm mt-2 opacity-80">{item.description}</p>
-          </VerticalTimelineElement>
-        ))}
-      </VerticalTimeline>
-
+       <CodingYearJourney/>
       <div className="flex justify-center mt-12 mb-12">
         <Link href="/about">
           <motion.button

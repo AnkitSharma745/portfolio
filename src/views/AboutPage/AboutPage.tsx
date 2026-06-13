@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FaArrowLeft, FaDownload } from "react-icons/fa";
 import Link from "next/link";
 import GradientText from "@/components/GradientText";
-import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
+import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import StatsCard from "@/components/StatsCard";
 import { ABOUT_CONTENT } from "@/content/portfolio/about";

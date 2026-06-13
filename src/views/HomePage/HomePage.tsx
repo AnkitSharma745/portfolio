@@ -6,10 +6,10 @@ import Hero from "@/sections/Hero/Hero";
 import Skills from "@/sections/Skills/Skills";
 import Tools from "@/sections/Tools/Tools";
 import Projects from "@/sections/Projects/Projects";
-import OpenSource from "@/sections/OpenSource/OpenSource";
+// import OpenSource from "@/sections/OpenSource/OpenSource";
 import Solutions from "@/sections/Solutions/Solutions";
 import ContactMe from "@/sections/ContactMe/ContactMe";
-import CodingYearJourney from "@/sections/CodingYearJourney/CodingYearJourney";
+import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
 import AboutMe from "@/sections/About/About";
 
 export default function HomePage() {
@@ -27,13 +27,18 @@ export default function HomePage() {
         <SectionDivider />
         <Tools />
         <SectionDivider />
-        <ContactMe />
-        <SectionDivider />
         <Projects />
-        <OpenSource />
+        {/* currently we do not have any open source projects so we are not including this section */}
+        {/* <SectionDivider />
+        <OpenSource /> */}
+        <SectionDivider />
         <Solutions />
+        <SectionDivider />
         <CodingYearJourney />
+        <SectionDivider />
         <GitHubJourney />
+        <SectionDivider />
+        <ContactMe />
       </div>
     </main>
   );

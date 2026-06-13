@@ -143,7 +143,7 @@ export default function ContactMe() {
   return (
     <section
       id="contact-me"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden py-12 md:py-20 transition-all duration-500 bg-background text-foreground"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden transition-all duration-500 bg-background text-foreground"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         <ParticlesBackground id="contact-page" />

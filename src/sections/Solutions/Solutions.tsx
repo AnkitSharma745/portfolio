@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { FaGithub, FaCheckCircle } from "react-icons/fa";
-import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import { SOLUTIONS_DATA } from "@/content/portfolio/solutions";
 
@@ -10,7 +9,7 @@ export default function Solutions() {
   return (
     <section
       id="solutions"
-      className="py-20 px-6 md:px-16 relative overflow-hidden"
+      className="relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto space-y-16">
         <motion.div
@@ -20,7 +19,7 @@ export default function Solutions() {
           className="text-center space-y-4"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            <GradientText>Self-Made Solutions</GradientText>
+            Custom <GradientText>Solutions</GradientText>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             Custom tools and libraries I&apos;ve built to solve real-world
@@ -88,8 +87,6 @@ export default function Solutions() {
           ))}
         </div>
       </div>
-
-      <SectionDivider />
     </section>
   );
 }

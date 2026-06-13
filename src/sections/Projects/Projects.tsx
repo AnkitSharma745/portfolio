@@ -7,19 +7,60 @@ import {
   FaExternalLinkAlt,
   FaYoutube,
   FaArrowRight,
+  FaLaptopCode,
 } from "react-icons/fa";
-import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import { PROJECTS_DATA } from "@/content/portfolio/projects";
 import Link from "next/link";
 
+function ProjectImagePlaceholder({ title }: { title: string }) {
+  return (
+    <div className="relative w-full h-full bg-neutral-950 flex items-center justify-center overflow-hidden">
+      {/* Animated tech grid lines */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] opacity-80">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
+      </div>
+      
+      {/* Glowing orbs */}
+      <div className="absolute -top-10 left-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl animate-pulse" style={{ animationDuration: '4s' }} />
+      <div className="absolute -bottom-10 right-10 h-28 w-28 rounded-full bg-accent/10 blur-2xl animate-pulse" style={{ animationDuration: '5s' }} />
+      
+      {/* Technical crosshairs */}
+      <div className="absolute top-4 left-4 h-2.5 w-2.5 border-t border-l border-primary/30" />
+      <div className="absolute top-4 right-4 h-2.5 w-2.5 border-t border-r border-primary/30" />
+      <div className="absolute bottom-4 left-4 h-2.5 w-2.5 border-b border-l border-primary/30" />
+      <div className="absolute bottom-4 right-4 h-2.5 w-2.5 border-b border-r border-primary/30" />
+      
+      {/* Central content */}
+      <div className="z-10 text-center px-4 flex flex-col items-center">
+        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl border border-primary/20 bg-primary/5 text-primary text-xl mb-3 shadow-[0_0_15px_rgba(6,182,212,0.15)] animate-bounce" style={{ animationDuration: '3s' }}>
+          <FaLaptopCode />
+        </div>
+        <p className="text-[10px] font-extrabold tracking-widest text-primary/70 uppercase">BUILD ACTIVE</p>
+        <h5 className="text-xs font-bold text-foreground/80 mt-1 max-w-[220px] truncate">{title}</h5>
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
+  // Flatten projects data and select the first 3 featured projects for homepage display
+  const homepageProjects = PROJECTS_DATA.flatMap((company) =>
+    company.projects.map((project) => ({
+      ...project,
+      companyName: company.companyName,
+      role: company.role,
+    }))
+  )
+    .filter((project) => project.featured)
+    .slice(0, 3);
+
   return (
     <section
       id="projects"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden py-16 md:py-24 bg-background text-foreground transition-all duration-500"
     >
-      <div className="max-w-7xl mx-auto space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,119 +70,123 @@ export default function Projects() {
           <h2 className="text-4xl md:text-5xl font-bold">
             Featured <GradientText>Projects</GradientText>
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            A selection of real-world applications and personal projects
-            I&apos;ve engineered.
+          <p className="text-sm md:text-base text-foreground/60 max-w-2xl mx-auto">
+            A selection of real-world applications and personal projects I&apos;ve engineered.
           </p>
         </motion.div>
 
-        <div className="space-y-24">
-          {PROJECTS_DATA.map((company, companyIndex) => (
-            <div key={companyIndex} className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-4 border-b border-border/50 pb-4"
-              >
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                  {company.companyName}
-                </h3>
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                  {company.role}
-                </span>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {company.projects.map((project, projectIndex) => (
-                  <motion.div
-                    key={projectIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: projectIndex * 0.1 }}
-                    whileHover={{ y: -10 }}
-                    className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 transition-all duration-300 flex flex-col"
-                  >
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-                        <div className="flex gap-3">
-                          {project.codeLink && (
-                            <a
-                              href={project.codeLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
-                              title="View Code"
-                            >
-                              <FaGithub size={18} />
-                            </a>
-                          )}
-                          {project.liveLink && (
-                            <a
-                              href={project.liveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
-                              title="Live Demo"
-                            >
-                              <FaExternalLinkAlt size={18} />
-                            </a>
-                          )}
-                          {project.demoVideo && (
-                            <a
-                              href={project.demoVideo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
-                              title="Watch Demo"
-                            >
-                              <FaYoutube size={18} />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h4>
-                      <p className="text-foreground/70 text-sm mb-4 flex-grow">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.techStack.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+        {/* 3-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {homepageProjects.map((project, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              className="group flex flex-col justify-between overflow-hidden rounded-[2rem] border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/40 shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-xl dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-500 relative"
+            >
+              {/* Image Container */}
+              <div className="relative h-52 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200 dark:border-white/10">
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <ProjectImagePlaceholder title={project.title} />
+                )}
+                
+                {/* Top Badge */}
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/95 text-primary-foreground text-[10px] font-extrabold tracking-wider uppercase">
+                  Featured
+                </div>
               </div>
-            </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-grow justify-between">
+                <div>
+                  {/* Company & Role Details */}
+                  <span className="text-[11px] font-bold text-primary dark:text-cyan-400 tracking-wider uppercase block mb-1">
+                    {project.companyName} • {project.role}
+                  </span>
+                  
+                  {/* Project Title */}
+                  <h3 className="text-lg font-bold mb-2 text-neutral-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  
+                  {/* Project Description */}
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mb-5 line-clamp-3 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div>
+                  {/* Tech stack pill tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.techStack.map((tech, techIdx) => (
+                      <span
+                        key={techIdx}
+                        className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-neutral-100 dark:bg-white/5 border border-neutral-200/60 dark:border-white/5 text-neutral-700 dark:text-neutral-300 shadow-sm dark:shadow-none"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Call-to-actions */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-neutral-100 dark:border-white/5">
+                    {project.codeLink && (
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-grow flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border border-neutral-200 dark:border-white/10 bg-white/5 hover:bg-neutral-50 dark:hover:bg-white/5 text-neutral-700 dark:text-neutral-300 transition-all duration-300 hover:border-primary/30"
+                      >
+                        <FaGithub size={13} />
+                        <span>Code</span>
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-grow flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+                      >
+                        <FaExternalLinkAlt size={11} />
+                        <span>Demo</span>
+                      </a>
+                    )}
+                    {project.demoVideo && (
+                      <a
+                        href={project.demoVideo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-xl border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5 text-red-500 transition-all duration-300"
+                        title="Watch video demo"
+                      >
+                        <FaYoutube size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="flex justify-center pt-8">
+        {/* View All Projects Action Link */}
+        <div className="flex justify-center pt-4">
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/25"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:opacity-95 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer"
             >
               View All Projects <FaArrowRight />
             </motion.button>

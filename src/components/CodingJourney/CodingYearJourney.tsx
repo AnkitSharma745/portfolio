@@ -5,22 +5,8 @@ import { JOURNEY_PHASES } from "@/content/portfolio/journey";
 
 const CodingYearJourney = () => {
     return (
-        <section className="py-20 px-6 relative overflow-hidden">
+        <section className="relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        My Coding Journey
-                    </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300">
-                        The evolution of my technical expertise and career milestones
-                    </p>
-                </motion.div>
 
                 <div className="relative">
                     {/* Vertical Line */}
