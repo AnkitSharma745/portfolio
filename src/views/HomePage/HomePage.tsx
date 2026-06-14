@@ -1,7 +1,7 @@
 "use client";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import SectionDivider from "@/components/SectionDivider";
-import GitHubJourney from "@/sections/github/Github";
+import GithubJourneySection from "@/sections/github/Github";
 import Hero from "@/sections/Hero/Hero";
 import Skills from "@/sections/Skills/Skills";
 import Tools from "@/sections/Tools/Tools";
@@ -22,7 +22,7 @@ export default function HomePage() {
         <Hero />
         <SectionDivider />
         <AboutMe />
-        <SectionDivider/>
+        <SectionDivider />
         <Skills />
         <SectionDivider />
         <Tools />
@@ -36,7 +36,7 @@ export default function HomePage() {
         <SectionDivider />
         <CodingYearJourney />
         <SectionDivider />
-        <GitHubJourney />
+        <GithubJourneySection />
         <SectionDivider />
         <ContactMe />
       </div>
