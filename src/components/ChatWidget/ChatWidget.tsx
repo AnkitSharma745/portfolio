@@ -196,7 +196,7 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={toggleChat}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow"
+        className="hidden lg:flex fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow items-center justify-center"
       >
         {isChatOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </motion.button>
@@ -209,7 +209,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-[22%] right-6 z-50 w-[350px] md:w-[400px] h-[500px] flex flex-col rounded-2xl overflow-hidden glass-card border border-white/20 shadow-2xl"
+            className="hidden lg:flex flex-col fixed bottom-[22%] right-6 z-50 w-[350px] md:w-[400px] h-[500px] rounded-2xl overflow-hidden glass-card border border-white/20 shadow-2xl"
           >
             {/* Header */}
             <div className="p-4 bg-gradient-to-r from-primary/90 to-purple-600/90 backdrop-blur-md text-white flex items-center justify-between">

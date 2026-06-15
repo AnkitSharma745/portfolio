@@ -206,7 +206,7 @@ export default function CommandPalette() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleCommandPalette}
-                className="fixed bottom-24 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-gray-800 to-black text-white shadow-lg shadow-black/30 hover:shadow-black/50 transition-shadow border border-white/10"
+                className="hidden lg:flex fixed bottom-24 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-gray-800 to-black text-white shadow-lg shadow-black/30 hover:shadow-black/50 transition-shadow border border-white/10 items-center justify-center"
                 title={commandPaletteContent.triggerTitle}
             >
                 <FaTerminal size={20} />
