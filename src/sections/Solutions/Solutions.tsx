@@ -35,7 +35,6 @@ export default function Solutions() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
               className="flex flex-col p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-white/10 hover:dark:bg-white/10 hover:border-primary/50 hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-primary/10 transition-all duration-300 group"
             >
               <div className="flex items-center gap-4 mb-6">

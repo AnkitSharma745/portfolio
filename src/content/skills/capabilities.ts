@@ -28,20 +28,26 @@ export interface EngineeringCapability {
 }
 
 export const skillsOverviewPageContent = {
-  eyebrow: "Skills snapshot",
-  title: "Skills & Stack",
+  eyebrow: "Skills map",
+  title: "Skills, Systems & Writing Map",
   description:
-    "A simple view of the technologies I use, with optional deeper notes for how they fit into real projects.",
+    "A routed map of the stack from the homepage skills section, expanded into capability notes, technology pages, related writing, and graceful placeholders for unpublished deep dives.",
+  sections: {
+    categories: "Mapped skills",
+    capabilities: "Capability notes",
+    writing: "Writing pipeline",
+  },
   seo: {
-    title: "Skills | Ankit Sharma",
+    title: "Skills",
     description:
-      "Skills and technology stack of Ankit Sharma across frontend, backend, desktop applications, tools, and product engineering.",
+      "Detailed skills map for Ankit Sharma across frontend, backend, desktop applications, cloud delivery, product engineering, AI workflows, and related technical writing.",
     keywords: [
       "skills",
       "technology stack",
       "frontend systems",
       "backend systems",
       "desktop applications",
+      "cloud delivery",
       "product engineering",
       "AI augmented development",
       "automation platforms",
@@ -273,6 +279,53 @@ export const engineeringCapabilities: EngineeringCapability[] = [
       description:
         "Automation platform capability covering workflow systems, API integrations, operational tools, and process automation.",
       keywords: ["automation platforms", "workflow automation", "API integrations"],
+    },
+  },
+  {
+    slug: "cloud-devops-delivery",
+    title: "Cloud, DevOps & Delivery",
+    descriptor: "Release paths, cloud services, configuration, and delivery discipline.",
+    technologies: [
+      "Azure Blob Storage",
+      "Azure Service Bus",
+      "CI/CD",
+      "Deployment Pipelines",
+    ],
+    confidenceLevel: "Applied Professionally",
+    proofIndicator: "Delivery workflow focus",
+    exploreLabel: "Explore",
+    featured: true,
+    availability:
+      "Public examples are described at a systems level where delivery details are not tied to private infrastructure.",
+    overview:
+      "Cloud, DevOps, and delivery work keeps implementation connected to predictable releases, explicit environments, and recoverable operational workflows.",
+    appliedIn: [
+      "Environment-aware application delivery",
+      "Release and deployment workflows",
+      "Cloud-backed storage and messaging patterns",
+    ],
+    practices: [
+      "Keep environment configuration explicit and easy to audit",
+      "Use repeatable delivery steps instead of manual release memory",
+      "Treat operational failure states as product-facing information",
+    ],
+    artifactNote:
+      "Detailed delivery write-ups will be published as infrastructure-specific details can be safely generalized.",
+    lessons: [
+      "Delivery systems are product systems when teams depend on them every week.",
+      "A clear release path reduces both technical risk and user-facing uncertainty.",
+    ],
+    seo: {
+      title: "Cloud, DevOps & Delivery",
+      description:
+        "Cloud and delivery capability covering Azure services, CI/CD, deployment pipelines, environment configuration, and operational release discipline.",
+      keywords: [
+        "cloud delivery",
+        "DevOps",
+        "Azure",
+        "CI/CD",
+        "deployment pipelines",
+      ],
     },
   },
 ];

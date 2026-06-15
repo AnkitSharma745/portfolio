@@ -16,9 +16,14 @@ export type NavigationCommandId =
   | "opensource"
   | "blog"
   | "contact"
+  | "skills-frontend"
+  | "skills-backend"
+  | "skills-desktop"
+  | "skills-cloud-devops"
   | "frontend-systems"
   | "backend-systems"
   | "desktop-applications"
+  | "cloud-devops-delivery"
   | "product-engineering"
   | "ai-augmented-development"
   | "automation-platforms";
@@ -104,6 +109,34 @@ export const commandPaletteContent = {
       keywords: ["skills", "capabilities", "engineering"],
     },
     {
+      id: "skills-frontend",
+      label: "Explore Frontend Skills",
+      route: "/skills#frontend",
+      category: commandCategories.navigation,
+      keywords: ["frontend", "react", "typescript", "next.js"],
+    },
+    {
+      id: "skills-backend",
+      label: "Explore Backend & Data Skills",
+      route: "/skills#backend",
+      category: commandCategories.navigation,
+      keywords: ["backend", "node", "api", ".net", "database"],
+    },
+    {
+      id: "skills-desktop",
+      label: "Explore Desktop Skills",
+      route: "/skills#desktop",
+      category: commandCategories.navigation,
+      keywords: ["desktop", "electron", "windows", "powershell"],
+    },
+    {
+      id: "skills-cloud-devops",
+      label: "Explore Cloud & DevOps Skills",
+      route: "/skills#cloud-devops",
+      category: commandCategories.navigation,
+      keywords: ["cloud", "devops", "azure", "deployment", "ci/cd"],
+    },
+    {
       id: "experience",
       label: "Go to Experience",
       route: "/experience",
@@ -158,6 +191,13 @@ export const commandPaletteContent = {
       route: "/skills/desktop-applications",
       category: commandCategories.navigation,
       keywords: ["desktop", "electron", ".net", "c#"],
+    },
+    {
+      id: "cloud-devops-delivery",
+      label: "Explore Cloud, DevOps & Delivery",
+      route: "/skills/cloud-devops-delivery",
+      category: commandCategories.navigation,
+      keywords: ["cloud", "devops", "azure", "ci/cd", "delivery"],
     },
     {
       id: "product-engineering",

@@ -7,7 +7,6 @@ import {
   FaCodeBranch,
   FaExternalLinkAlt,
 } from "react-icons/fa";
-import SectionDivider from "@/components/SectionDivider";
 import GradientText from "@/components/GradientText";
 import { OPEN_SOURCE_CONTRIBUTIONS } from "@/content/portfolio/openSource";
 import Link from "next/link";
@@ -42,7 +41,6 @@ export default function OpenSource() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
               className="p-6 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 shadow-lg dark:shadow-none transition-all duration-300 group relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">

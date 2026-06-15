@@ -11,6 +11,7 @@ interface BreadcrumbItem {
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
+  const baseUrl = "https://ankitsharma745.github.io";
 
   // Generate breadcrumb items from pathname
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
@@ -51,7 +52,7 @@ export default function Breadcrumbs() {
               "@type": "ListItem",
               position: index + 1,
               name: crumb.label,
-              item: `https://ankitsharma745.github.io/${crumb.href}`,
+              item: `${baseUrl}${crumb.href}`,
             })),
           }),
         }}

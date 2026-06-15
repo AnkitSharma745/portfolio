@@ -5,6 +5,12 @@ import {
   capabilityDetailPageContent,
   type EngineeringCapability,
 } from "@/content/skills/capabilities";
+import { homeSkillGroups } from "@/content/skills/homeSkills";
+import {
+  getSkillCategorySlug,
+  getSkillDetailHref,
+  getSkillsForGroup,
+} from "@/content/skills/skillDetails";
 
 interface SkillCapabilityPageProps {
   capability: EngineeringCapability;
@@ -13,6 +19,9 @@ interface SkillCapabilityPageProps {
 export default function SkillCapabilityPage({
   capability,
 }: SkillCapabilityPageProps) {
+  const relatedSkillGroup = homeSkillGroups.find(
+    (group) => getSkillCategorySlug(group) === capability.slug,
+  );
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -122,6 +131,26 @@ export default function SkillCapabilityPage({
               {capability.artifactNote}
             </p>
           </section>
+
+          {relatedSkillGroup ? (
+            <section className="mt-6 rounded-lg border border-border bg-card/70 p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
+              <h2 className="text-2xl font-bold">Related skills</h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {getSkillsForGroup(relatedSkillGroup).map((skill) => (
+                  <Link
+                    key={skill.slug}
+                    href={getSkillDetailHref(capability.slug, skill.slug)}
+                    className="flex items-center gap-3 rounded-lg border border-border bg-background/70 p-3 text-sm font-semibold text-foreground transition hover:border-primary/50 hover:text-primary dark:border-white/10 dark:bg-black/20"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-lg text-primary dark:border-white/10">
+                      {skill.icon}
+                    </span>
+                    {skill.label}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <footer className="mt-10 flex flex-wrap gap-4">
             <Link

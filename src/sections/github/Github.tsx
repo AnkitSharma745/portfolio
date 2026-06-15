@@ -248,7 +248,6 @@ function ProfileHeader({
           href={data.profile.htmlUrl}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ y: -2 }}
           whileTap={{ scale: 0.98 }}
           className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg shadow-black/10 transition-all hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background dark:bg-white dark:text-black"
         >
@@ -302,7 +301,6 @@ function RepositoryCard({
       href={repository.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      whileHover={{ y: -3 }}
       whileTap={{ scale: 0.99 }}
       className="group/repo relative block overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-background/90 to-background/45 p-4 shadow-sm transition-all duration-500 hover:border-primary/35 hover:shadow-lg hover:shadow-primary/10 dark:border-white/10 dark:from-white/[0.055] dark:to-white/[0.02]"
     >

@@ -273,8 +273,10 @@ export default function ContactMe() {
                   {/* Agreement */}
                   <div className="flex items-center gap-x-3">
                     <Switch
+                      id="contact-terms-switch"
                       checked={agreed}
                       onChange={setAgreed}
+                      aria-label="Agree to contact form terms"
                       className={`${
                         agreed ? "bg-primary" : "bg-border"
                       } relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background`}
@@ -304,7 +306,7 @@ export default function ContactMe() {
                     disabled={!agreed || isSubmitting}
                     className={`w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
                       agreed
-                        ? "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-white dark:text-black hover:-translate-y-0.5"
+                        ? "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-white dark:text-black"
                         : "bg-foreground/10 text-foreground/40 cursor-not-allowed"
                     }`}
                   >
@@ -368,7 +370,7 @@ export default function ContactMe() {
                 href={githubChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -391,7 +393,7 @@ export default function ContactMe() {
                 href={linkedinChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -414,7 +416,7 @@ export default function ContactMe() {
                 href={twitterChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -435,7 +437,7 @@ export default function ContactMe() {
               {/* Email Card (Interactive Copy) */}
               <motion.button
                 onClick={handleCopyEmail}
-                className="group/card text-left relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 w-full cursor-pointer"
+                className="group/card text-left relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 w-full cursor-pointer"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -549,4 +551,3 @@ export default function ContactMe() {
     </section>
   );
 }
-

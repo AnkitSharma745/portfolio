@@ -8,6 +8,7 @@ export const metadata: Metadata = generateMetadata({
   title: skillsOverviewPageContent.seo.title,
   description: skillsOverviewPageContent.seo.description,
   keywords: [...skillsOverviewPageContent.seo.keywords],
+  url: "https://ankitsharma745.github.io/skills",
 });
 
 export default function Page() {

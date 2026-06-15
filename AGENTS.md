@@ -177,6 +177,15 @@ Mobile: - Tap interactions
 
 No hover-only experiences.
 
+### Hover Stability
+
+- Do not move the hovered target itself with vertical hover transforms such as
+  `hover:-translate-y-*` or `whileHover={{ y: ... }}`.
+- Border-edge hover must not flicker, repeatedly enter/leave, or feel like the
+  page is hanging.
+- Use stable hover feedback instead: color, border, shadow, opacity, or
+  transforms on inner decorative children that do not move the hit target.
+
 ## Routing Philosophy
 
 Every meaningful interaction should support routing.

@@ -54,7 +54,7 @@ export default function StatsCard({
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay }}
-            whileHover={{ y: -5, scale: 1.02 }}
+            whileHover={{ scale: 1.02 }}
             className="relative p-6 rounded-xl border overflow-hidden group bg-white dark:bg-white/5 border-black/5 dark:border-white/10 hover:border-primary/50 hover:bg-white/10 hover:dark:bg-white/10 shadow-lg dark:shadow-none"
         >
             {/* Gradient Background */}

@@ -170,7 +170,6 @@ export default function ProjectsPage() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
-                                        whileHover={{ y: -10 }}
                                         onClick={() => setSelectedProject(project)}
                                         className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none cursor-pointer"
                                     >

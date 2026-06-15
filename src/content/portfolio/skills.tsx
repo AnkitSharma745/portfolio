@@ -4,10 +4,15 @@ import {
     SiFirebase,
     SiChakraui,
     SiExpress,
-    SiSlack,
-    SiVercel,
+    SiPostman,
+    SiSwagger,
+    SiAnthropic,
+    SiOpenai,
+    SiGoogle,
+    SiJira,
+    SiConfluence,
 } from "react-icons/si";
-import { FaGithub, FaNpm } from "react-icons/fa";
+import { FaGithub, FaNpm, FaSpaceShuttle, FaCode, FaTerminal, FaServer } from "react-icons/fa";
 import {
     DiJavascript1,
     DiReact,
@@ -18,7 +23,8 @@ import {
 } from "react-icons/di";
 import { IoLogoCss3 } from "react-icons/io";
 import { BiLogoVisualStudio } from "react-icons/bi";
-import { TbBrandZoom, TbBrandVite, TbJson } from "react-icons/tb";
+import { VscCode } from "react-icons/vsc";
+import { BsMicrosoftTeams } from "react-icons/bs";
 import { CgCPlusPlus } from "react-icons/cg";
 
 export interface TechItem {
@@ -40,23 +46,28 @@ export const TECH_ITEMS: TechItem[] = [
 ];
 
 export const TOOLS_DEV: TechItem[] = [
-    { icon: <BiLogoVisualStudio />, label: "VS Code" },
     { icon: <DiGit />, label: "Git" },
-    { icon: <SiVercel />, label: "Vercel" },
-    { icon: <FaNpm />, label: "npm" },
-    { icon: <TbJson />, label: "JSON" },
-    { icon: <TbBrandVite />, label: "Vite" },
+    { icon: <FaGithub />, label: "GitHub" },
+    { icon: <SiPostman />, label: "Postman" },
+    { icon: <SiSwagger />, label: "Swagger" },
+    { icon: <VscCode />, label: "VS Code" },
+    { icon: <BiLogoVisualStudio />, label: "Visual Studio" },
+    { icon: <FaSpaceShuttle />, label: "Antigravity" },
+    { icon: <FaCode />, label: "Codex" },
+    { icon: <FaTerminal />, label: "Claude Code" },
 ];
 
 export const TOOLS_PRODUCTIVITY: TechItem[] = [
-    { icon: <SiSlack />, label: "Slack" },
-    { icon: <TbBrandZoom />, label: "Zoom" },
-    // Add more if needed
+    { icon: <SiOpenai />, label: "ChatGPT" },
+    { icon: <SiAnthropic />, label: "Claude" },
+    { icon: <SiGoogle />, label: "Gemini" },
+    { icon: <FaServer />, label: "MCP Server" },
 ];
 
 export const TOOLS_COMMUNICATION: TechItem[] = [
-    { icon: <SiSlack />, label: "Slack" },
-    { icon: <TbBrandZoom />, label: "Zoom" },
+    { icon: <SiJira />, label: "Jira" },
+    { icon: <SiConfluence />, label: "Confluence" },
+    { icon: <BsMicrosoftTeams />, label: "Microsoft Teams" },
 ];
 
 export const TOOLS_ITEMS: TechItem[] = [

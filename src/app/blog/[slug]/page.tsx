@@ -1,9 +1,14 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { FaCalendarAlt, FaClock, FaArrowLeft, FaTags } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaCalendarAlt,
+  FaClock,
+  FaPenNib,
+  FaTags,
+} from "react-icons/fa";
 import { getBlogPost, getBlogPosts } from "@/lib/blog";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import PageTransition from "@/components/PageTransition";
@@ -13,18 +18,32 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ShareButtons from "@/components/ShareButtons";
 import Comments from "@/components/blog/Comments";
 import ScrollProgress from "@/components/blog/ScrollProgress";
+import {
+  getPlannedSkillArticleBySlug,
+  plannedSkillArticles,
+} from "@/content/skills/skillDetails";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
-    return genMeta({ title: "Post Not Found" });
+    const plannedPost = getPlannedSkillArticleBySlug(slug);
+
+    return genMeta({
+      title: plannedPost?.title ?? "Technical Write-Up In Progress",
+      description:
+        plannedPost?.description ??
+        "This technical write-up is being prepared and will be published with implementation details soon.",
+      keywords: ["blog", "technical writing", "software engineering"],
+      url: `https://ankitsharma745.github.io/blog/${slug}`,
+    });
   }
 
   return genMeta({
@@ -38,16 +57,104 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return [
+    ...posts.map((post) => ({
+      slug: post.slug,
+    })),
+    ...plannedSkillArticles.map((post) => ({
+      slug: post.slug,
+    })),
+  ];
+}
+
+function formatFallbackTitle(slug: string) {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function BlogPlaceholderPage({ slug }: { slug: string }) {
+  const plannedPost = getPlannedSkillArticleBySlug(slug);
+  const title = plannedPost?.title ?? formatFallbackTitle(slug);
+  const description =
+    plannedPost?.description ??
+    "This technical write-up is being prepared. The page is available now so shared links stay useful while the implementation notes are being finished.";
+  const targetDate = plannedPost?.targetDate ?? "Publishing schedule coming soon";
+
+  return (
+    <PageTransition>
+      <main className="relative min-h-screen bg-background pb-20 pt-24 text-foreground">
+        <div className="container mx-auto px-6">
+          <Breadcrumbs />
+        </div>
+
+        <article className="mx-auto max-w-4xl px-6 py-12">
+          <Link
+            href="/blog"
+            className="mb-8 inline-flex items-center gap-2 text-foreground/60 transition hover:text-primary"
+          >
+            <FaArrowLeft aria-hidden="true" />
+            Back to Blog
+          </Link>
+
+          <div className="rounded-lg border border-border bg-card/80 p-8 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-primary">
+              <FaPenNib aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+                Write-up in progress
+              </span>
+            </div>
+
+            <h1 className="text-[26px] font-extrabold leading-tight tracking-tight text-gray-950 dark:text-white sm:text-3xl md:text-4xl">
+              {title}
+            </h1>
+            <p className="mt-5 text-base leading-7 text-foreground/70">
+              {description}
+            </p>
+
+            <div className="mt-6 rounded-lg border border-border bg-background/70 p-5 dark:border-white/10 dark:bg-black/20">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+                Status
+              </p>
+              <p className="mt-2 text-lg font-bold text-foreground">
+                {targetDate}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-foreground/62">
+                Public implementation notes will appear here once the article is
+                ready. Until then, this page keeps the route shareable and
+                avoids a broken reading path.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/skills"
+                className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              >
+                Explore skills
+              </Link>
+              <Link
+                href="/blog"
+                className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background dark:border-white/10"
+              >
+                View published posts
+              </Link>
+            </div>
+          </div>
+        </article>
+      </main>
+    </PageTransition>
+  );
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
-    notFound();
+    return <BlogPlaceholderPage slug={slug} />;
   }
 
   return (

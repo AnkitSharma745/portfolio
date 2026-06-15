@@ -22,7 +22,6 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.1 }}
-        whileHover={{ y: -5 }}
         className={`
                     h-full flex flex-col p-6 rounded-2xl border transition-all duration-300 group
                     ${isDark

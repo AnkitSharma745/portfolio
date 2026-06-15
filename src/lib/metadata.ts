@@ -75,6 +75,9 @@ export function generateMetadata({
             images: [image],
             creator: "@ankitsharma745" // Update with your Twitter handle
         },
+        alternates: {
+            canonical: url
+        },
         robots: {
             index: true,
             follow: true,

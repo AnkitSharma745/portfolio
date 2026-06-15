@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { socialProfiles } from "@/content/social/profiles";
@@ -18,13 +18,17 @@ const NAV_LINKS = [
   { name: "Contact", href: "/contact" },
 ];
 
+const subscribeToHydration = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export default function Footer() {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    subscribeToHydration,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   return (
     <footer className="relative w-full overflow-hidden bg-background/80 backdrop-blur-xl border-t border-border transition-colors duration-300">
@@ -93,7 +97,7 @@ export default function Footer() {
                 href={socialProfiles.github.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1 transition-all duration-300" 
+                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-primary/20 transition-all duration-300" 
                 aria-label="GitHub"
               >
                 <FaGithub size={20} className="text-foreground/70 group-hover:text-primary transition-colors" />
@@ -102,7 +106,7 @@ export default function Footer() {
                 href={socialProfiles.linkedin.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-[#0077B5]/20 hover:-translate-y-1 transition-all duration-300" 
+                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-[#0077B5]/20 transition-all duration-300" 
                 aria-label="LinkedIn"
               >
                 <FaLinkedin size={20} className="text-foreground/70 group-hover:text-[#0077B5] transition-colors" />
@@ -111,14 +115,14 @@ export default function Footer() {
                 href={socialProfiles.twitter.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-foreground/20 hover:-translate-y-1 transition-all duration-300" 
+                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-foreground/20 transition-all duration-300" 
                 aria-label="X (Twitter)"
               >
                 <FaXTwitter size={20} className="text-foreground/70 group-hover:text-foreground transition-colors" />
               </a>
               <a 
                 href={contactChannels.find(c => c.id === "email")?.link || "mailto:ankitaksharma9763@gmail.com"} 
-                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-red-500/20 hover:-translate-y-1 transition-all duration-300" 
+                className="group p-3 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300" 
                 aria-label="Email"
               >
                 <FaEnvelope size={20} className="text-foreground/70 group-hover:text-red-500 transition-colors" />
