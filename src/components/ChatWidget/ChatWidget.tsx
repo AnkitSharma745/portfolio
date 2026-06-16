@@ -198,7 +198,7 @@ export default function ChatWidget() {
         onClick={toggleChat}
         className="hidden lg:flex fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow items-center justify-center"
       >
-        {isChatOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {isChatOpen ? <X size={24} /> : <MessageCircle size={20} />}
       </motion.button>
 
       {/* Chat Window */}

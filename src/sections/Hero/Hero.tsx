@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <section
         id="home"
-        className="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 md:px-16 pt-32 pb-0 overflow-hidden bg-background"
+        className="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 md:px-8 pt-32 pb-0 overflow-hidden bg-background"
       >
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -32,7 +32,7 @@ const Home = () => {
         />
 
         {/* Main Content Container */}
-        <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-20">
+        <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-20">
           {/* Left Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}

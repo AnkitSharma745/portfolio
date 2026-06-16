@@ -12,7 +12,6 @@ export const navigationItems: NavigationItem[] = [
   { label: "Projects", href: "/projects", id: "projects" },
   { label: "Open Source", href: "/open-source", id: "open-source" },
   { label: "Guestbook", href: "/guestbook", id: "guestbook" },
-  { label: "Contact", href: "/contact", id: "contact" },
   { label: "Blog", href: "/blog", id: "blog" },
 ];
 

@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { UIProvider } from "@/context/UIContext";
 import NavBar from "@/components/navigation/Navbar/Navbar";
 import Footer from "@/components/navigation/Footer/Footer";
+import FloatingSideBar from "@/components/navigation/FloatingSideBar/FloatingSideBar";
 import ChatWidget from "@/components/ChatWidget/ChatWidget";
 import CommandPalette from "@/components/CommandPalette";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
@@ -122,6 +123,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <FloatingSideBar />
             <ChatWidget />
             <CommandPalette />
             <KeyboardShortcuts />

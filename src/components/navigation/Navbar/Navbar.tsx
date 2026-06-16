@@ -84,10 +84,10 @@ function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-lg py-3" : "bg-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-md dark:shadow-white/5 py-3" : "bg-transparent py-5"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
@@ -109,10 +109,10 @@ function NavBar() {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-sm font-medium transition-colors relative group cursor-pointer text-foreground/80 hover:text-primary"
+                className="text-sm font-bold transition-colors relative group cursor-pointer text-foreground/80 hover:text-primary drop-shadow-sm"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 w-0 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 w-0 group-hover:w-full shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
               </Link>
             );
           })}
@@ -120,7 +120,7 @@ function NavBar() {
           <div className="flex items-center gap-4 ml-4">
             <button
               onClick={onDownloadResume}
-              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/25"
+              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:opacity-90 transition-all flex items-center gap-2 shadow-lg shadow-primary/25"
             >
               <Download size={16} />
               {navigationLabels.resume}
@@ -128,7 +128,7 @@ function NavBar() {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-secondary transition-colors text-foreground"
+              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-foreground shadow-sm"
               aria-label={navigationLabels.toggleTheme}
             >
               {mounted ? (
@@ -147,80 +147,109 @@ function NavBar() {
         {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-foreground"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuOpen(true)}
           aria-label={navigationLabels.toggleMenu}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu size={24} />
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed inset-0 top-[60px] bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
-          >
-            {navigationItems.map((item, index) => {
-              // Hide active route link in mobile menu too
-              if (pathname === item.href) return null;
-              if (pathname === "/" && item.href === "/") return null;
-
-              return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-2xl font-bold transition-colors cursor-pointer text-foreground hover:text-primary"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              );
-            })}
-
+          <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col gap-6 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            />
+            
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="md:hidden fixed top-0 right-0 bottom-0 w-[80vw] max-w-[320px] bg-background border-l border-border z-50 flex flex-col p-6 shadow-2xl overflow-y-auto"
             >
-              <button
-                onClick={() => {
-                  window.open(resumeAsset.sharedDriveViewUrl, "_blank");
-                  setIsMenuOpen(false);
-                }}
-                className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium shadow-lg"
-              >
-                {navigationLabels.resume}
-              </button>
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="text-xl font-bold tracking-tighter">
+                  <GradientText>Ankit</GradientText>
+                  <span className="text-foreground">.dev</span>
+                </h2>
+                <button
+                  className="p-2 text-foreground hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X size={24} />
+                </button>
+              </div>
 
-              <button
-                onClick={() => {
-                  toggleTheme();
-                  setIsMenuOpen(false);
-                }}
-                className="flex items-center gap-2 text-foreground"
+              <div className="flex flex-col gap-6 flex-grow">
+                {navigationItems.map((item, index) => {
+                  if (pathname === item.href) return null;
+                  if (pathname === "/" && item.href === "/") return null;
+
+                  return (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.href)}
+                        className="text-lg font-bold transition-colors cursor-pointer text-foreground hover:text-primary block py-2 border-b border-border/50"
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-col gap-6 mt-8 pt-8 border-t border-border"
               >
-                {isDarkTheme ? (
-                  <>
-                    <Sun size={20} /> {navigationLabels.lightMode}
-                  </>
-                ) : (
-                  <>
-                    <Moon size={20} /> {navigationLabels.darkMode}
-                  </>
-                )}
-              </button>
+                <button
+                  onClick={() => {
+                    window.open(resumeAsset.sharedDriveViewUrl, "_blank");
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full py-3 rounded-full bg-primary text-primary-foreground font-bold shadow-lg flex items-center justify-center gap-2"
+                >
+                  <Download size={18} />
+                  {navigationLabels.resume}
+                </button>
+
+                <button
+                  onClick={() => {
+                    toggleTheme();
+                    setIsMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center gap-3 text-foreground font-medium py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+                >
+                  {isDarkTheme ? (
+                    <>
+                      <Sun size={20} /> {navigationLabels.lightMode}
+                    </>
+                  ) : (
+                    <>
+                      <Moon size={20} /> {navigationLabels.darkMode}
+                    </>
+                  )}
+                </button>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>
