@@ -8,7 +8,7 @@ import { Project } from "@/content/portfolio/projects";
 import ShareButtons from "@/components/ShareButtons";
 
 interface ProjectModalProps {
-    project: (Project & { company?: string; role?: string }) | null;
+    project: Project | null;
     isOpen: boolean;
     onClose: () => void;
 }
@@ -90,13 +90,23 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
                             {/* Image */}
                             <div className="relative h-64 md:h-96 w-full overflow-hidden rounded-t-2xl">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                                    className="object-cover"
-                                />
+                                {project.image ? (
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                                        className="object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center relative">
+                                        <div className="absolute inset-0 bg-black/20" />
+                                        <div className="z-10 flex flex-col items-center justify-center space-y-2">
+                                            <h4 className="text-white font-bold text-3xl drop-shadow-md">{project.title}</h4>
+                                            {project.bestFeature && <p className="text-white/90 text-xl font-medium drop-shadow-sm mt-2">{project.bestFeature}</p>}
+                                        </div>
+                                    </div>
+                                )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                             </div>
 
@@ -107,11 +117,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                     <h2 id="modal-title" className="text-3xl md:text-4xl font-bold mb-2">
                                         {project.title}
                                     </h2>
-                                    {project.company && (
-                                        <p className="text-primary font-medium">
-                                            {project.company} {project.role && `• ${project.role}`}
-                                        </p>
-                                    )}
                                 </div>
 
                                 {/* Description */}

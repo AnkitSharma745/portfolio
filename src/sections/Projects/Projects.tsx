@@ -5,55 +5,27 @@ import Image from "next/image";
 import {
   FaGithub,
   FaExternalLinkAlt,
-  FaYoutube,
   FaArrowRight,
-  FaLaptopCode,
 } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import { PROJECTS_DATA } from "@/content/portfolio/projects";
 import Link from "next/link";
 
-function ProjectImagePlaceholder({ title }: { title: string }) {
+function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: string }) {
   return (
-    <div className="relative w-full h-full bg-neutral-950 flex items-center justify-center overflow-hidden">
-      {/* Animated tech grid lines */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] opacity-80">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
-      </div>
-      
-      {/* Glowing orbs */}
-      <div className="absolute -top-10 left-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl animate-pulse" style={{ animationDuration: '4s' }} />
-      <div className="absolute -bottom-10 right-10 h-28 w-28 rounded-full bg-accent/10 blur-2xl animate-pulse" style={{ animationDuration: '5s' }} />
-      
-      {/* Technical crosshairs */}
-      <div className="absolute top-4 left-4 h-2.5 w-2.5 border-t border-l border-primary/30" />
-      <div className="absolute top-4 right-4 h-2.5 w-2.5 border-t border-r border-primary/30" />
-      <div className="absolute bottom-4 left-4 h-2.5 w-2.5 border-b border-l border-primary/30" />
-      <div className="absolute bottom-4 right-4 h-2.5 w-2.5 border-b border-r border-primary/30" />
-      
-      {/* Central content */}
-      <div className="z-10 text-center px-4 flex flex-col items-center">
-        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl border border-primary/20 bg-primary/5 text-primary text-xl mb-3 shadow-[0_0_15px_rgba(6,182,212,0.15)] animate-bounce" style={{ animationDuration: '3s' }}>
-          <FaLaptopCode />
-        </div>
-        <p className="text-[10px] font-extrabold tracking-widest text-primary/70 uppercase">BUILD ACTIVE</p>
-        <h5 className="text-xs font-bold text-foreground/80 mt-1 max-w-[220px] truncate">{title}</h5>
+    <div className="relative w-full h-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center">
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="z-10 flex flex-col items-center justify-center space-y-2">
+        <h4 className="text-white font-bold text-xl drop-shadow-md">{title}</h4>
+        {feature && <p className="text-white/90 text-sm font-medium drop-shadow-sm mt-2">{feature}</p>}
       </div>
     </div>
   );
 }
 
 export default function Projects() {
-  // Flatten projects data and select the first 3 featured projects for homepage display
-  const homepageProjects = PROJECTS_DATA.flatMap((company) =>
-    company.projects.map((project) => ({
-      ...project,
-      companyName: company.companyName,
-      role: company.role,
-    }))
-  )
-    .filter((project) => project.featured)
-    .slice(0, 3);
+  // Select the first 3 projects for homepage display
+  const homepageProjects = PROJECTS_DATA.slice(0, 3);
 
   return (
     <section
@@ -68,7 +40,7 @@ export default function Projects() {
           className="text-center space-y-4"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            Featured <GradientText>Projects</GradientText>
+            Top <GradientText>Projects</GradientText>
           </h2>
           <p className="text-sm md:text-base text-foreground/60 max-w-2xl mx-auto">
             A selection of real-world applications and personal projects I&apos;ve engineered.
@@ -97,23 +69,13 @@ export default function Projects() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <ProjectImagePlaceholder title={project.title} />
+                  <FeatureTextPlaceholder title={project.title} feature={project.bestFeature} />
                 )}
-                
-                {/* Top Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/95 text-primary-foreground text-[10px] font-extrabold tracking-wider uppercase">
-                  Featured
-                </div>
               </div>
 
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  {/* Company & Role Details */}
-                  <span className="text-[11px] font-bold text-primary dark:text-cyan-400 tracking-wider uppercase block mb-1">
-                    {project.companyName} • {project.role}
-                  </span>
-                  
                   {/* Project Title */}
                   <h3 className="text-lg font-bold mb-2 text-neutral-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-300">
                     {project.title}
@@ -160,17 +122,6 @@ export default function Projects() {
                       >
                         <FaExternalLinkAlt size={11} />
                         <span>Demo</span>
-                      </a>
-                    )}
-                    {project.demoVideo && (
-                      <a
-                        href={project.demoVideo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-xl border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5 text-red-500 transition-all duration-300"
-                        title="Watch video demo"
-                      >
-                        <FaYoutube size={14} />
                       </a>
                     )}
                   </div>

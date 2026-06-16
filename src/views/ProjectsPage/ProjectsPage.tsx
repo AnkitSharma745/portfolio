@@ -6,23 +6,13 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaYoutube, FaProjectDiagram, FaCode, FaLaptopCode } from "react-icons/fa";
+import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaProjectDiagram, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { PROJECTS_DATA, Project } from "@/content/portfolio/projects";
 import ProjectModal from "@/components/ProjectModal";
 import StatsCard from "@/components/StatsCard";
 import FilterControls from "@/components/FilterControls";
-import SortControls from "@/components/SortControls";
-
-// Flatten projects for easier filtering
-const ALL_PROJECTS = PROJECTS_DATA.flatMap(company =>
-    company.projects.map(project => ({
-        ...project,
-        company: company.companyName,
-        role: company.role
-    }))
-);
 
 const FILTER_OPTIONS = [
     { label: "All", value: "All" },
@@ -32,21 +22,25 @@ const FILTER_OPTIONS = [
     { label: "Full Stack", value: "Full Stack" }
 ];
 
-const SORT_OPTIONS = [
-    { label: "Featured", value: "featured" },
-    { label: "Name", value: "name" },
-    { label: "Tech Stack", value: "tech" }
-];
+function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: string }) {
+    return (
+        <div className="relative w-full h-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="z-10 flex flex-col items-center justify-center space-y-2">
+                <h4 className="text-white font-bold text-xl drop-shadow-md">{title}</h4>
+                {feature && <p className="text-white/90 text-sm font-medium drop-shadow-sm mt-2">{feature}</p>}
+            </div>
+        </div>
+    );
+}
 
 export default function ProjectsPage() {
     const [activeFilter, setActiveFilter] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeSort, setActiveSort] = useState("featured");
-    const [ascending, setAscending] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<(Project & { company?: string; role?: string }) | null>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const filteredProjects = useMemo(() => {
-        const filtered = ALL_PROJECTS.filter(project => {
+        const filtered = PROJECTS_DATA.filter(project => {
             const matchesSearch =
                 project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -66,28 +60,11 @@ export default function ProjectsPage() {
             return false;
         });
 
-        // Sort
-        filtered.sort((a, b) => {
-            if (activeSort === "featured") {
-                return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
-            } else if (activeSort === "name") {
-                return ascending
-                    ? a.title.localeCompare(b.title)
-                    : b.title.localeCompare(a.title);
-            } else if (activeSort === "tech") {
-                return ascending
-                    ? a.techStack.length - b.techStack.length
-                    : b.techStack.length - a.techStack.length;
-            }
-            return 0;
-        });
-
         return filtered;
-    }, [activeFilter, searchQuery, activeSort, ascending]);
+    }, [activeFilter, searchQuery]);
 
-    const featuredProjects = ALL_PROJECTS.filter(p => p.featured);
-    const totalProjects = ALL_PROJECTS.length;
-    const uniqueTechs = new Set(ALL_PROJECTS.flatMap(p => p.techStack));
+    const totalProjects = PROJECTS_DATA.length;
+    const uniqueTechs = new Set(PROJECTS_DATA.flatMap(p => p.techStack));
 
     return (
         <PageTransition>
@@ -136,7 +113,7 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Stats Dashboard */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+                    <div className="flex flex-wrap justify-center gap-6 mb-16">
                         <StatsCard
                             icon={FaProjectDiagram}
                             value={totalProjects}
@@ -149,70 +126,7 @@ export default function ProjectsPage() {
                             label="Technologies Used"
                             delay={0.1}
                         />
-                        <StatsCard
-                            icon={FaLaptopCode}
-                            value={featuredProjects.length}
-                            label="Featured Projects"
-                            delay={0.2}
-                        />
                     </div>
-
-                    {/* Featured Projects */}
-                    {featuredProjects.length > 0 && (
-                        <div className="mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-                                Featured <GradientText>Projects</GradientText>
-                            </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {featuredProjects.slice(0, 3).map((project, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        onClick={() => setSelectedProject(project)}
-                                        className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none cursor-pointer"
-                                    >
-                                        <div className="relative h-48 w-full overflow-hidden">
-                                            <Image
-                                                src={project.image}
-                                                alt={project.title}
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
-                                            <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                                                FEATURED
-                                            </div>
-                                        </div>
-                                        <div className="p-6">
-                                            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                                {project.title}
-                                            </h3>
-                                            <p className="text-foreground/70 text-sm mb-4 line-clamp-2">
-                                                {project.description}
-                                            </p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {project.techStack.slice(0, 3).map((tech: string, idx: number) => (
-                                                    <span
-                                                        key={idx}
-                                                        className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground font-medium"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                                {project.techStack.length > 3 && (
-                                                    <span className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">
-                                                        +{project.techStack.length - 3}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
 
                     {/* Search and Filter */}
                     <div className="max-w-4xl mx-auto mb-16 space-y-8">
@@ -228,21 +142,13 @@ export default function ProjectsPage() {
                             />
                         </div>
 
-                        {/* Filter and Sort Controls */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Filter Controls */}
+                        <div className="flex justify-center">
                             <FilterControls
                                 options={FILTER_OPTIONS}
                                 activeFilter={activeFilter}
                                 onFilterChange={setActiveFilter}
                                 label="Filter by Category"
-                            />
-                            <SortControls
-                                options={SORT_OPTIONS}
-                                activeSort={activeSort}
-                                onSortChange={setActiveSort}
-                                ascending={ascending}
-                                onToggleOrder={() => setAscending(!ascending)}
-                                label="Sort by"
                             />
                         </div>
                     </div>
@@ -265,13 +171,17 @@ export default function ProjectsPage() {
                                     className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none transition-all duration-300 flex flex-col cursor-pointer"
                                 >
                                     <div className="relative h-48 w-full overflow-hidden">
-                                        <Image
-                                            src={project.image}
-                                            alt={project.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
+                                        {project.image ? (
+                                            <Image
+                                                src={project.image}
+                                                alt={project.title}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                            />
+                                        ) : (
+                                            <FeatureTextPlaceholder title={project.title} feature={project.bestFeature} />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
                                             <div className="flex gap-3">
                                                 {project.codeLink && (
@@ -298,18 +208,7 @@ export default function ProjectsPage() {
                                                         <FaExternalLinkAlt size={18} />
                                                     </a>
                                                 )}
-                                                {project.demoVideo && (
-                                                    <a
-                                                        href={project.demoVideo}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        onClick={(e) => e.stopPropagation()}
-                                                        className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-colors"
-                                                        title="Watch Demo"
-                                                    >
-                                                        <FaYoutube size={18} />
-                                                    </a>
-                                                )}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -321,11 +220,7 @@ export default function ProjectsPage() {
                                             </h3>
                                         </div>
 
-                                        <p className="text-xs font-medium text-primary mb-3">
-                                            {project.company}
-                                        </p>
-
-                                        <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-2">
+                                        <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-2 mt-2">
                                             {project.description}
                                         </p>
 
