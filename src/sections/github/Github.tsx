@@ -63,7 +63,7 @@ export default function GithubJourneySection() {
   return (
     <section
       id="github-journey"
-      className="bg-background py-16 text-foreground transition-colors duration-500 md:py-24"
+      className="bg-background text-foreground transition-colors duration-500"
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 sm:px-6">
         <motion.div

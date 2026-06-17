@@ -166,17 +166,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                             Live Demo
                                         </a>
                                     )}
-                                    {project.demoVideo && (
-                                        <a
-                                            href={project.demoVideo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all bg-black/5 hover:bg-black/10 text-black dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
-                                        >
-                                            <FaYoutube size={18} />
-                                            Watch Demo
-                                        </a>
-                                    )}
                                     {/* Share Buttons */}
                                     <div className="pt-6 border-t border-border/50">
                                         <ShareButtons

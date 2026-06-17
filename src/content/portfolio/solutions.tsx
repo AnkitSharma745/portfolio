@@ -5,7 +5,6 @@ export interface Solution {
     description: string;
     features: string[];
     repoUrl: string;
-    demoUrl?: string;
     icon: React.ReactNode;
     tags: string[];
 }

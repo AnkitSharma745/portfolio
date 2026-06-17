@@ -19,18 +19,18 @@ export default function HomePage() {
       </div>
       <div className="relative z-10">
         <Hero />
-        <SectionDivider />
-        <AboutMe />
+        {/* <SectionDivider />
+        <AboutMe /> */}
         <SectionDivider />
         <Skills />
         <SectionDivider />
         <Tools />
         <SectionDivider />
         <Projects />
-        <SectionDivider />
-        <Solutions />
-        <SectionDivider />
-        <CodingYearJourney />
+        {/* <SectionDivider />
+        <Solutions /> */}
+        {/* <SectionDivider />
+        <CodingYearJourney /> */}
         <SectionDivider />
         <GithubJourneySection />
         <SectionDivider />
