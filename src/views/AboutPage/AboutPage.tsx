@@ -51,7 +51,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
-              About Me <GradientText>Me</GradientText>
+              About <GradientText>Me</GradientText>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}

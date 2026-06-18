@@ -11,6 +11,7 @@ export const metadata: Metadata = genMeta({
   description:
     "Technical insights, tutorials, and thoughts on web development.",
   keywords: ["blog", "web development", "react", "next.js", "tutorial"],
+  path: "/blog",
 });
 
 export default function BlogPage() {

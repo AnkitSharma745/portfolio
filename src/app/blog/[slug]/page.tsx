@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         plannedPost?.description ??
         "This technical write-up is being prepared and will be published with implementation details soon.",
       keywords: ["blog", "technical writing", "software engineering"],
-      url: `https://ankitsharma745.github.io/blog/${slug}`,
+      path: `/blog/${slug}`,
     });
   }
 
@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: post.tags,
     image: post.coverImage,
     type: "article",
+    path: `/blog/${slug}`,
   });
 }
 

@@ -7,6 +7,7 @@ export const metadata: Metadata = generateMetadata({
   title: "Open Source | Ankit Sharma",
   description:
     "My contributions to the open source community and projects I've helped improve.",
+  path: "/open-source",
 });
 
 export default function Page() {

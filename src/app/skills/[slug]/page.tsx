@@ -35,7 +35,7 @@ export async function generateMetadata({
     title: capability.seo.title,
     description: capability.seo.description,
     keywords: capability.seo.keywords,
-    url: `https://ankitsharma745.github.io/skills/${capability.slug}`,
+    path: `/skills/${capability.slug}`,
   });
 }
 

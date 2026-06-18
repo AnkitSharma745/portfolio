@@ -7,6 +7,7 @@ export const metadata: Metadata = generateMetadata({
   title: "Projects | Ankit Sharma",
   description:
     "Explore my portfolio of web and desktop applications, from enterprise solutions to creative experiments.",
+  path: "/projects",
 });
 
 export default function Page() {

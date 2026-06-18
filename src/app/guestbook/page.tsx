@@ -11,6 +11,7 @@ export const metadata: Metadata = genMeta({
   title: "Guestbook",
   description: "Leave a message, sign the guestbook, and say hello!",
   keywords: ["guestbook", "messages", "community", "feedback"],
+  path: "/guestbook",
 });
 
 export default function GuestbookPage() {

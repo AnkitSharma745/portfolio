@@ -6,11 +6,11 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaProjectDiagram, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { PROJECTS_DATA, Project } from "@/content/portfolio/projects";
-import ProjectModal from "@/components/ProjectModal";
 import StatsCard from "@/components/StatsCard";
 import FilterControls from "@/components/FilterControls";
 
@@ -35,9 +35,9 @@ function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: s
 }
 
 export default function ProjectsPage() {
+    const router = useRouter();
     const [activeFilter, setActiveFilter] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const filteredProjects = useMemo(() => {
         const filtered = PROJECTS_DATA.filter(project => {
@@ -167,7 +167,7 @@ export default function ProjectsPage() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
-                                    onClick={() => setSelectedProject(project)}
+                                    onClick={() => router.push(`/projects/${project.slug}`)}
                                     className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none transition-all duration-300 flex flex-col cursor-pointer"
                                 >
                                     <div className="relative h-48 w-full overflow-hidden">
@@ -252,13 +252,6 @@ export default function ProjectsPage() {
                         </div>
                     )}
                 </div>
-
-                {/* Project Modal */}
-                <ProjectModal
-                    project={selectedProject}
-                    isOpen={!!selectedProject}
-                    onClose={() => setSelectedProject(null)}
-                />
             </main>
         </PageTransition>
     );

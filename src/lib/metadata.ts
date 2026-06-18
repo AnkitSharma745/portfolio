@@ -32,6 +32,7 @@ interface PageMetadataProps {
     description?: string;
     image?: string;
     url?: string;
+    path?: string;
     keywords?: string[];
     type?: "website" | "article" | "profile";
 }
@@ -40,11 +41,22 @@ export function generateMetadata({
     title,
     description = siteConfig.description,
     image = siteConfig.ogImage,
-    url = siteConfig.url,
+    url,
+    path,
     keywords = siteConfig.keywords,
     type = "website"
 }: PageMetadataProps = {}): Metadata {
     const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
+
+    // Construct clean absolute canonical URL
+    let canonicalUrl = siteConfig.url;
+    if (url) {
+        canonicalUrl = url;
+    } else if (path) {
+        const baseUrl = siteConfig.url.endsWith("/") ? siteConfig.url.slice(0, -1) : siteConfig.url;
+        const cleanPath = path.startsWith("/") ? path : `/${path}`;
+        canonicalUrl = `${baseUrl}${cleanPath}`;
+    }
 
     return {
         title: fullTitle,
@@ -55,7 +67,7 @@ export function generateMetadata({
         openGraph: {
             type,
             locale: "en_US",
-            url,
+            url: canonicalUrl,
             title: fullTitle,
             description,
             siteName: siteConfig.name,
@@ -76,7 +88,7 @@ export function generateMetadata({
             creator: "@ankitsharma745" // Update with your Twitter handle
         },
         alternates: {
-            canonical: url
+            canonical: canonicalUrl
         },
         robots: {
             index: true,

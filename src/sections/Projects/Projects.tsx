@@ -77,9 +77,11 @@ export default function Projects() {
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
                   {/* Project Title */}
-                  <h3 className="text-lg font-bold mb-2 text-neutral-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
+                  <Link href={`/projects/${project.slug}`}>
+                    <h3 className="text-lg font-bold mb-2 text-neutral-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                  </Link>
                   
                   {/* Project Description */}
                   <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mb-5 line-clamp-3 leading-relaxed">

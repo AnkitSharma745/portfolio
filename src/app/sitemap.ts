@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { getBlogPosts } from "@/lib/blog";
 import { engineeringCapabilities } from "@/content/skills/capabilities";
 import { skillDetails } from "@/content/skills/skillDetails";
+import { PROJECTS_DATA } from "@/content/portfolio/projects";
 
 export const dynamic = "force-static";
 
@@ -14,6 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const projectUrls = PROJECTS_DATA.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
   }));
 
   const skillCapabilityUrls = engineeringCapabilities.map((capability) => ({
@@ -47,5 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  return [...routes, ...skillCapabilityUrls, ...skillDetailUrls, ...blogUrls];
+  return [...routes, ...skillCapabilityUrls, ...skillDetailUrls, ...blogUrls, ...projectUrls];
 }

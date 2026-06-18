@@ -1,0 +1,80 @@
+# Ankit Sharma | Full Stack Developer & Desktop App Specialist
+
+Ankit Sharma is a Full-Stack Developer and Desktop Application Specialist crafting high-performance enterprise applications, automated retail kiosks, and modern web experiences.
+
+## Professional Positioning
+Building Intelligent Software via Next-Gen High-Performance Architecture: Powerful Core, Seamless Surface. Focus areas include:
+- Enterprise-grade retail automation systems.
+- Offline-first desktop applications (Electron, .NET, SQLite).
+- High-performance user interfaces and responsive web applications (React, Next.js, TypeScript).
+- Scalable backend architectures (Node.js, Express, .NET, MongoDB, SQL Server).
+
+---
+
+## Primary Directory Routes
+- **Home**: `https://ankitsharma745.github.io/` - Overview, hero, about metrics, top projects, and contact channels.
+- **About**: `https://ankitsharma745.github.io/about` - Professional summary, core roles, skills progress, key achievements, and detailed developer timeline.
+- **Skills**: `https://ankitsharma745.github.io/skills` - Interactive mapped capability system detailing frontend, backend, desktop applications, DevOps, and process automation rules.
+- **Experience**: `https://ankitsharma745.github.io/experience` - Career history covering roles at Retail Solutions Inc., Tech Innovators, and Freelance.
+- **Projects**: `https://ankitsharma745.github.io/projects` - Full catalog of web and desktop projects.
+- **Open Source**: `https://ankitsharma745.github.io/open-source` - Contributions to public projects including React, Next.js, Tailwind, and TypeScript.
+- **Blog**: `https://ankitsharma745.github.io/blog` - Deep dives and engineering write-ups on React Server Components, portfolio architecture, and performance.
+- **Guestbook**: `https://ankitsharma745.github.io/guestbook` - Community message wall for visitors.
+- **Contact**: `https://ankitsharma745.github.io/contact` - Get in touch via contact form, email, or direct channels.
+
+---
+
+## Core Technology Capabilities
+
+### Frontend Systems
+- **Skills**: React, Next.js, TypeScript, Tailwind CSS, Framer Motion, Zustand.
+- **Practices**: Component decoupling, accessibility (keyboard/screen reader), responsive styling, static pre-rendering, and fluid motion design.
+
+### Backend Systems
+- **Skills**: Node.js, Express, .NET, MongoDB, SQL Server, Redis, REST APIs.
+- **Practices**: Strict API request/response contracts, automated request validation, robust error recovery, and decoupling transport from business rules.
+
+### Desktop Applications
+- **Skills**: Electron, .NET Core, C#, WPF, Local Storage, Native Integration.
+- **Practices**: Offline-first storage architectures, local process watchdogs, and IPC bridge security configurations.
+
+### Cloud, DevOps & Delivery
+- **Skills**: CI/CD pipelines, Azure Blob Storage, Azure Service Bus, environment management.
+- **Practices**: Declarative environment config, automated linting/type validation, and message-driven task processing.
+
+---
+
+## Featured Project Details
+
+### AI-Powered Log Monitoring Platform
+- **Slug**: `ai-log-monitoring-platform`
+- **Tech Stack**: Electron, React, TypeScript, Zustand, Node.js, Local AI.
+- **Summary**: A next-generation desktop application designed to monitor and diagnose massive log files locally with AI assistance.
+
+### Personal Portfolio Platform
+- **Slug**: `personal-portfolio-platform`
+- **Tech Stack**: Next.js, TypeScript, Tailwind CSS, MDX.
+- **Summary**: A reusable portfolio engine featuring high performance, command palette navigation, AI assistant simulator, and comprehensive SEO indexability.
+
+### E-Commerce Kiosk Application
+- **Slug**: `ecommerce-kiosk-app`
+- **Tech Stack**: Electron, React, TypeScript, Node.js, SignalR.
+- **Summary**: A desktop storefront solution powering retail vending machines with offline synchronization and native hardware bridge protocols.
+
+### Multi-Tenant Kiosk Admin Portal
+- **Slug**: `multi-tenant-kiosk-admin`
+- **Tech Stack**: React, TypeScript, Node.js, Material UI, MongoDB.
+- **Summary**: Centralized cloud platform for machine operations, OTA updates, product sync, and order logs across fleets of kiosk devices.
+
+### SmartBot Watchdog & Recovery System
+- **Slug**: `smartbot-watchdog-recovery`
+- **Tech Stack**: Electron, Node.js, TypeScript.
+- **Summary**: Background daemon ensuring kiosk hardware uptime through automated process health monitoring and self-healing restarts.
+
+---
+
+## Contact Channels
+- **Email**: ankitaksharma9763@gmail.com
+- **Phone**: +91 63957 94139
+- **GitHub**: https://github.com/ankitsharma745
+- **LinkedIn**: https://www.linkedin.com/in/ankitsharma745
