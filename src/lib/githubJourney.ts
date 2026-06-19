@@ -20,6 +20,7 @@ export interface GitHubRepository {
   stars: number;
   forks: number;
   language: string | null;
+  techStack?: string[];
   updatedAt: string;
   pushedAt: string | null;
   createdAt: string;
