@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <section
         id="home"
-        className="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 md:px-8 pt-32 pb-0 overflow-hidden bg-background"
+        className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-background px-4 pb-14 pt-24 sm:px-6 sm:pt-28 md:px-8 lg:pb-0 lg:pt-32"
       >
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -32,15 +32,15 @@ const Home = () => {
         />
 
         {/* Main Content Container */}
-        <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-20">
+        <div className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center justify-center gap-9 sm:gap-12 lg:flex-row lg:gap-20">
           {/* Left Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 text-center lg:text-left space-y-8 z-10"
+            className="z-10 flex-1 space-y-5 text-center sm:space-y-7 lg:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-foreground">
+            <h1 className="text-[2.6rem] font-extrabold leading-[1.04] tracking-tight text-foreground min-[380px]:text-5xl sm:text-5xl md:text-6xl lg:text-7xl">
               Hey{" "}
               <motion.span
                 animate={{ rotate: [0, 14, -8, 14, -4, 10, 0, 0] }}
@@ -53,22 +53,22 @@ const Home = () => {
               <GradientText>Ankit Sharma</GradientText>
             </h1>
 
-            <div className="text-xl md:text-2xl lg:text-3xl font-medium text-foreground/80 h-[60px]">
+            <div className="mx-auto flex h-[48px] max-w-[20rem] items-center justify-center text-lg font-medium leading-tight text-foreground/80 sm:h-[56px] sm:max-w-none sm:text-xl md:text-2xl lg:mx-0 lg:justify-start lg:text-3xl">
               <TypeWriter input={HEADLINE_FOR_TYPEWRITER} />
             </div>
 
-            <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="mx-auto max-w-[34rem] text-[15px] leading-7 text-foreground/70 sm:text-lg md:text-xl lg:mx-0">
               Building High-Performance Software, AI-Powered Solutions, and
               Scalable Digital Products that Drive Innovation and Real-World
               Impact.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mt-8">
+            <div className="mx-auto mt-7 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsVideoOpen(true)}
-                className="px-8 py-4 rounded-full bg-linear-to-r from-primary to-cyan-600 text-foreground font-bold text-lg border border-border/50 flex items-center justify-center gap-3 hover:bg-secondary/80 hover:border-primary/30 transition-all active:scale-95"
+                className="flex min-h-12 items-center justify-center gap-3 rounded-full border border-border/50 bg-linear-to-r from-primary to-cyan-600 px-6 py-3 text-base font-bold text-foreground transition-all hover:border-primary/30 hover:bg-secondary/80 active:scale-95 sm:px-8 sm:py-4 sm:text-lg"
               >
                 <FaPlay className="text-xl group-hover:scale-110 transition-transform" />{" "}
                 Watch Intro
@@ -78,7 +78,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onDownloadResume}
-                className="px-8 py-4 rounded-full bg-secondary text-foreground font-bold text-lg border border-border/50 flex items-center justify-center gap-3 hover:bg-secondary/80 hover:border-primary/30 transition-all active:scale-95"
+                className="flex min-h-12 items-center justify-center gap-3 rounded-full border border-border/50 bg-secondary px-6 py-3 text-base font-bold text-foreground transition-all hover:border-primary/30 hover:bg-secondary/80 active:scale-95 sm:px-8 sm:py-4 sm:text-lg"
               >
                 <FaDownload className="text-xl" /> Resume
               </motion.button>
@@ -90,9 +90,9 @@ const Home = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="flex-1 flex justify-center items-center relative z-10"
+            className="relative z-10 flex flex-1 items-center justify-center"
           >
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] animate-float">
+            <div className="relative h-52 w-52 animate-float min-[380px]:h-60 min-[380px]:w-60 sm:h-80 sm:w-80 md:h-96 md:w-96 lg:h-[450px] lg:w-[450px]">
               {/* Glowing Background Effect */}
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-full blur-[60px] animate-pulse-slow" />
 

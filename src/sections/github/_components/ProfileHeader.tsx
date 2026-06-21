@@ -16,8 +16,8 @@ export default function ProfileHeader({ data, status }: ProfileHeaderProps) {
     data.profile.bio?.trim() || githubJourneyContent.profileFallbackBio;
 
   return (
-    <div className="flex flex-col gap-5 border-b border-border/50 pb-7 dark:border-white/10 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex min-w-0 items-center gap-4">
+    <div className="flex flex-col gap-5 border-b border-border/50 pb-6 dark:border-white/10 sm:pb-7 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex min-w-0 flex-col items-center gap-4 text-center min-[430px]:flex-row min-[430px]:text-left">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-primary/25 bg-primary/10 shadow-lg shadow-primary/10 sm:h-20 sm:w-20">
           <Image
             src={data.profile.avatarUrl}
@@ -29,8 +29,8 @@ export default function ProfileHeader({ data, status }: ProfileHeaderProps) {
           />
         </div>
         <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <h3 className="truncate text-xl font-extrabold text-foreground sm:text-2xl">
+          <div className="flex flex-wrap items-center justify-center gap-2 min-[430px]:justify-start">
+            <h3 className="max-w-[15rem] truncate text-lg font-extrabold text-foreground sm:max-w-none sm:text-2xl">
               {data.profile.name}
             </h3>
             <span className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-primary">
@@ -59,7 +59,7 @@ export default function ProfileHeader({ data, status }: ProfileHeaderProps) {
           target="_blank"
           rel="noopener noreferrer"
           whileTap={{ scale: 0.98 }}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg shadow-black/10 transition-all hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background dark:bg-white dark:text-black"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg shadow-black/10 transition-all hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background dark:bg-white dark:text-black sm:w-auto"
         >
           <FaGithub className="h-4 w-4" />
           {githubJourneyContent.followLabel}

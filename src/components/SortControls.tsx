@@ -43,7 +43,7 @@ export default function SortControls({
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`
-                                px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                                min-h-10 rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-300 sm:px-4
                                 ${activeSort === option.value
                                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
                                     : "bg-white dark:bg-white/5 text-foreground hover:bg-gray-50 hover:dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-sm"

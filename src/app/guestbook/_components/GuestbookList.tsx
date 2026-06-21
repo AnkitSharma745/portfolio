@@ -34,8 +34,8 @@ export default function GuestbookList() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <h3 className="text-2xl font-bold mb-6">
+    <div className="space-y-4 sm:space-y-6">
+      <h3 className="mb-5 text-xl font-bold sm:mb-6 sm:text-2xl">
         Recent Messages ({entries.length})
       </h3>
 
@@ -48,19 +48,19 @@ export default function GuestbookList() {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ delay: index * 0.05 }}
             className={`
-                            p-6 rounded-xl border relative group transition-all
+                            group relative rounded-xl border p-4 transition-all sm:p-6
                             ${isDark
                 ? "bg-white/5 border-white/10 hover:bg-white/10"
                 : "bg-white border-black/5 hover:shadow-md"
               }
                         `}
           >
-            <FaQuoteLeft className="absolute top-6 right-6 text-primary/10 text-4xl group-hover:text-primary/20 transition-colors" />
+            <FaQuoteLeft className="absolute right-4 top-4 text-3xl text-primary/10 transition-colors group-hover:text-primary/20 sm:right-6 sm:top-6 sm:text-4xl" />
 
-            <div className="flex items-center gap-3 mb-4">
+            <div className="mb-4 flex items-center gap-3">
               <div
                 className={`
-                                w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg
+                                flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold
                                 ${isDark ? "bg-primary/20 text-primary" : "bg-primary/10 text-primary"}
                             `}
               >
@@ -72,7 +72,7 @@ export default function GuestbookList() {
               </div>
             </div>
 
-            <p className="text-foreground/80 leading-relaxed relative z-10">
+            <p className="relative z-10 text-sm leading-7 text-foreground/80 sm:text-base">
               {entry.message}
             </p>
           </motion.div>
@@ -80,7 +80,7 @@ export default function GuestbookList() {
       </AnimatePresence>
 
       {entries.length === 0 && (
-        <div className="text-center py-12 text-foreground/50">
+        <div className="py-10 text-center text-sm text-foreground/50 sm:py-12 sm:text-base">
           No messages yet. Be the first to sign!
         </div>
       )}

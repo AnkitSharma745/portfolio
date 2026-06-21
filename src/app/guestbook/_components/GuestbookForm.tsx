@@ -60,18 +60,18 @@ export default function GuestbookForm() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className={`
-                    p-8 rounded-2xl border backdrop-blur-sm
+                    rounded-2xl border p-5 backdrop-blur-sm sm:p-8
                     ${isDark
             ? "bg-white/5 border-white/10"
             : "bg-white border-black/5 shadow-lg"
           }
                 `}
       >
-        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        <h3 className="mb-5 flex items-center gap-2 text-xl font-bold sm:mb-6 sm:text-2xl">
           <span className="text-primary">✍️</span> Leave a Message
         </h3>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
               <FaUser size={12} /> Name
@@ -83,7 +83,7 @@ export default function GuestbookForm() {
               placeholder="Your name"
               required
               className={`
-                                w-full px-4 py-3 rounded-xl border outline-none transition-all
+                                min-h-12 w-full rounded-xl border px-4 py-3 outline-none transition-all
                                 ${isDark
                   ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
                   : "bg-gray-50 border-black/5 focus:border-primary/50"
@@ -103,7 +103,7 @@ export default function GuestbookForm() {
               required
               rows={4}
               className={`
-                                w-full px-4 py-3 rounded-xl border outline-none transition-all resize-none
+                                min-h-32 w-full resize-none rounded-xl border px-4 py-3 outline-none transition-all
                                 ${isDark
                   ? "bg-black/20 border-white/10 focus:border-primary/50 focus:bg-black/40"
                   : "bg-gray-50 border-black/5 focus:border-primary/50"
@@ -117,7 +117,7 @@ export default function GuestbookForm() {
             whileTap={{ scale: 0.98 }}
             disabled={isSubmitting}
             className={`
-                            w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all
+                            flex min-h-12 w-full items-center justify-center gap-2 rounded-xl py-3.5 font-bold transition-all sm:py-4
                             ${isSubmitting
                 ? "bg-primary/50 cursor-not-allowed"
                 : "bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25"

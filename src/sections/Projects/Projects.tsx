@@ -19,25 +19,25 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden py-16 md:py-24 bg-background text-foreground transition-all duration-500"
+      className="relative overflow-hidden bg-background px-4 py-16 text-foreground transition-all duration-500 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+      <div className="mx-auto w-full max-w-7xl space-y-10 sm:space-y-14 lg:space-y-16">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center space-y-4"
+          className="space-y-4 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             Top <GradientText>Projects</GradientText>
           </h2>
-          <p className="text-sm md:text-base text-foreground/60 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-sm leading-6 text-foreground/60 md:text-base">
             A selection of real-world applications and personal projects I&apos;ve engineered.
           </p>
         </motion.div>
 
         {/* 3-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 md:grid-cols-3 lg:gap-8">
           {homepageProjects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -45,10 +45,10 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="group flex flex-col justify-between overflow-hidden rounded-[2rem] border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/40 shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-xl dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-500 relative"
+              className="group relative flex w-full max-w-sm flex-col justify-between overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all duration-500 hover:border-primary/50 hover:shadow-xl dark:border-white/10 dark:bg-neutral-900/40 dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] dark:hover:border-primary/50 dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] md:max-w-none"
             >
               {/* Image Container */}
-              <div className="relative h-52 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200 dark:border-white/10">
+              <div className="relative h-44 w-full overflow-hidden border-b border-neutral-200 bg-neutral-100 dark:border-white/10 dark:bg-neutral-950 sm:h-52">
                 {project.image ? (
                   <Image
                     src={project.image}
@@ -63,24 +63,24 @@ export default function Projects() {
               </div>
 
               {/* Card Body */}
-              <div className="p-6 flex flex-col flex-grow justify-between">
+              <div className="flex flex-grow flex-col justify-between p-4 sm:p-5 lg:p-6">
                 <div>
                   {/* Project Title */}
                   <Link href={`/projects/${project.slug}`}>
-                    <h3 className="text-lg font-bold mb-2 text-neutral-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-300">
+                    <h3 className="mb-2 text-base font-bold leading-snug text-neutral-900 transition-colors duration-300 group-hover:text-primary dark:text-white dark:group-hover:text-cyan-400 sm:text-lg">
                       {project.title}
                     </h3>
                   </Link>
                   
                   {/* Project Description */}
-                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mb-5 line-clamp-3 leading-relaxed">
+                  <p className="mb-5 line-clamp-3 text-xs leading-6 text-neutral-600 dark:text-neutral-400 sm:text-sm">
                     {project.description}
                   </p>
                 </div>
 
                 <div>
                   {/* Tech stack pill tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="mb-5 flex flex-wrap gap-1.5">
                     {project.techStack.map((tech, techIdx) => (
                       <span
                         key={techIdx}
@@ -92,7 +92,7 @@ export default function Projects() {
                   </div>
 
                   {/* Call-to-actions */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-neutral-100 dark:border-white/5">
+                  <div className="flex items-center gap-3 border-t border-neutral-100 pt-4 dark:border-white/5">
                     {project.codeLink && (
                       <a
                         href={project.codeLink}
@@ -123,12 +123,12 @@ export default function Projects() {
         </div>
 
         {/* View All Projects Action Link */}
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center pt-2 sm:pt-4">
           <Link href="/projects">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:opacity-95 transition-opacity flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer"
+              className="flex min-h-11 w-full max-w-xs cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-opacity hover:opacity-95 sm:w-auto sm:px-8"
             >
               View All Projects <FaArrowRight />
             </motion.button>

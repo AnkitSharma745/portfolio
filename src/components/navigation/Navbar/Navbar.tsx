@@ -87,14 +87,14 @@ function NavBar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-md dark:shadow-white/5 py-3" : "bg-transparent py-5"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-8">
         {/* Logo */}
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, "/#home")}
           className="group relative"
         >
-          <span className="text-3xl font-bold tracking-tighter block">
+          <span className="block text-2xl font-bold tracking-tighter sm:text-3xl">
             <GradientText>Ankit</GradientText>
             <span className="text-foreground">.dev</span>
           </span>
@@ -146,7 +146,7 @@ function NavBar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className="p-2 text-foreground md:hidden"
           onClick={() => setIsMenuOpen(true)}
           aria-label={navigationLabels.toggleMenu}
         >
@@ -173,9 +173,9 @@ function NavBar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="md:hidden fixed top-0 right-0 bottom-0 w-[80vw] max-w-[320px] bg-background border-l border-border z-50 flex flex-col p-6 shadow-2xl overflow-y-auto"
+              className="fixed bottom-0 right-0 top-0 z-50 flex w-[88vw] max-w-sm flex-col overflow-y-auto border-l border-border bg-background p-5 shadow-2xl sm:p-6 md:hidden"
             >
-              <div className="flex justify-between items-center mb-10">
+              <div className="mb-8 flex items-center justify-between sm:mb-10">
                 <h2 className="text-xl font-bold tracking-tighter">
                   <GradientText>Ankit</GradientText>
                   <span className="text-foreground">.dev</span>
@@ -189,7 +189,7 @@ function NavBar() {
                 </button>
               </div>
 
-              <div className="flex flex-col gap-6 flex-grow">
+              <div className="flex flex-grow flex-col gap-4 sm:gap-6">
                 {navigationItems.map((item, index) => {
                   if (pathname === item.href) return null;
                   if (pathname === "/" && item.href === "/") return null;
@@ -204,7 +204,7 @@ function NavBar() {
                       <Link
                         href={item.href}
                         onClick={(e) => handleNavClick(e, item.href)}
-                        className="text-lg font-bold transition-colors cursor-pointer text-foreground hover:text-primary block py-2 border-b border-border/50"
+                        className="block min-h-11 cursor-pointer border-b border-border/50 py-2 text-lg font-bold text-foreground transition-colors hover:text-primary"
                       >
                         {item.label}
                       </Link>
@@ -217,14 +217,14 @@ function NavBar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="flex flex-col gap-6 mt-8 pt-8 border-t border-border"
+                className="mt-8 flex flex-col gap-4 border-t border-border pt-6 sm:gap-6 sm:pt-8"
               >
                 <button
                   onClick={() => {
                     window.open(resumeAsset.sharedDriveViewUrl, "_blank");
                     setIsMenuOpen(false);
                   }}
-                  className="w-full py-3 rounded-full bg-primary text-primary-foreground font-bold shadow-lg flex items-center justify-center gap-2"
+                  className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary py-3 font-bold text-primary-foreground shadow-lg"
                 >
                   <Download size={18} />
                   {navigationLabels.resume}
@@ -235,7 +235,7 @@ function NavBar() {
                     toggleTheme();
                     setIsMenuOpen(false);
                   }}
-                  className="flex items-center justify-center gap-3 text-foreground font-medium py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+                  className="flex min-h-12 items-center justify-center gap-3 rounded-xl py-3 font-medium text-foreground transition-colors hover:bg-black/5 dark:hover:bg-white/10"
                 >
                   {isDarkTheme ? (
                     <>

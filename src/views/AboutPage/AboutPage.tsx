@@ -19,15 +19,15 @@ export default function AboutPage() {
 
   return (
     <PageTransition>
-      <main className="min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10">
-        <div className="container mx-auto px-6">
+            <main className="relative min-h-screen overflow-hidden bg-background pb-12 pt-24 text-foreground sm:pb-16">
+        <div className="container mx-auto px-4 sm:px-6">
           <Breadcrumbs />
         </div>
         <div className="fixed inset-0 z-0 pointer-events-none">
           <ParticlesBackground />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           {/* Back Navigation */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -45,11 +45,11 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Header */}
-          <div className="text-center max-w-4xl mx-auto mb-20">
+          <div className="mx-auto mb-12 max-w-4xl text-center sm:mb-20">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="mb-4 text-3xl font-bold leading-tight sm:text-5xl md:mb-6 md:text-7xl"
             >
               About <GradientText>Me</GradientText>
             </motion.h1>
@@ -57,14 +57,14 @@ export default function AboutPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-foreground/70 leading-relaxed"
+              className="text-[15px] leading-7 text-foreground/70 sm:text-lg md:text-xl"
             >
               {ABOUT_CONTENT.summary}
             </motion.p>
           </div>
 
           {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
+          <div className="mb-14 grid grid-cols-2 gap-3 sm:gap-5 md:mb-24 md:grid-cols-4 md:gap-6">
             {ABOUT_CONTENT.stats.map((stat, index) => (
               <StatsCard
                 key={index}
@@ -78,7 +78,7 @@ export default function AboutPage() {
           </div>
 
           {/* Roles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          <div className="mb-14 grid grid-cols-1 justify-items-center gap-5 md:mb-24 md:grid-cols-3 md:gap-8">
             {ABOUT_CONTENT.roles.map((role, index) => (
               <motion.div
                 key={index}
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:bg-black/5 hover:dark:bg-white/10 shadow-lg dark:shadow-none transition-all duration-300 text-center group"
+                className="group w-full max-w-sm rounded-2xl border border-black/5 bg-white p-5 text-center shadow-lg transition-all duration-300 hover:border-primary/50 hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:shadow-none hover:dark:bg-white/10 sm:p-8 md:max-w-none"
               >
                 <div className="text-5xl mb-6 text-primary group-hover:scale-110 transition-transform duration-300 inline-block">
                   {role.icon}

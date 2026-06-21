@@ -17,28 +17,28 @@ export const metadata: Metadata = genMeta({
 export default function GuestbookPage() {
   return (
     <PageTransition>
-      <main className="min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10">
-        <div className="container mx-auto px-6">
+      <main className="relative min-h-screen overflow-hidden bg-background pb-12 pt-24 text-foreground sm:pb-16">
+        <div className="container mx-auto px-4 sm:px-6">
           <Breadcrumbs />
         </div>
         <div className="fixed inset-0 z-0 pointer-events-none">
           <ParticlesBackground />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 max-w-4xl">
+        <div className="container relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <div className="mb-10 text-center sm:mb-14 md:mb-16">
+            <h1 className="mb-4 text-3xl font-bold sm:mb-6 sm:text-5xl md:text-7xl">
               Sign the <GradientText>Guestbook</GradientText>
             </h1>
-            <p className="text-xl text-foreground/70 leading-relaxed max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-base leading-7 text-foreground/70 sm:text-lg sm:leading-8 md:text-xl">
               Leave a note, share your thoughts, or just say hi! This is a space
               for visitors to leave their mark.
             </p>
           </div>
 
           {/* Content */}
-          <div className="grid gap-12">
+          <div className="grid gap-8 sm:gap-12">
             <GuestbookForm />
             <GuestbookList />
           </div>

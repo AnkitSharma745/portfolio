@@ -34,7 +34,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
   return (
     <PageTransition>
-      <main className="relative min-h-screen bg-background pb-20 pt-24 text-foreground">
+      <main className="relative min-h-screen bg-background pb-16 pt-24 text-foreground sm:pb-20">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -44,7 +44,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           <ParticlesBackground id="project-detail-bg" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 max-w-5xl">
+        <div className="container relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
           <Breadcrumbs />
 
           {/* Back Navigation */}
@@ -52,35 +52,35 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors group"
+              className="group inline-flex min-h-10 items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-primary sm:text-base"
             >
               <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
               Back to Projects
             </Link>
           </motion.div>
 
-          <article className="space-y-12">
+          <article className="space-y-8 sm:space-y-12">
             {/* Main Header */}
             <header className="space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 <FaRocket className="text-[10px]" /> Project Showcase
               </span>
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+              <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-6xl">
                 <GradientText>{project.title}</GradientText>
               </h1>
-              <p className="text-xl text-foreground/75 leading-relaxed max-w-3xl">
+              <p className="max-w-3xl text-base leading-7 text-foreground/75 sm:text-lg sm:leading-8 md:text-xl">
                 {project.description}
               </p>
             </header>
 
             {/* Media Showcase */}
-            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-black/5 dark:border-white/10 bg-white/5 backdrop-blur-sm">
+            <div className="relative w-full overflow-hidden rounded-2xl border border-black/5 bg-white/5 shadow-2xl backdrop-blur-sm dark:border-white/10">
               {project.image ? (
-                <div className="relative w-full h-[300px] md:h-[500px]">
+                <div className="relative h-[220px] w-full sm:h-[320px] md:h-[500px]">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -100,25 +100,25 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             </div>
 
             {/* Content Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 items-start gap-6 sm:gap-8 lg:grid-cols-12">
               {/* Detailed Description (Spans 8 columns) */}
-              <div className="lg:col-span-8 space-y-8">
-                <section className="rounded-3xl border border-border/40 bg-background/40 p-6 sm:p-8 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-                  <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <div className="space-y-6 sm:space-y-8 lg:col-span-8">
+                <section className="rounded-2xl border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 sm:rounded-3xl sm:p-8">
+                  <h2 className="mb-4 flex items-start gap-2 text-xl font-bold sm:items-center sm:text-2xl">
                     <FaCode className="text-primary" /> Overview & Implementation
                   </h2>
-                  <p className="text-foreground/85 text-base leading-8 whitespace-pre-line">
+                  <p className="whitespace-pre-line text-sm leading-7 text-foreground/85 sm:text-base sm:leading-8">
                     {project.detailedDescription || project.description}
                   </p>
                 </section>
 
                 {project.bestFeature && (
-                  <section className="rounded-3xl border border-border/40 bg-background/40 p-6 sm:p-8 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-                    <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                  <section className="rounded-2xl border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 sm:rounded-3xl sm:p-8">
+                    <h2 className="mb-4 flex items-start gap-2 text-xl font-bold sm:items-center sm:text-2xl">
                       <FaStar className="text-accent" /> Key Highlight / Best Feature
                     </h2>
-                    <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 p-4 rounded-xl">
-                      <p className="text-foreground/90 font-medium text-base">
+                    <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 dark:bg-primary/10">
+                      <p className="text-sm font-medium leading-7 text-foreground/90 sm:text-base">
                         {project.bestFeature}
                       </p>
                     </div>
@@ -127,15 +127,15 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               </div>
 
               {/* Sidebar: Details & Links (Spans 4 columns) */}
-              <div className="lg:col-span-4 space-y-6">
+              <div className="space-y-5 sm:space-y-6 lg:col-span-4">
                 {/* Tech Stack Card */}
-                <div className="rounded-3xl border border-border/40 bg-background/40 p-6 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 space-y-4">
+                <div className="space-y-4 rounded-2xl border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 sm:rounded-3xl sm:p-6">
                   <h3 className="text-lg font-bold">Tech Stack</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs px-3 py-1.5 rounded-lg bg-secondary text-secondary-foreground font-semibold shadow-sm"
+                        className="rounded-lg bg-secondary px-3 py-1.5 text-xs font-semibold text-secondary-foreground shadow-sm"
                       >
                         {tech}
                       </span>
@@ -145,7 +145,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
                 {/* Project Links Card */}
                 {(project.codeLink || project.liveLink) && (
-                  <div className="rounded-3xl border border-border/40 bg-background/40 p-6 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 space-y-4">
+                  <div className="space-y-4 rounded-2xl border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 sm:rounded-3xl sm:p-6">
                     <h3 className="text-lg font-bold">Project Resources</h3>
                     <div className="flex flex-col gap-3">
                       {project.codeLink && (
@@ -153,7 +153,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                           href={project.codeLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-border bg-white/5 hover:bg-neutral-50 dark:hover:bg-white/5 font-bold text-sm shadow-sm transition-all duration-300 hover:border-primary/50"
+                          className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-border bg-white/5 px-4 py-3 text-sm font-bold shadow-sm transition-all duration-300 hover:border-primary/50 hover:bg-neutral-50 dark:hover:bg-white/5"
                         >
                           <FaGithub /> View Source Code
                         </a>
@@ -163,7 +163,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                           href={project.liveLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25 font-bold text-sm shadow-sm transition-all duration-300"
+                          className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
                         >
                           <FaExternalLinkAlt size={12} /> Live Platform Demo
                         </a>

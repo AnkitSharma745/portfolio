@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const SectionDivider = () => {
   return (
     <div
-      className="relative w-full py-16 flex items-center justify-center overflow-hidden"
+      className="relative flex w-full items-center justify-center overflow-hidden py-8 sm:py-12 md:py-16"
       aria-hidden="true"
     >
       {/* Light-mode surface so the divider has depth on white backgrounds */}
@@ -25,19 +25,19 @@ const SectionDivider = () => {
         />
 
         {/* Central Core Complex */}
-        <div className="relative mx-4 flex h-14 w-14 items-center justify-center rounded-full bg-background/85 shadow-[0_10px_35px_rgba(15,23,42,0.08),0_0_30px_rgba(6,182,212,0.18)] ring-1 ring-border/70 backdrop-blur-sm dark:h-auto dark:w-auto dark:bg-transparent dark:shadow-none dark:ring-0 dark:backdrop-blur-0">
+        <div className="relative mx-3 flex h-11 w-11 items-center justify-center rounded-full bg-background/85 shadow-[0_10px_35px_rgba(15,23,42,0.08),0_0_30px_rgba(6,182,212,0.18)] ring-1 ring-border/70 backdrop-blur-sm dark:bg-transparent dark:shadow-none dark:ring-0 dark:backdrop-blur-0 sm:mx-4 sm:h-14 sm:w-14">
           {/* Outer Rotating Ring */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="w-8 h-8 rounded-full border border-primary/40 border-t-primary border-r-transparent shadow-[0_0_18px_rgba(6,182,212,0.25)] dark:border-primary/30 dark:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+            className="h-7 w-7 rounded-full border border-primary/40 border-r-transparent border-t-primary shadow-[0_0_18px_rgba(6,182,212,0.25)] dark:border-primary/30 dark:shadow-[0_0_15px_rgba(34,211,238,0.3)] sm:h-8 sm:w-8"
           />
 
           {/* Inner Counter-Rotating Ring */}
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-            className="absolute w-5 h-5 rounded-full border border-accent/50 border-b-accent border-l-transparent dark:border-accent/40"
+            className="absolute h-4 w-4 rounded-full border border-accent/50 border-b-accent border-l-transparent dark:border-accent/40 sm:h-5 sm:w-5"
           />
 
           {/* Core Singularity */}
@@ -51,7 +51,7 @@ const SectionDivider = () => {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            className="absolute w-12 h-12"
+            className="absolute h-10 w-10 sm:h-12 sm:w-12"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full blur-[1px]" />
           </motion.div>

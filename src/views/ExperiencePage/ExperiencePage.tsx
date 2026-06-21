@@ -65,15 +65,15 @@ export default function ExperiencePage() {
 
     return (
         <PageTransition>
-            <main className="min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10">
-                <div className="container mx-auto px-6">
+            <main className="relative min-h-screen overflow-hidden bg-background pb-12 pt-24 text-foreground sm:pb-16">
+                <div className="container mx-auto px-4 sm:px-6">
                     <Breadcrumbs />
                 </div>
                 <div className="fixed inset-0 z-0 pointer-events-none">
                     <ParticlesBackground />
                 </div>
 
-                <div className="relative z-10 container mx-auto px-6">
+                <div className="container relative z-10 mx-auto px-4 sm:px-6">
                     {/* Back Navigation */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -91,11 +91,11 @@ export default function ExperiencePage() {
                     </motion.div>
 
                     {/* Header */}
-                    <div className="text-center max-w-4xl mx-auto mb-12">
+                    <div className="mx-auto mb-10 max-w-4xl text-center sm:mb-12">
                         <motion.h1
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl md:text-7xl font-bold mb-6"
+                            className="mb-4 text-3xl font-bold leading-tight sm:text-5xl md:mb-6 md:text-7xl"
                         >
                             Professional <GradientText>Experience</GradientText>
                         </motion.h1>
@@ -103,14 +103,14 @@ export default function ExperiencePage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="text-xl text-foreground/70 leading-relaxed"
+                            className="text-[15px] leading-7 text-foreground/70 sm:text-lg md:text-xl"
                         >
                             A timeline of my professional career, highlighting key roles, projects, and the impact I&apos;ve delivered.
                         </motion.p>
                     </div>
 
                     {/* Stats Dashboard */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+                    <div className="mb-12 grid grid-cols-2 gap-3 sm:gap-5 md:mb-16 md:grid-cols-3 md:gap-6">
                         <StatsCard
                             icon={FaCalendarAlt}
                             value={totalYears}
@@ -134,7 +134,7 @@ export default function ExperiencePage() {
                     </div>
 
                     {/* Search and Filter */}
-                    <div className="max-w-4xl mx-auto mb-16 space-y-8">
+                    <div className="mx-auto mb-12 max-w-4xl space-y-6 sm:mb-16 sm:space-y-8">
                         {/* Search Bar */}
                         <div className="relative">
                             <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/40" />
@@ -143,7 +143,7 @@ export default function ExperiencePage() {
                                 placeholder="Search by company, role, or technology..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 focus:border-primary/50 focus:bg-white/10 focus:dark:bg-white/10 shadow-sm outline-none transition-all duration-300"
+                                className="w-full rounded-xl border border-black/5 bg-white py-3.5 pl-12 pr-4 text-sm shadow-sm outline-none transition-all duration-300 focus:border-primary/50 focus:bg-white/10 dark:border-white/10 dark:bg-white/5 focus:dark:bg-white/10 sm:py-4 sm:text-base"
                             />
                         </div>
 
@@ -169,7 +169,7 @@ export default function ExperiencePage() {
                         {/* Vertical Line */}
                         <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-accent/20 to-primary/20 rounded-full hidden md:block" />
 
-                        <div className="space-y-16">
+                        <div className="space-y-8 md:space-y-16">
                             {filteredExperience.map((item: ExperienceItem, index: number) => {
                                 const isEven = index % 2 === 0;
                                 return (
@@ -184,7 +184,7 @@ export default function ExperiencePage() {
                                         {/* Content Side */}
                                         <div className="w-full md:w-1/2 md:px-12">
                                             <div
-                                                className="p-8 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:bg-black/5 hover:dark:bg-white/10 shadow-lg dark:shadow-none transition-all duration-300 relative group"
+                                                className="group relative rounded-2xl border border-black/5 bg-white p-5 shadow-lg transition-all duration-300 hover:border-primary/50 hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:shadow-none hover:dark:bg-white/10 sm:p-8"
                                             >
                                                 {/* Connector Line (Mobile) */}
                                                 <div className="absolute left-[-33px] top-10 w-8 h-[2px] bg-primary/50 md:hidden" />
@@ -196,12 +196,12 @@ export default function ExperiencePage() {
 
                                                 <div className="flex flex-col gap-4 mb-6">
                                                     <div className="flex items-center justify-between flex-wrap gap-2">
-                                                        <h3 className="text-2xl font-bold">{item.role}</h3>
+                                                        <h3 className="text-xl font-bold leading-tight sm:text-2xl">{item.role}</h3>
                                                         <span className="flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
                                                             <FaCalendarAlt /> {item.period}
                                                         </span>
                                                     </div>
-                                                    <div className="flex items-center gap-2 text-xl font-semibold text-foreground/80">
+                                                    <div className="flex items-center gap-2 text-base font-semibold text-foreground/80 sm:text-xl">
                                                         <FaBriefcase className="text-accent" />
                                                         {item.company}
                                                     </div>

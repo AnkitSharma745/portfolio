@@ -80,38 +80,38 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <PageTransition>
       <ScrollProgress />
-      <main className="min-h-screen bg-background text-foreground pt-24 pb-20 relative">
-        <div className="container mx-auto px-6 mb-8">
+      <main className="relative min-h-screen bg-background pb-16 pt-24 text-foreground sm:pb-20">
+        <div className="container mx-auto mb-6 px-4 sm:mb-8 sm:px-6">
           <Breadcrumbs />
         </div>
 
         {/* Hero Section */}
-        <div className="container mx-auto px-6 mb-12">
+        <div className="container mx-auto mb-10 px-4 sm:mb-12 sm:px-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-8 group"
+            className="group mb-6 inline-flex min-h-10 items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-primary sm:mb-8 sm:text-base"
           >
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             Back to Blog
           </Link>
 
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-5 flex flex-wrap justify-center gap-2 sm:mb-6">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium"
+                  className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary sm:text-sm"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="mb-5 text-3xl font-bold leading-tight sm:mb-6 sm:text-4xl md:text-6xl">
               {post.title}
             </h1>
 
-            <div className="flex items-center justify-center gap-6 text-foreground/60">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-foreground/60 sm:gap-6 sm:text-base">
               <span className="flex items-center gap-2">
                 <FaCalendarAlt className="text-primary" />
                 {post.date}
@@ -126,8 +126,8 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Cover Image */}
         {post.coverImage && (
-          <div className="container mx-auto px-6 mb-16">
-            <div className="relative w-full h-[400px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="container mx-auto mb-10 px-4 sm:mb-16 sm:px-6">
+            <div className="relative h-[220px] w-full overflow-hidden rounded-2xl shadow-2xl sm:h-[360px] md:h-[600px]">
               <Image
                 src={post.coverImage}
                 alt={post.title}
@@ -141,11 +141,11 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         {/* Content Layout */}
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:gap-12 lg:flex-row">
             {/* Main Content */}
             <article className="w-full lg:w-3/4">
-              <div className="prose prose-lg dark:prose-invert max-w-none">
+              <div className="prose max-w-none dark:prose-invert sm:prose-lg">
                 <MDXRemote
                   source={post.content}
                   components={MDXComponents}
@@ -158,12 +158,12 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
 
               {/* Share & Tags Footer */}
-              <div className="mt-16 pt-8 border-t border-border/50">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div className="flex items-center gap-2 text-foreground/70">
+              <div className="mt-10 border-t border-border/50 pt-6 sm:mt-16 sm:pt-8">
+                <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center md:gap-6">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-foreground/70 sm:text-base">
                     <FaTags className="text-primary" />
                     <span className="font-medium">Tags:</span>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {post.tags.map((tag) => (
                         <span
                           key={tag}

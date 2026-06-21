@@ -13,9 +13,9 @@ export default function Tools() {
   return (
     <section
       id="tools"
-      className="relative overflow-hidden bg-background transition-all duration-500"
+      className="relative overflow-hidden bg-background px-4 py-16 transition-all duration-500 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
-      <div className="mx-auto max-w-7xl space-y-10">
+      <div className="mx-auto w-full max-w-7xl space-y-8 sm:space-y-10">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,16 +23,16 @@ export default function Tools() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-4xl font-extrabold tracking-tight text-gray-950 dark:text-white md:text-5xl">
+          <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-950 dark:text-white sm:text-4xl md:text-5xl">
             Tools <GradientText> I Use</GradientText>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-foreground/65 md:text-lg">
+          <p className="mt-4 text-[15px] leading-7 text-foreground/65 sm:text-base md:text-lg">
             The software and hardware that power my development workflow and
             productivity.
           </p>
         </motion.div>
 
-        <div className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
           <ToolCategory 
             title="Development" 
             description="Code editors, IDEs, and version control systems to build robust software."

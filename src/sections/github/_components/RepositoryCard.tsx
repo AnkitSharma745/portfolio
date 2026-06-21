@@ -21,22 +21,22 @@ export default function RepositoryCard({
       target="_blank"
       rel="noopener noreferrer"
       whileTap={{ scale: 0.98 }}
-      className="group/repo relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-6 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 dark:border-white/10 dark:bg-white/[0.02]"
+      className="group/repo relative flex h-full w-full max-w-sm flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-4 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 dark:border-white/10 dark:bg-white/[0.02] sm:p-5 lg:max-w-none lg:p-6"
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/repo:opacity-100" />
       <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl transition-all duration-500 group-hover/repo:bg-primary/30 group-hover/repo:blur-2xl" />
 
       <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-5 flex items-start justify-between gap-3">
+        <div className="mb-4 flex items-start justify-between gap-3 sm:mb-5">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-500 group-hover/repo:bg-primary group-hover/repo:text-primary-foreground">
               <FaGithub className="h-6 w-6" />
             </div>
             <div className="min-w-0">
-              <p className="mb-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/40">
+              <p className="mb-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-foreground/40 sm:text-[10px] sm:tracking-[0.18em]">
                 Featured Repository #{index + 1}
               </p>
-              <h4 className="truncate text-lg font-bold text-foreground transition-colors group-hover/repo:text-primary">
+              <h4 className="truncate text-base font-bold text-foreground transition-colors group-hover/repo:text-primary sm:text-lg">
                 {repository.name}
               </h4>
             </div>

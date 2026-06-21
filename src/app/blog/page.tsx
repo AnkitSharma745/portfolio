@@ -20,18 +20,18 @@ export default function BlogPage() {
 
   return (
     <PageTransition>
-      <main className="min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10">
-        <div className="container mx-auto px-6">
+      <main className="relative min-h-screen overflow-hidden bg-background pb-12 pt-24 text-foreground sm:pb-16">
+        <div className="container mx-auto px-4 sm:px-6">
           <Breadcrumbs />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           {/* Header */}
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <div className="mx-auto mb-10 max-w-4xl text-center sm:mb-14 md:mb-16">
+            <h1 className="mb-4 text-3xl font-bold sm:mb-6 sm:text-5xl md:text-7xl">
               Technical <GradientText>Insights</GradientText>
             </h1>
-            <p className="text-xl text-foreground/70 leading-relaxed">
+            <p className="text-base leading-7 text-foreground/70 sm:text-lg sm:leading-8 md:text-xl">
               Thoughts, tutorials, and deep dives into the world of modern web
               development.
             </p>

@@ -38,8 +38,8 @@ export default function Footer() {
       {/* Background glow for dark mode */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/5 blur-[100px] pointer-events-none dark:bg-primary/10" />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
+      <div className="relative mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-8 sm:pt-16 lg:px-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 lg:gap-8">
           
           {/* Brand Column */}
           <div className="md:col-span-5 space-y-6">
@@ -48,7 +48,7 @@ export default function Footer() {
                 Ankit Sharma
               </span>
             </h2>
-            <p className="text-base text-foreground/70 leading-relaxed max-w-md">
+            <p className="max-w-md text-sm leading-7 text-foreground/70 sm:text-base">
               A full-stack engineer building production-grade, scalable systems. 
               Bridging the gap between beautiful design and robust architecture.
             </p>
@@ -70,10 +70,10 @@ export default function Footer() {
 
           {/* Quick Links Column */}
           <div className="md:col-span-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90 mb-6">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground/90 sm:mb-6">
               Quick Navigation
             </h3>
-            <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -89,10 +89,10 @@ export default function Footer() {
 
           {/* Connect Column */}
           <div className="md:col-span-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/90 mb-6">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground/90 sm:mb-6">
               Connect With Me
             </h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               <a 
                 href={socialProfiles.github.url} 
                 target="_blank" 
@@ -132,8 +132,8 @@ export default function Footer() {
         </div>
 
       </div>
-        <div className="w-full mt-8 pt-4 pb-4 border-t border-border flex justify-center">
-          <p className="text-sm font-medium text-foreground/50">
+        <div className="mt-6 flex w-full justify-center border-t border-border px-4 pb-4 pt-4 sm:mt-8">
+          <p className="text-center text-sm font-medium text-foreground/50">
             © {new Date().getFullYear()} Ankit Sharma. All rights reserved.
           </p>
         </div>

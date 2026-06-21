@@ -113,46 +113,46 @@ export default function ContactMe() {
   return (
     <section
       id="contact-me"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden transition-all duration-500 bg-background text-foreground"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-16 text-foreground transition-all duration-500 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         <ParticlesBackground id="contact-page" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10"
+          className="mb-8 text-center sm:mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+          <h2 className="mb-3 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             Let&apos;s{" "}
             <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
-          <p className="text-sm md:text-base text-foreground/60 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-sm leading-6 text-foreground/60 md:text-base">
             Have a project in mind? Fill out the form below or reach out directly.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-12 lg:gap-6">
           {/* Form Side (Spans 7 columns on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 xl:col-span-7 flex"
+            className="flex lg:col-span-7 xl:col-span-7"
           >
-            <div className="rounded-[2rem] border border-border/40 bg-background/40 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 w-full p-5 sm:p-7 relative overflow-hidden group/form flex flex-col justify-between">
+            <div className="group/form relative flex w-full flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-6 lg:p-7">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/form:opacity-100" />
               
-              <form onSubmit={handleSubmit} className="space-y-5 relative z-10 flex-grow flex flex-col justify-between">
-                <div className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="relative z-10 flex flex-grow flex-col justify-between space-y-5">
+                <div className="space-y-4 sm:space-y-5">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                     {/* First Name */}
                     <div className="space-y-1.5">
                       <label htmlFor="firstName" className="text-xs font-semibold flex items-center gap-1.5 text-foreground/80">
@@ -166,7 +166,7 @@ export default function ContactMe() {
                         onChange={handleChange}
                         required
                         placeholder="Ankit"
-                        className="w-full text-[13px] rounded-xl border border-border/50 bg-white/5 dark:bg-black/20 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-foreground/30 shadow-sm"
+                        className="w-full rounded-xl border border-border/50 bg-white/5 px-3.5 py-3 text-sm shadow-sm transition-all placeholder:text-foreground/30 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-black/20 sm:py-2.5 sm:text-[13px]"
                       />
                     </div>
                     {/* Last Name */}
@@ -182,13 +182,13 @@ export default function ContactMe() {
                         onChange={handleChange}
                         required
                         placeholder="Sharma"
-                        className="w-full text-[13px] rounded-xl border border-border/50 bg-white/5 dark:bg-black/20 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-foreground/30 shadow-sm"
+                        className="w-full rounded-xl border border-border/50 bg-white/5 px-3.5 py-3 text-sm shadow-sm transition-all placeholder:text-foreground/30 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-black/20 sm:py-2.5 sm:text-[13px]"
                       />
                     </div>
                   </div>
 
                   {/* Email and Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                     <div className="space-y-1.5">
                       <label htmlFor="email" className="text-xs font-semibold flex items-center gap-1.5 text-foreground/80">
                         <FaEnvelope className="text-primary/70 text-[11px]" /> Email Address
@@ -201,7 +201,7 @@ export default function ContactMe() {
                         onChange={handleChange}
                         required
                         placeholder="ankit@example.com"
-                        className="w-full text-[13px] rounded-xl border border-border/50 bg-white/5 dark:bg-black/20 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-foreground/30 shadow-sm"
+                        className="w-full rounded-xl border border-border/50 bg-white/5 px-3.5 py-3 text-sm shadow-sm transition-all placeholder:text-foreground/30 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-black/20 sm:py-2.5 sm:text-[13px]"
                       />
                     </div>
                     <div className="space-y-1.5">
@@ -216,7 +216,7 @@ export default function ContactMe() {
                         onChange={handleChange}
                         required
                         placeholder="+91 9876543210"
-                        className="w-full text-[13px] rounded-xl border border-border/50 bg-white/5 dark:bg-black/20 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-foreground/30 shadow-sm"
+                        className="w-full rounded-xl border border-border/50 bg-white/5 px-3.5 py-3 text-sm shadow-sm transition-all placeholder:text-foreground/30 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-black/20 sm:py-2.5 sm:text-[13px]"
                       />
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export default function ContactMe() {
                       onChange={handleChange}
                       required
                       placeholder="Tell me about your project..."
-                      className="w-full text-[13px] rounded-xl border border-border/50 bg-white/5 dark:bg-black/20 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-foreground/30 resize-none shadow-sm flex-grow min-h-[120px]"
+                      className="min-h-[132px] w-full flex-grow resize-none rounded-xl border border-border/50 bg-white/5 px-3.5 py-3 text-sm shadow-sm transition-all placeholder:text-foreground/30 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-black/20 sm:min-h-[120px] sm:py-2.5 sm:text-[13px]"
                     />
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function ContactMe() {
                   <button
                     type="submit"
                     disabled={!agreed || isSubmitting}
-                    className={`w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
+                    className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition-all duration-300 ${
                       agreed
                         ? "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-white dark:text-black"
                         : "bg-foreground/10 text-foreground/40 cursor-not-allowed"
@@ -304,10 +304,10 @@ export default function ContactMe() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 xl:col-span-5 flex flex-col gap-4 justify-between"
+            className="flex flex-col justify-between gap-4 lg:col-span-5 xl:col-span-5"
           >
             {/* Status & Clock Widget */}
-            <div className="rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-white/5 transition-all duration-500 hover:border-border/80 hover:shadow-xl relative overflow-hidden group/status">
+            <div className="group/status relative overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-5">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/status:opacity-100" />
               
               <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -334,13 +334,13 @@ export default function ContactMe() {
             </div>
 
             {/* Social Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-3 min-[390px]:grid-cols-2 sm:gap-4">
               {/* GitHub Card */}
               <motion.a
                 href={githubChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex min-h-[132px] flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -363,7 +363,7 @@ export default function ContactMe() {
                 href={linkedinChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex min-h-[132px] flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -386,7 +386,7 @@ export default function ContactMe() {
                 href={twitterChannel.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                className="group/card relative flex min-h-[132px] flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -407,7 +407,7 @@ export default function ContactMe() {
               {/* Email Card (Interactive Copy) */}
               <motion.button
                 onClick={handleCopyEmail}
-                className="group/card text-left relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 w-full cursor-pointer"
+                className="group/card relative flex min-h-[132px] w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 text-left shadow-md backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:rounded-[2rem] sm:p-5"
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
                 <div className="relative z-10 flex items-center justify-between w-full">
@@ -441,7 +441,7 @@ export default function ContactMe() {
 
             {/* Phone Card */}
             <motion.div
-              className="relative flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-[2rem] border border-border/40 bg-background/40 p-5 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 group/phone"
+              className="group/phone relative flex flex-col items-center justify-between overflow-hidden rounded-2xl border border-border/40 bg-background/40 p-4 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-border/80 hover:shadow-xl dark:border-white/10 dark:bg-white/5 sm:flex-row sm:rounded-[2rem] sm:p-5"
             >
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/phone:opacity-100" />
               

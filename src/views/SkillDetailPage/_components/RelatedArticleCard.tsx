@@ -13,7 +13,7 @@ export default function RelatedArticleCard({
     return (
       <Link
         href={`/blog/${article.slug}`}
-        className="group rounded-lg border border-border bg-card/80 p-5 shadow-sm transition hover:border-primary/40 hover:shadow-lg dark:border-white/10 dark:bg-white/[0.04]"
+        className="group w-full max-w-sm rounded-xl border border-border bg-card/80 p-4 shadow-sm transition hover:border-primary/40 hover:shadow-lg dark:border-white/10 dark:bg-white/[0.04] sm:p-5 md:max-w-none"
       >
         <div className="mb-4 flex items-center justify-between gap-3">
           <span className="inline-flex items-center gap-2 rounded-md bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
@@ -26,7 +26,7 @@ export default function RelatedArticleCard({
             aria-hidden="true"
           />
         </div>
-        <h3 className="text-lg font-bold tracking-tight text-foreground">
+        <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
           {article.title}
         </h3>
         <p className="mt-2 text-sm leading-6 text-foreground/68">
@@ -39,13 +39,13 @@ export default function RelatedArticleCard({
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="block rounded-lg border border-dashed border-primary/35 bg-primary/5 p-5 transition hover:border-primary/60 hover:bg-primary/10"
+      className="block w-full max-w-sm rounded-xl border border-dashed border-primary/35 bg-primary/5 p-4 transition hover:border-primary/60 hover:bg-primary/10 sm:p-5 md:max-w-none"
     >
       <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-background px-2.5 py-1 text-xs font-semibold text-primary ring-1 ring-primary/20">
         <CalendarClock size={14} aria-hidden="true" />
         Publishing target: {article.targetDate}
       </div>
-      <h3 className="text-lg font-bold tracking-tight text-foreground">
+      <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
         {article.title}
       </h3>
       <p className="mt-2 text-sm leading-6 text-foreground/68">

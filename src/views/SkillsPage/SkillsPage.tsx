@@ -18,13 +18,13 @@ export default function SkillsPage() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <main className="relative min-h-screen bg-background px-6 pb-20 pt-24 text-foreground">
+    <main className="relative min-h-screen bg-background px-4 pb-16 pt-24 text-foreground sm:px-6 sm:pb-20">
       <div className="mx-auto max-w-7xl">
         <motion.header
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="mx-auto max-w-3xl py-8 text-center"
+          className="mx-auto max-w-3xl py-6 text-center sm:py-8"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-primary">
             <Layers size={18} aria-hidden="true" />
@@ -32,10 +32,10 @@ export default function SkillsPage() {
               {skillsOverviewPageContent.eyebrow}
             </p>
           </div>
-          <h1 className="text-[26px] font-extrabold leading-tight tracking-tight text-gray-950 dark:text-white">
+          <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-950 dark:text-white sm:text-4xl md:text-5xl">
             {skillsOverviewPageContent.title}
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-foreground/70 md:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl text-[15px] leading-7 text-foreground/70 sm:text-base md:text-lg md:leading-8">
             {skillsOverviewPageContent.description}
           </p>
         </motion.header>
@@ -57,7 +57,7 @@ export default function SkillsPage() {
           </div>
         </nav>
 
-        <div className="mt-14 space-y-20">
+        <div className="mt-10 space-y-14 sm:mt-14 sm:space-y-20">
           {homeSkillGroups.map((group, index) => (
             <CategorySection
               key={group.id}
@@ -70,7 +70,7 @@ export default function SkillsPage() {
 
         <section
           aria-labelledby="capability-notes-heading"
-          className="mt-24 scroll-mt-28"
+          className="mt-16 scroll-mt-28 sm:mt-24"
         >
           <div className="mb-6 flex items-end justify-between gap-4 border-b border-border pb-5 dark:border-white/10">
             <div>
@@ -86,12 +86,12 @@ export default function SkillsPage() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
             {engineeringCapabilities.map((capability) => (
               <Link
                 key={capability.slug}
                 href={`/skills/${capability.slug}`}
-                className="group rounded-lg border border-border bg-card/75 p-5 shadow-sm transition hover:border-primary/40 hover:shadow-lg dark:border-white/10 dark:bg-white/[0.04]"
+                className="group w-full max-w-sm rounded-lg border border-border bg-card/75 p-4 shadow-sm transition hover:border-primary/40 hover:shadow-lg dark:border-white/10 dark:bg-white/[0.04] sm:p-5 md:max-w-none"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background text-xl text-primary dark:border-white/10">
@@ -124,7 +124,7 @@ export default function SkillsPage() {
 
         <section
           aria-labelledby="writing-pipeline-heading"
-          className="mt-24 border-t border-border pt-8 dark:border-white/10"
+          className="mt-16 border-t border-border pt-8 dark:border-white/10 sm:mt-24"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>

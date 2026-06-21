@@ -53,11 +53,11 @@ export default function ShareButtons({ url, title, description = "" }: ShareButt
         }
     };
 
-    const buttonClass = "p-3 rounded-full transition-all bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20";
+    const buttonClass = "flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-all bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20";
 
     return (
-        <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-foreground/70">Share:</span>
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:gap-3">
+            <span className="mr-1 text-sm font-medium text-foreground/70">Share:</span>
 
             {/* Twitter */}
             <motion.a

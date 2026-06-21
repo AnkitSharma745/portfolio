@@ -39,7 +39,7 @@ export default function Breadcrumbs() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="flex items-center gap-2 text-sm mb-6 text-foreground/70 dark:text-foreground/60"
+      className="mb-6 flex max-w-full items-center gap-2 overflow-x-auto whitespace-nowrap pb-1 text-xs text-foreground/70 dark:text-foreground/60 sm:text-sm"
     >
       {/* Schema.org BreadcrumbList */}
       <script
@@ -63,9 +63,9 @@ export default function Breadcrumbs() {
         const isHome = index === 0;
 
         return (
-          <div key={crumb.href} className="flex items-center gap-2">
+          <div key={crumb.href} className="flex shrink-0 items-center gap-2">
             {isLast ? (
-              <span className="text-foreground font-medium flex items-center gap-2">
+              <span className="flex items-center gap-2 font-medium text-foreground">
                 {isHome && <FaHome />}
                 {crumb.label}
               </span>
@@ -73,7 +73,7 @@ export default function Breadcrumbs() {
               <>
                 <Link
                   href={crumb.href}
-                  className="hover:text-primary transition-colors flex items-center gap-2"
+                  className="flex items-center gap-2 transition-colors hover:text-primary"
                 >
                   {isHome && <FaHome />}
                   {crumb.label}

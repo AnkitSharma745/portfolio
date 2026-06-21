@@ -57,15 +57,15 @@ export default function ProjectsPage() {
 
     return (
         <PageTransition>
-            <main className="min-h-screen bg-background text-foreground relative overflow-hidden pt-24 pb-10">
-                <div className="container mx-auto px-6">
+            <main className="relative min-h-screen overflow-hidden bg-background pb-12 pt-24 text-foreground sm:pb-16">
+                <div className="container mx-auto px-4 sm:px-6">
                     <Breadcrumbs />
                 </div>
                 <div className="fixed inset-0 z-0 pointer-events-none">
                     <ParticlesBackground />
                 </div>
 
-                <div className="relative z-10 container mx-auto px-6">
+                <div className="container relative z-10 mx-auto px-4 sm:px-6">
                     {/* Back Navigation */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -83,11 +83,11 @@ export default function ProjectsPage() {
                     </motion.div>
 
                     {/* Header */}
-                    <div className="text-center max-w-4xl mx-auto mb-12">
+                    <div className="mx-auto mb-10 max-w-4xl text-center sm:mb-12">
                         <motion.h1
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl md:text-7xl font-bold mb-6"
+                            className="mb-4 text-3xl font-bold leading-tight sm:text-5xl md:mb-6 md:text-7xl"
                         >
                             All <GradientText>Projects</GradientText>
                         </motion.h1>
@@ -95,14 +95,14 @@ export default function ProjectsPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="text-xl text-foreground/70 leading-relaxed"
+                            className="text-[15px] leading-7 text-foreground/70 sm:text-lg md:text-xl"
                         >
                             Explore my complete portfolio of projects, from enterprise solutions to creative experiments.
                         </motion.p>
                     </div>
 
                     {/* Stats Dashboard */}
-                    <div className="flex flex-wrap justify-center gap-6 mb-16">
+                    <div className="mb-12 grid grid-cols-2 gap-3 sm:mb-16 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
                         <StatsCard
                             icon={FaProjectDiagram}
                             value={totalProjects}
@@ -118,7 +118,7 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Search and Filter */}
-                    <div className="max-w-4xl mx-auto mb-16 space-y-8">
+                    <div className="mx-auto mb-12 max-w-4xl space-y-6 sm:mb-16 sm:space-y-8">
                         {/* Search Bar */}
                         <div className="relative">
                             <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/40" />
@@ -127,7 +127,7 @@ export default function ProjectsPage() {
                                 placeholder="Search projects by name, tech, or description..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 focus:border-primary/50 focus:bg-black/5 focus:dark:bg-white/10 shadow-sm outline-none transition-all duration-300"
+                                className="w-full rounded-xl border border-black/5 bg-white py-3.5 pl-12 pr-4 text-sm shadow-sm outline-none transition-all duration-300 focus:border-primary/50 focus:bg-black/5 dark:border-white/10 dark:bg-white/5 focus:dark:bg-white/10 sm:py-4 sm:text-base"
                             />
                         </div>
 
@@ -145,7 +145,7 @@ export default function ProjectsPage() {
                     {/* All Projects Grid */}
                     <motion.div
                         layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+                        className="mb-16 grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
                     >
                         <AnimatePresence>
                             {filteredProjects.map((project, index) => (
@@ -157,9 +157,9 @@ export default function ProjectsPage() {
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
                                     onClick={() => router.push(`/projects/${project.slug}`)}
-                                    className="group rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/5 hover:border-primary/50 hover:shadow-2xl dark:hover:shadow-primary/10 hover:shadow-primary/10 shadow-lg dark:shadow-none transition-all duration-300 flex flex-col cursor-pointer"
+                                    className="group flex w-full max-w-sm cursor-pointer flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-lg transition-all duration-300 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:shadow-primary/10 sm:max-w-none"
                                 >
-                                    <div className="relative h-48 w-full overflow-hidden">
+                                    <div className="relative h-44 w-full overflow-hidden sm:h-48">
                                         {project.image ? (
                                             <Image
                                                 src={project.image}
@@ -202,14 +202,14 @@ export default function ProjectsPage() {
                                         </div>
                                     </div>
 
-                                    <div className="p-6 flex flex-col flex-grow">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                                    <div className="flex flex-grow flex-col p-4 sm:p-5 lg:p-6">
+                                        <div className="mb-2 flex items-start justify-between">
+                                            <h3 className="text-lg font-bold leading-snug transition-colors group-hover:text-primary sm:text-xl">
                                                 {project.title}
                                             </h3>
                                         </div>
 
-                                        <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-2 mt-2">
+                                        <p className="mb-4 mt-2 line-clamp-3 flex-grow text-sm leading-6 text-foreground/70">
                                             {project.description}
                                         </p>
 

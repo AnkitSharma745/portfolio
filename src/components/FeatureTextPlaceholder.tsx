@@ -13,8 +13,8 @@ export default function FeatureTextPlaceholder({
 
   return (
     <div
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-primary/80 to-accent/80 p-6 text-center ${
-        isDetail ? "min-h-[300px] rounded-2xl" : ""
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-primary/80 to-accent/80 p-5 text-center sm:p-6 ${
+        isDetail ? "min-h-[220px] rounded-2xl sm:min-h-[300px]" : ""
       }`}
     >
       <div className="absolute inset-0 bg-black/20" />
@@ -25,7 +25,7 @@ export default function FeatureTextPlaceholder({
       >
         <h4
           className={`font-bold text-white drop-shadow-md ${
-            isDetail ? "text-3xl md:text-4xl" : "text-xl"
+            isDetail ? "text-2xl sm:text-3xl md:text-4xl" : "text-xl"
           }`}
         >
           {title}
@@ -34,7 +34,7 @@ export default function FeatureTextPlaceholder({
           <p
             className={`font-medium text-white/90 drop-shadow-sm ${
               isDetail
-                ? "mt-2 border-t border-white/20 pt-4 text-base md:text-lg"
+                ? "mt-2 border-t border-white/20 pt-4 text-sm leading-6 sm:text-base md:text-lg"
                 : "mt-2 text-sm"
             }`}
           >
