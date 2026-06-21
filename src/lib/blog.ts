@@ -13,8 +13,14 @@ export interface BlogPost {
     slug: string;
     title: string;
     date: string;
+    description: string;
     excerpt: string;
     coverImage?: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    canonical?: string;
+    ogImage?: string;
+    featured: boolean;
     tags: string[];
     readingTime: string;
     content: string;
@@ -22,10 +28,17 @@ export interface BlogPost {
 }
 
 interface BlogFrontmatter {
+    slug: string;
     title: string;
     date: string;
+    description: string;
     excerpt: string;
     coverImage?: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    canonical?: string;
+    ogImage?: string;
+    featured: boolean;
     tags: string[];
 }
 
@@ -35,24 +48,64 @@ const getStringValue = (value: unknown, fallback: string = ""): string =>
 const getStringArray = (value: unknown): string[] =>
     Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
 
+const getBooleanValue = (value: unknown, fallback = false): boolean =>
+    typeof value === "boolean" ? value : fallback;
+
 const getBlogFrontmatter = (
     data: Record<string, unknown>,
     slug: string,
-): BlogFrontmatter => ({
-    title: getStringValue(data.title, slug),
-    date: getStringValue(data.date),
-    excerpt: getStringValue(data.excerpt),
-    coverImage: typeof data.coverImage === "string" ? data.coverImage : undefined,
-    tags: getStringArray(data.tags),
-});
+): BlogFrontmatter => {
+    const description = getStringValue(
+        data.description,
+        getStringValue(data.excerpt),
+    );
+    const coverImage = getStringValue(data.coverImage) || undefined;
 
-export function getBlogPosts(): BlogPost[] {
-    // Create directory if it doesn't exist
+    return {
+        slug: getStringValue(data.slug) || slug,
+        title: getStringValue(data.title, slug),
+        date: getStringValue(data.date),
+        description,
+        excerpt: getStringValue(data.excerpt, description),
+        coverImage,
+        seoTitle: getStringValue(data.seoTitle) || undefined,
+        seoDescription: getStringValue(data.seoDescription) || undefined,
+        canonical: getStringValue(data.canonical) || undefined,
+        ogImage: getStringValue(data.ogImage, coverImage ?? "") || undefined,
+        featured: getBooleanValue(data.featured),
+        tags: getStringArray(data.tags),
+    };
+};
+
+const getBlogFileNames = (): string[] => {
     if (!fs.existsSync(blogDirectory)) {
         return [];
     }
 
-    const fileNames = fs.readdirSync(blogDirectory).filter((fileName) => fileName.endsWith(".mdx"));
+    return fs.readdirSync(blogDirectory).filter((fileName) => fileName.endsWith(".mdx"));
+};
+
+const getBlogPostFileName = (slug: string): string | null => {
+    const directFileName = `${slug}.mdx`;
+    const directPath = path.join(blogDirectory, directFileName);
+
+    if (fs.existsSync(directPath)) {
+        return directFileName;
+    }
+
+    return getBlogFileNames().find((fileName) => {
+        const fullPath = path.join(blogDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const { data } = matter(fileContents);
+        const fileSlug = fileName.replace(/\.mdx$/, "");
+        const frontmatter = getBlogFrontmatter(data, fileSlug);
+
+        return frontmatter.slug === slug;
+    }) ?? null;
+};
+
+export function getBlogPosts(): BlogPost[] {
+    const fileNames = getBlogFileNames();
     const allPostsData = fileNames.map((fileName) => {
         const slug = fileName.replace(/\.mdx$/, '');
         const fullPath = path.join(blogDirectory, fileName);
@@ -62,7 +115,6 @@ export function getBlogPosts(): BlogPost[] {
         const frontmatter = getBlogFrontmatter(data, slug);
 
         return {
-            slug,
             ...frontmatter,
             readingTime: stats.text,
             content,
@@ -80,16 +132,18 @@ export function getBlogPosts(): BlogPost[] {
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-    const fullPath = path.join(blogDirectory, `${slug}.mdx`);
-    
-    if (!fs.existsSync(fullPath)) {
+    const fileName = getBlogPostFileName(slug);
+
+    if (!fileName) {
         return null;
     }
 
+    const fileSlug = fileName.replace(/\.mdx$/, "");
+    const fullPath = path.join(blogDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     const stats = readingTime(content);
-    const frontmatter = getBlogFrontmatter(data, slug);
+    const frontmatter = getBlogFrontmatter(data, fileSlug);
 
     const mdxSource = await serialize(content, {
         mdxOptions: {
@@ -98,7 +152,6 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     });
 
     return {
-        slug,
         ...frontmatter,
         readingTime: stats.text,
         content,

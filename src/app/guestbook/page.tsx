@@ -3,8 +3,8 @@ import PageTransition from "@/components/PageTransition";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import GradientText from "@/components/GradientText";
-import GuestbookForm from "@/components/guestbook/GuestbookForm";
-import GuestbookList from "@/components/guestbook/GuestbookList";
+import GuestbookForm from "./_components/GuestbookForm";
+import GuestbookList from "./_components/GuestbookList";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 
 export const metadata: Metadata = genMeta({

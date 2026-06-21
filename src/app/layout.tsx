@@ -12,7 +12,8 @@ import SkipToContent from "@/components/SkipToContent";
 import TerminalLoader from "@/components/ui/TerminalLoader";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { Inter, Outfit } from "next/font/google";
-import { siteConfig, generatePersonSchema } from "@/lib/metadata";
+import { siteConfig } from "@/content/shared/site";
+import { generatePersonSchema } from "@/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });

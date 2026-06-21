@@ -1,31 +1,5 @@
 import { Metadata } from "next";
-import { socialProfiles } from "@/content/social/profiles";
-
-export const siteConfig = {
-    name: "Ankit Sharma",
-    title: "Ankit Sharma - Full Stack Developer & Desktop App Specialist",
-    description: "Full Stack Developer specializing in React, TypeScript, Node.js, and Electron. Building high-performance web and desktop applications with modern technologies.",
-    url: "https://ankitsharma745.github.io/", // Update with your actual domain
-    ogImage: "https://ankitsharma745.github.io/og-image.jpg", // Update with your actual OG image
-    links: {
-        github: socialProfiles.github.url,
-        linkedin: socialProfiles.linkedin.url,
-        twitter: socialProfiles.twitter.url,
-        email: "mailto:ankitaksharma9763@gmail.com"
-    },
-    keywords: [
-        "Full Stack Developer",
-        "React Developer",
-        "TypeScript",
-        "Node.js",
-        "Electron",
-        "Next.js",
-        "Web Development",
-        "Desktop Applications",
-        "Software Engineer",
-        "Portfolio"
-    ]
-};
+import { siteConfig } from "@/content/shared/site";
 
 interface PageMetadataProps {
     title?: string;
@@ -33,7 +7,7 @@ interface PageMetadataProps {
     image?: string;
     url?: string;
     path?: string;
-    keywords?: string[];
+    keywords?: readonly string[];
     type?: "website" | "article" | "profile";
 }
 
@@ -49,7 +23,7 @@ export function generateMetadata({
     const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
 
     // Construct clean absolute canonical URL
-    let canonicalUrl = siteConfig.url;
+    let canonicalUrl: string = siteConfig.url;
     if (url) {
         canonicalUrl = url;
     } else if (path) {

@@ -5,29 +5,14 @@ import Image from "next/image";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaRocket, FaCode, FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FeatureTextPlaceholder from "@/components/FeatureTextPlaceholder";
 import PageTransition from "@/components/PageTransition";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { Project } from "@/content/portfolio/projects";
+import { Project } from "@/content/projects/projects";
 
 interface ProjectDetailPageProps {
   project: Project;
-}
-
-function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: string }) {
-  return (
-    <div className="relative w-full h-full min-h-[300px] bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center rounded-2xl overflow-hidden">
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="z-10 flex flex-col items-center justify-center space-y-4 max-w-xl">
-        <h4 className="text-white font-extrabold text-3xl md:text-4xl drop-shadow-md">{title}</h4>
-        {feature && (
-          <p className="text-white/95 text-base md:text-lg font-medium drop-shadow-sm border-t border-white/20 pt-4 mt-2">
-            {feature}
-          </p>
-        )}
-      </div>
-    </div>
-  );
 }
 
 export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
@@ -106,7 +91,11 @@ export default function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   />
                 </div>
               ) : (
-                <FeatureTextPlaceholder title={project.title} feature={project.bestFeature} />
+                <FeatureTextPlaceholder
+                  title={project.title}
+                  feature={project.bestFeature}
+                  variant="detail"
+                />
               )}
             </div>
 

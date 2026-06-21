@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { JOURNEY_PHASES } from "@/content/portfolio/journey";
+import { JOURNEY_PHASES } from "@/content/hero/journey";
 
 const CodingYearJourney = () => {
     return (

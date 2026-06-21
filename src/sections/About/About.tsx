@@ -6,7 +6,7 @@ import GradientText from "@/components/GradientText";
 import Link from "next/link";
 import StatsCard from "@/components/StatsCard";
 import { FaCode, FaCoffee, FaProjectDiagram, FaClock } from "react-icons/fa";
-import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
+import CodingYearJourney from "@/sections/About/CodingYearJourney";
 
 export default function AboutMe() {
   return (

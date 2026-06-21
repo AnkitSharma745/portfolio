@@ -1,10 +1,11 @@
 import { getBlogPosts } from "@/lib/blog";
+import { siteConfig } from "@/content/shared/site";
 
 export const dynamic = "force-static";
 
 export async function GET() {
   const posts = getBlogPosts();
-  const siteUrl = "https://ankitsharma745.github.io";
+  const siteUrl = siteConfig.url.replace(/\/$/, "");
 
   const rssItems = posts
     .map((post) => `
@@ -13,7 +14,7 @@ export async function GET() {
         <link>${siteUrl}/blog/${post.slug}</link>
         <guid isPermaLink="true">${siteUrl}/blog/${post.slug}</guid>
         <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-        <description><![CDATA[${post.excerpt}]]></description>
+        <description><![CDATA[${post.description}]]></description>
       </item>
     `)
     .join("");
@@ -21,9 +22,9 @@ export async function GET() {
   const rssFeed = `<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ankit Sharma | Technical Insights</title>
+    <title>${siteConfig.name} | Technical Insights</title>
     <link>${siteUrl}/blog</link>
-    <description>Thoughts, tutorials, and deep dives into the world of modern web development and desktop applications.</description>
+    <description>${siteConfig.description}</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>

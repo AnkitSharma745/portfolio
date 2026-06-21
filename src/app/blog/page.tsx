@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getBlogPosts, getAllTags } from "@/lib/blog";
-import BlogList from "@/components/blog/BlogList";
+import BlogList from "./_components/BlogList";
 import PageTransition from "@/components/PageTransition";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import GradientText from "@/components/GradientText";

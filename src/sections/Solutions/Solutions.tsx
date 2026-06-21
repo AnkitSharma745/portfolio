@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaCheckCircle } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
-import { SOLUTIONS_DATA } from "@/content/portfolio/solutions";
+import { SOLUTIONS_DATA } from "@/content/solutions/solutions";
 
 export default function Solutions() {
   return (

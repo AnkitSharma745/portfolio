@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import { BlogPost } from "@/lib/blog";
 import BlogCard from "./BlogCard";
-import { useTheme } from "next-themes";
 
 interface BlogListProps {
   posts: BlogPost[];
@@ -13,8 +12,6 @@ interface BlogListProps {
 }
 
 export default function BlogList({ posts, allTags }: BlogListProps) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
@@ -42,13 +39,7 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className={`
-                            w-full pl-12 pr-4 py-3 rounded-xl border outline-none transition-all duration-300
-                            ${isDark
-                ? "bg-white/5 border-white/10 focus:border-primary/50 focus:bg-white/10"
-                : "bg-white border-black/5 focus:border-primary/50 shadow-sm"
-              }
-                        `}
+            className="w-full rounded-xl border border-black/5 bg-white py-3 pl-12 pr-4 shadow-sm outline-none transition-all duration-300 focus:border-primary/50 dark:border-white/10 dark:bg-white/5 dark:focus:bg-white/10"
           />
         </div>
 

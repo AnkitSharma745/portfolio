@@ -3,8 +3,7 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { FaArrowLeft, FaGithub, FaCodeBranch, FaLaptopCode } from "react-icons/fa";
+import { FaGithub, FaCodeBranch, FaLaptopCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
 
@@ -42,7 +41,7 @@ export default function OpenSourcePage() {
                             <p className="text-xl text-foreground/70 leading-relaxed mb-10 max-w-2xl mx-auto lg:mx-0">
                                 I strongly believe in the power of open-source software. While I am currently curating and documenting my latest open-source contributions for this portfolio, I am actively building, exploring, and collaborating on GitHub every day.
                                 <br /><br />
-                                Check out my GitHub profile to explore my active repositories, recent commits, and the technologies I'm working with right now!
+                                Check out my GitHub profile to explore my active repositories, recent commits, and the technologies I&apos;m working with right now!
                             </p>
 
                             <a

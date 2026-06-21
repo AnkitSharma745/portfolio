@@ -1,6 +1,6 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { resumeAsset } from "@/content/assets/resume";
-import { socialProfiles } from "@/content/social/profiles";
+import { socialProfiles } from "@/content/shared/social";
 
 export const openGithub = () => {
     window.open(socialProfiles.github.url, "_blank");

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaCalendarAlt, FaClock, FaArrowRight } from "react-icons/fa";
 import { BlogPost } from "@/lib/blog";
-import { useTheme } from "next-themes";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -12,9 +11,6 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, index }: BlogCardProps) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <Link href={`/blog/${post.slug}`}>
       <motion.div
@@ -22,13 +18,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.1 }}
-        className={`
-                    h-full flex flex-col p-6 rounded-2xl border transition-all duration-300 group
-                    ${isDark
-            ? "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
-            : "bg-white border-black/5 hover:border-primary/50 shadow-lg"
-          }
-                `}
+        className="group flex h-full flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-lg transition-all duration-300 hover:border-primary/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
       >
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">

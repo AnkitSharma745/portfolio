@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { FaCopy, FaCheck } from "react-icons/fa";
-import { useTheme } from "next-themes";
 
 interface CopyButtonProps {
     text: string;
@@ -10,8 +9,6 @@ interface CopyButtonProps {
 
 export default function CopyButton({ text }: CopyButtonProps) {
     const [copied, setCopied] = useState(false);
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
 
     const handleCopy = async () => {
         try {
@@ -26,13 +23,7 @@ export default function CopyButton({ text }: CopyButtonProps) {
     return (
         <button
             onClick={handleCopy}
-            className={`
-                absolute top-3 right-3 p-2 rounded-lg transition-all opacity-0 group-hover:opacity-100
-                ${isDark
-                    ? "bg-white/10 hover:bg-white/20 text-white"
-                    : "bg-black/10 hover:bg-black/20 text-black"
-                }
-            `}
+            className="absolute right-3 top-3 rounded-lg bg-black/10 p-2 text-black opacity-0 transition-all hover:bg-black/20 group-hover:opacity-100 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
             aria-label="Copy code"
         >
             {copied ? <FaCheck className="text-green-500" size={14} /> : <FaCopy size={14} />}

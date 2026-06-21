@@ -37,21 +37,63 @@
 
 ## Canonical Architecture
 
-- `src/app`: Routing shell + metadata only.
-- `src/views`: Full-page wrappers.
-- `src/sections`: Visual sections.
-- `src/components`: Generic reusable UI.
-- `src/content`: Portfolio knowledge.
+These are the current core architecture rules. They supersede older portfolio
+folder conventions unless the user explicitly overrides them.
+
+- `src/app`: Next.js App Router route shells, metadata, SEO routes, and
+  route-local components.
+- `src/views`: Full-page wrappers for route experiences.
+- `src/sections`: Self-contained visual sections.
+- `src/components`: Generic reusable UI only.
+- `src/content`: Portfolio knowledge, copy, navigation, SEO source data, and
+  MDX posts.
+- `src/hooks`: Reusable custom hooks.
+- `src/lib`: Business logic and server utilities.
+- `src/utils`: Generic side-effect helpers.
+
+### Dependency Rules
+
+- `src/app` may compose `views`, route-local `_components`, and metadata logic.
+- `src/views` may compose sections, shared components, and content.
+- `src/sections` may compose shared components, local `_components`, and content.
+- `src/components` must remain generic and reusable.
+- `src/content` must never import from `components`, `sections`, `views`, or
+  `app`.
+- Shared components must never import feature-specific components.
 
 ### Routing Rules
 
 - `src/app/**/page.tsx` must NEVER use `"use client"`.
+- Route files own route-level `metadata`, `generateMetadata`, and
+  `generateStaticParams`.
+- Visual UI used by only one route belongs in route-local `_components`.
+- Every meaningful dynamic route must remain copyable, indexable, and safe for
+  metadata generation.
 
 ### Sections Rules
 
 - Sections are siblings.
 - Never import sections into sections.
 - Never create folders ending with `Section`.
+- Section-local pieces belong in `src/sections/<Feature>/_components`.
+
+### View Rules
+
+- One folder per full-page route, such as
+  `src/views/ProjectsPage/ProjectsPage.tsx`.
+- View-local pieces belong in `src/views/<ViewName>/_components`.
+
+### Component Rules
+
+- Prefer one exported React component per `.tsx` file.
+- A component belongs in `src/components` only when it is reusable, prop-driven,
+  and free of page-specific business logic.
+- Local components stay local to the owning route, view, or section.
+- Shared components remain generic.
+- Component props should use dedicated interfaces.
+- Existing global overlays `CommandPalette.tsx` and `ChatWidget/ChatWidget.tsx`
+  may remain in `src/components`; their editable content/configuration must
+  stay in `src/content`.
 
 ## Content Philosophy
 
@@ -60,6 +102,25 @@
 - Configuration controls.
 - Move all editable portfolio knowledge to `src/content`.
 - Preserve JSX semantics.
+- Do not reintroduce `src/content/portfolio`.
+- Do not reintroduce `src/content/social`; shared social profiles live in
+  `src/content/shared/social.ts`.
+- `siteConfig` lives in `src/content/shared/site.ts`.
+
+### Content Domains
+
+- About: `src/content/about`
+- Assets: `src/content/assets`
+- Blog: `src/content/blog`
+- Command palette: `src/content/command`
+- Contact: `src/content/contact`
+- Experience: `src/content/experience`
+- GitHub journey: `src/content/github`
+- Hero: `src/content/hero`
+- Projects: `src/content/projects`
+- Shared configuration: `src/content/shared`
+- Skills: `src/content/skills`
+- Solutions: `src/content/solutions`
 
 ### Move
 
@@ -81,6 +142,43 @@
 - Tailwind classes
 - Animations
 - Layouts
+
+## Adding Content
+
+### Blog
+
+- Add one MDX file in `src/content/blog`.
+- Use frontmatter:
+  - title
+  - description
+  - slug
+  - date
+  - tags
+  - coverImage
+  - seoTitle
+  - seoDescription
+  - canonical
+  - ogImage
+  - featured
+- Blog routes, metadata, RSS, and sitemap entries must derive from the MDX
+  source.
+
+### Project
+
+- Add one object to `src/content/projects/projects.ts`.
+- Project list, detail route params, metadata, and sitemap entries must derive
+  from that object.
+
+### Skill
+
+- Update the relevant files in `src/content/skills`.
+- Skill pages, deep links, and sitemap entries must derive from the skills
+  content.
+
+### Experience
+
+- Add one object to `src/content/experience/roles.ts`.
+- The experience page must consume `src/content/experience/roles.ts`.
 
 ## Hydration Safety
 

@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import { FaArrowLeft, FaDownload } from "react-icons/fa";
 import Link from "next/link";
 import GradientText from "@/components/GradientText";
-import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
+import CodingYearJourney from "@/sections/About/CodingYearJourney";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import StatsCard from "@/components/StatsCard";
-import { ABOUT_CONTENT } from "@/content/portfolio/about";
+import { ABOUT_CONTENT } from "@/content/about/profile";
 import { onDownloadResume } from "@/lib/utils/download";
 
 export default function AboutPage() {

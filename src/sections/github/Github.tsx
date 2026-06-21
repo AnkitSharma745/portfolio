@@ -4,22 +4,18 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import GitHubCalendar from "react-github-calendar";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 import GradientText from "@/components/GradientText";
-import { githubJourneyContent } from "@/content/portfolio/githubJourney";
+import { githubJourneyContent } from "@/content/github/journey";
 import {
-  formatAbsoluteDate,
   getFallbackGitHubJourneyData,
   loadGitHubJourneyData,
   type GitHubJourneyData,
-  type GitHubRepository,
 } from "@/lib/githubJourney";
-import { FaGithub } from "react-icons/fa";
 import { useTheme } from "next-themes";
-import { TOP_GITHUB_REPOSITORY } from "@/content/portfolio/githubJourney";
+import { TOP_GITHUB_REPOSITORY } from "@/content/github/journey";
+import ProfileHeader from "./_components/ProfileHeader";
+import RepositoryCard from "./_components/RepositoryCard";
 
 export default function GithubJourneySection() {
   const [data, setData] = useState<GitHubJourneyData>(() =>
@@ -191,162 +187,3 @@ export default function GithubJourneySection() {
     </section>
   );
 }
-
-function ProfileHeader({
-  data,
-  status,
-}: {
-  data: GitHubJourneyData;
-  status: "loading" | "ready" | "error";
-}) {
-  const profileBio =
-    data.profile.bio?.trim() || githubJourneyContent.profileFallbackBio;
-
-  return (
-    <div className="flex flex-col gap-5 border-b border-border/50 pb-7 dark:border-white/10 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex min-w-0 items-center gap-4">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-primary/25 bg-primary/10 shadow-lg shadow-primary/10 sm:h-20 sm:w-20">
-          <Image
-            src={data.profile.avatarUrl}
-            alt={`${data.profile.name} GitHub avatar`}
-            fill
-            sizes="(min-width: 640px) 80px, 64px"
-            className="object-cover"
-            unoptimized
-          />
-        </div>
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <h3 className="truncate text-xl font-extrabold text-foreground sm:text-2xl">
-              {data.profile.name}
-            </h3>
-            <span className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-primary">
-              {status === "loading"
-                ? "Loading"
-                : status === "error"
-                  ? "Fallback"
-                  : "Live"}
-            </span>
-          </div>
-          <p className="mt-1 text-sm font-semibold text-primary">
-            @{data.profile.login}
-          </p>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-foreground/65">
-            {githubJourneyContent.developerTitle}
-          </p>
-          <p className="mt-1 max-w-2xl text-xs leading-5 text-foreground/45">
-            {profileBio}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col lg:items-end">
-        <motion.a
-          href={data.profile.htmlUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileTap={{ scale: 0.98 }}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg shadow-black/10 transition-all hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background dark:bg-white dark:text-black"
-        >
-          <FaGithub className="h-4 w-4" />
-          {githubJourneyContent.followLabel}
-          <ArrowUpRight className="h-4 w-4" />
-        </motion.a>
-        <DataFreshness data={data} status={status} />
-      </div>
-    </div>
-  );
-}
-
-function DataFreshness({
-  data,
-  status,
-}: {
-  data: GitHubJourneyData;
-  status: "loading" | "ready" | "error";
-}) {
-  const label =
-    data.generatedAt !== null
-      ? `${githubJourneyContent.generatedLabel}: ${formatAbsoluteDate(
-          data.generatedAt,
-        )}`
-      : status === "loading"
-        ? "Loading GitHub data"
-        : "Live REST data";
-
-  return (
-    <div className="flex items-center justify-center gap-2 rounded-full border border-border/50 bg-background/50 px-3 py-2 text-[11px] font-semibold text-foreground/50 backdrop-blur-sm dark:border-white/10 dark:bg-black/20 lg:justify-end">
-      <span
-        className={`h-2 w-2 rounded-full ${
-          status === "error" ? "bg-amber-400" : "bg-emerald-400"
-        }`}
-      />
-      {status === "error" ? "GitHub fallback view" : label}
-    </div>
-  );
-}
-
-function RepositoryCard({
-  repository,
-  index,
-}: {
-  repository: GitHubRepository;
-  index: number;
-}) {
-  return (
-    <motion.a
-      href={repository.htmlUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      whileTap={{ scale: 0.98 }}
-      className="group/repo relative flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-6 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 dark:border-white/10 dark:bg-white/[0.02]"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/repo:opacity-100" />
-      
-      {/* Decorative top right glow */}
-      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/20 blur-3xl transition-all duration-500 group-hover/repo:bg-primary/30 group-hover/repo:blur-2xl" />
-
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-start justify-between gap-3 mb-5">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-500 group-hover/repo:bg-primary group-hover/repo:text-primary-foreground">
-              <FaGithub className="h-6 w-6" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/40 mb-0.5">
-                Featured Repository #{index + 1}
-              </p>
-              <h4 className="truncate text-lg font-bold text-foreground transition-colors group-hover/repo:text-primary">
-                {repository.name}
-              </h4>
-            </div>
-          </div>
-          <ArrowUpRight className="h-5 w-5 shrink-0 text-foreground/30 transition-transform duration-500 group-hover/repo:-translate-y-1 group-hover/repo:translate-x-1 group-hover/repo:text-primary" />
-        </div>
-
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-foreground/60 flex-grow">
-          {repository.description ??
-            "Public repository details are available on GitHub."}
-        </p>
-
-        <div className="mt-6 flex flex-wrap items-center gap-2">
-          {(repository.techStack || (repository.language ? [repository.language] : [])).map((tech, i) => (
-            <span
-              key={tech + i}
-              className="flex items-center gap-1.5 rounded-full border border-border/50 bg-background/50 px-3 py-1 text-xs font-semibold text-foreground/70 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5"
-            >
-              {i === 0 && (
-                <span className="relative flex h-2 w-2 items-center justify-center">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
-                </span>
-              )}
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.a>
-  );
-}
-

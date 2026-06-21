@@ -1,14 +1,17 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/content/shared/site";
 
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = siteConfig.url.replace(/\/$/, "");
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://ankitsharma745.github.io/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

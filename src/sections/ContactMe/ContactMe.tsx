@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Switch } from "@headlessui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -18,37 +18,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { sendEmails } from "@/lib/utils/email";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { contactChannels } from "@/content/contact/contactChannels";
-
-function LiveClock() {
-  const [time, setTime] = useState<string | null>(null);
-
-  useEffect(() => {
-    const updateClock = () => {
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      };
-      setTime(new Date().toLocaleTimeString("en-US", options));
-    };
-
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!time) {
-    return <span className="opacity-0">00:00:00 AM</span>;
-  }
-
-  return (
-    <span className="font-mono text-sm font-bold text-primary tracking-wider transition-colors duration-300 group-hover/status:text-cyan-400">
-      {time} (IST)
-    </span>
-  );
-}
+import LiveClock from "./_components/LiveClock";
 
 export default function ContactMe() {
   const [formData, setFormData] = useState({

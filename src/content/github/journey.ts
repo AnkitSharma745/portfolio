@@ -41,7 +41,10 @@ export const TOP_GITHUB_REPOSITORY: GitHubRepository[] =[
       forks: 15,
       isFork: false,
       updatedAt: "2024-06-14T00:00:00Z",
-    } as any,
+      pushedAt: "2024-06-14T00:00:00Z",
+      createdAt: "2024-06-14T00:00:00Z",
+      isArchived: false,
+    },
     {
       fullName: "AnkitSharma745/portfolio",
       name: "portfolio",
@@ -53,7 +56,10 @@ export const TOP_GITHUB_REPOSITORY: GitHubRepository[] =[
       forks: 12,
       isFork: false,
       updatedAt: "2024-05-20T00:00:00Z",
-    } as any,
+      pushedAt: "2024-05-20T00:00:00Z",
+      createdAt: "2024-05-20T00:00:00Z",
+      isArchived: false,
+    },
     {
       fullName: "AnkitSharma745/ecommerce-kiosk-app",
       name: "ecommerce-kiosk-app",
@@ -65,5 +71,8 @@ export const TOP_GITHUB_REPOSITORY: GitHubRepository[] =[
       forks: 5,
       isFork: false,
       updatedAt: "2023-11-01T00:00:00Z",
-    } as any,
+      pushedAt: "2023-11-01T00:00:00Z",
+      createdAt: "2023-11-01T00:00:00Z",
+      isArchived: false,
+    },
 ]

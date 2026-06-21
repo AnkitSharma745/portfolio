@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { socialProfiles } from "@/content/social/profiles";
+import { socialProfiles } from "@/content/shared/social";
 import { contactChannels } from "@/content/contact/contactChannels";
 
 const NAV_LINKS = [

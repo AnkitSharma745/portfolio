@@ -9,8 +9,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaSearch, FaProjectDiagram, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
+import FeatureTextPlaceholder from "@/components/FeatureTextPlaceholder";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { PROJECTS_DATA, Project } from "@/content/portfolio/projects";
+import { PROJECTS_DATA } from "@/content/projects/projects";
 import StatsCard from "@/components/StatsCard";
 import FilterControls from "@/components/FilterControls";
 
@@ -21,18 +22,6 @@ const FILTER_OPTIONS = [
     { label: "Mobile", value: "Mobile" },
     { label: "Full Stack", value: "Full Stack" }
 ];
-
-function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: string }) {
-    return (
-        <div className="relative w-full h-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center">
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="z-10 flex flex-col items-center justify-center space-y-2">
-                <h4 className="text-white font-bold text-xl drop-shadow-md">{title}</h4>
-                {feature && <p className="text-white/90 text-sm font-medium drop-shadow-sm mt-2">{feature}</p>}
-            </div>
-        </div>
-    );
-}
 
 export default function ProjectsPage() {
     const router = useRouter();

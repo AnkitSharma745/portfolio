@@ -6,10 +6,7 @@ import Hero from "@/sections/Hero/Hero";
 import Skills from "@/sections/Skills/Skills";
 import Tools from "@/sections/Tools/Tools";
 import Projects from "@/sections/Projects/Projects";
-import Solutions from "@/sections/Solutions/Solutions";
 import ContactMe from "@/sections/ContactMe/ContactMe";
-import CodingYearJourney from "@/components/CodingJourney/CodingYearJourney";
-import AboutMe from "@/sections/About/About";
 
 export default function HomePage() {
   return (

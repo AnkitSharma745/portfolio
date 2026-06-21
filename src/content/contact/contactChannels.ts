@@ -1,7 +1,7 @@
 import {
   socialProfiles,
   type SocialProfileId,
-} from "@/content/social/profiles";
+} from "@/content/shared/social";
 
 export type ContactChannelIcon = SocialProfileId | "phone" | "email";
 

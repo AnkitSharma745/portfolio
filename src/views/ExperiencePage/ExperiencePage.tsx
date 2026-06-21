@@ -8,7 +8,7 @@ import Link from "next/link";
 import { FaArrowLeft, FaBriefcase, FaCalendarAlt, FaCheckCircle, FaSearch, FaBuilding, FaCode } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { EXPERIENCE_DATA, ExperienceItem } from "@/content/portfolio/experience";
+import { EXPERIENCE_DATA, ExperienceItem } from "@/content/experience/roles";
 import StatsCard from "@/components/StatsCard";
 import FilterControls from "@/components/FilterControls";
 import SortControls from "@/components/SortControls";

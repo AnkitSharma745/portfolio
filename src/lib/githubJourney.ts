@@ -1,4 +1,4 @@
-import { githubJourneyContent } from "@/content/portfolio/githubJourney";
+import { githubJourneyContent } from "@/content/github/journey";
 
 export interface GitHubProfile {
   login: string;

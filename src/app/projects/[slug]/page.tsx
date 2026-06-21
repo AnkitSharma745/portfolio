@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PROJECTS_DATA } from "@/content/portfolio/projects";
+import { PROJECTS_DATA } from "@/content/projects/projects";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import ProjectDetailPage from "@/views/ProjectDetailPage/ProjectDetailPage";
 

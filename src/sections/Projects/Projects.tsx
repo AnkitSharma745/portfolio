@@ -8,20 +8,9 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
-import { PROJECTS_DATA } from "@/content/portfolio/projects";
+import FeatureTextPlaceholder from "@/components/FeatureTextPlaceholder";
+import { PROJECTS_DATA } from "@/content/projects/projects";
 import Link from "next/link";
-
-function FeatureTextPlaceholder({ title, feature }: { title: string; feature?: string }) {
-  return (
-    <div className="relative w-full h-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center p-6 text-center">
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="z-10 flex flex-col items-center justify-center space-y-2">
-        <h4 className="text-white font-bold text-xl drop-shadow-md">{title}</h4>
-        {feature && <p className="text-white/90 text-sm font-medium drop-shadow-sm mt-2">{feature}</p>}
-      </div>
-    </div>
-  );
-}
 
 export default function Projects() {
   // Select the first 3 projects for homepage display

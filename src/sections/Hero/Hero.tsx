@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { onDownloadResume } from "@/lib/utils/download";
 import GradientText from "@/components/GradientText";
-import IntroVideoModal from "@/components/IntroVideoModal";
-import { HEADLINE_FOR_TYPEWRITER } from "@/content/portfolio/general";
+import IntroVideoModal from "@/sections/Hero/IntroVideoModal";
+import { HEADLINE_FOR_TYPEWRITER } from "@/content/hero/headlines";
 
 const Home = () => {
   const ProfileImage = "/assets/images/ankit.png";
