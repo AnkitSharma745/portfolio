@@ -1,11 +1,11 @@
 {
   "name": "ankitsharma745",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build",
+    "start": "node init && next start",
     "lint": "eslint",
     "predeploy": "npm version patch --no-git-tag-version && pnpm run build",
     "deploy": "gh-pages -d out -t -a -r https://github.com/AnkitSharma745/AnkitSharma745.github.io.git -b gh-pages"
